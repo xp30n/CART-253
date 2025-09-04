@@ -18,3 +18,15 @@ body {
   height: 100vh; /* Body is the height of the viewport */
   overflow: hidden; /* Hide anything that goes off the window size */
 }
+
+h1 {
+  color: blue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+h2 {
+  color: rgb(0, 191, 255);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
