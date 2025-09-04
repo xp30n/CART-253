@@ -1,6 +1,4 @@
 # CART-253
 Repo for my work in CART 253
 
-This is a new file for my CART 253 class!! 
-Check out da projects:3
-
+This is Aliyah's CART253 repo that is actually awesome:3
