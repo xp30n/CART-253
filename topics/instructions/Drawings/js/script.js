@@ -10,7 +10,7 @@
 const { push } = require("expo-router/build/global-state/routing");
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * This creates a square canvas
 */
 function setup() {
     createCanvas(640, 640);
@@ -18,7 +18,7 @@ function setup() {
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * this creates the drawings on the canvas
 */
 function draw() {
     background(150, 150, 150);
