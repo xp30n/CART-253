@@ -1,15 +1,16 @@
 /**
- * Title of Project
- * Author Name
+ * Instructions Challenge
+ * Aliyah 
+ * September 10th, 2025
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * This is my submission for the Instructions Challenge! It's actually super cool:3
+ * 
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * 
 */
 function setup() {
 
