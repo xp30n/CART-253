@@ -1,10 +1,10 @@
 /**
  * My House
- * Pippin Barr
+ * Aliyah
  * 
  * Draws a house with shapes.
  * 
- * Disclaimer: Not actually my house.
+ * Disclaimer: THIS IS ACTUALLY MY HOUSE
  * 
  * Uses:
  * p5.js
