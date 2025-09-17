@@ -2,9 +2,9 @@
 ## ☆ The coolest repository known to man:3 ☆ 
 
 This is a collection of projects, challenges and assignments for CART 253
-Expect greatness below:
+Witness greatness below:
 
-<img src="assets/_ (1).gif">
+![witness](assets/_(1).gif)
 
 ## Links 🛸☾⋆｡𖦹 °✩🩻
 
