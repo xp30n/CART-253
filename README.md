@@ -4,11 +4,11 @@
 This is a collection of projects, challenges and assignments for CART 253. 
 Witness greatness below:
 
-![witness](./topics/version-control/version-control-workflow/assets/images/noctis.gif);
+![witness](./topics/version-control/version-control-workflow/assets/images/noctis.gif)
 
 ## Links 🛸☾⋆｡𖦹 °✩🩻
 
-- [Instructions Challege] 
-- [Art Jam Assignment]
+- [Instructions Challege](https://xp30n.github.io/CART-253/topics/instructions/instructions-challenge)
+- [Art Jam Assignment](https://xp30n.github.io/CART-253/topics/instructions/art-jam)
 
 Rest of projects loading....
