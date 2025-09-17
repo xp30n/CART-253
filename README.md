@@ -8,7 +8,8 @@ Witness greatness below:
 
 ## Links 🛸☾⋆｡𖦹 °✩🩻
 
-- [Instructions Challege](https://xp30n.github.io/CART-253/topics/instructions/instructions-challenge)
-- [Art Jam Assignment](https://xp30n.github.io/CART-253/topics/instructions/art-jam)
+- <a href="https://xp30n.github.io/CART-253/topics/instructions/instructions-challenge" target="_blank">Instructions Challenge</a>
+- <a href="https://xp30n.github.io/CART-253/topics/instructions/art-jam" target="_blank">Art Jam Assignment</a>
+
 
 Rest of projects loading....
