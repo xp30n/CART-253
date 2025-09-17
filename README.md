@@ -14,4 +14,4 @@ Witness greatness below:
 
 Rest of projects loading.... 🌐
 
-![another cool picture](./topics/version-control/version-control-workflow/assets/images/opia.jpeg)
+![hands](./topics/version-control/version-control-workflow/assets/images/opia.jpeg)
