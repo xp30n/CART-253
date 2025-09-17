@@ -1,4 +1,14 @@
-# CART-253
-Repo for my work in CART 253
+# CART 253 | Aliyah R. W. (>_<) ! -- ✩
+## ☆ The coolest repository known to man:3 ☆ 
 
-This is Aliyah's CART253 repo that is actually awesome:3PSPPSP
+This is a collection of projects, challenges and assignments for CART 253
+Expect greatness below:
+
+<img src="assets/_ (1).gif">
+
+## Links 🛸☾⋆｡𖦹 °✩🩻
+
+- [Instructions Challege] 
+- [Art Jam Assignment]
+
+Rest of projects loading....
