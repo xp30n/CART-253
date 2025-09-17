@@ -4,7 +4,7 @@
 This is a collection of projects, challenges and assignments for CART 253
 Witness greatness below:
 
-![witness](topics/version-control/version-control-workflow/assets/images/noctis.gif);
+![witness](./topics/version-control/version-control-workflow/assets/images/noctis.gif);
 
 ## Links 🛸☾⋆｡𖦹 °✩🩻
 
