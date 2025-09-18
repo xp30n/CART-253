@@ -66,6 +66,9 @@ let ufo = {
   y: 70,
   width: 100,
   height: 30,
+  velocity: {
+    x: 3,
+  },
 
   // The aliens favourite color
   fill: {
@@ -93,9 +96,11 @@ function draw() {
 
   skyShade.r -= 1;
   skyShade.g -= 1;
-  skyShade.b -= 0;
+
+  // Shows us Mr. Furious' fury:3
+  let shakeX = random(-2, 2);
+  let shakeY = random(-2, 2);
   
-  mrFurious.fill.r = mrFurious.fill.r;
   mrFurious.fill.g = mrFurious.fill.g - 2;
   mrFurious.fill.b = mrFurious.fill.b - 2;
 
@@ -103,7 +108,7 @@ function draw() {
   push();
   noStroke();
   fill(mrFurious.fill.r, mrFurious.fill.g, mrFurious.fill.b);
-  ellipse(mrFurious.x, mrFurious.y, mrFurious.size);
+  ellipse(mrFurious.x + shakeX, mrFurious.y + shakeY, mrFurious.size);
   pop();
 
   // Mr. Furious shirt and neck:3
@@ -121,4 +126,6 @@ function draw() {
   noStroke();
   ellipse(ufo.x, ufo.y, ufo.width, ufo.height);
   pop();
+
+  ufo.x = ufo.x + ufo.velocity.x;
 }
