@@ -2,7 +2,8 @@
  * Variables Challenge
  * Aliyah R.W.!! 
  * 
- * My version of the variables challenge 🛸
+ * Mr. Furious is angry because there's an alien about to abduct him but he just got married. 
+ * I would be angry too, Mr. Furious. I would be too...
  */
 
 "use strict";
@@ -52,6 +53,28 @@ let mrFuriousShirtBtm = {
   height: 85
 };
 
+// color of the background
+let skyShade = {
+  r: 160,
+  g: 180,
+  b: 200
+};
+
+// Size and positioning of UFO
+let ufo = {
+  x: 60,
+  y: 70,
+  width: 100,
+  height: 30,
+
+  // The aliens favourite color
+  fill: {
+    r: 207,
+    g: 159,
+    b: 255
+  }
+};
+
 
 /**
  * Create the canvas
@@ -61,11 +84,21 @@ function setup() {
 }
 
 /**
- * Draw (and update) Mr. Furious
+ * Drawings of Mr. Furious
  */
 function draw() {
-  background(160, 180, 200);
+
+  // Changes the background from day to night
+  background(skyShade.r, skyShade.g, skyShade.b);
+
+  skyShade.r -= 1;
+  skyShade.g -= 1;
+  skyShade.b -= 0;
   
+  mrFurious.fill.r = mrFurious.fill.r;
+  mrFurious.fill.g = mrFurious.fill.g - 2;
+  mrFurious.fill.b = mrFurious.fill.b - 2;
+
   // Draw Mr. Furious as a coloured circle
   push();
   noStroke();
@@ -83,5 +116,9 @@ function draw() {
   rect(mrFuriousShirtBtm.x, mrFuriousShirtBtm.y, mrFuriousShirtBtm.width, mrFuriousShirtBtm.height);
   pop();
 
-
+  push();
+  fill(ufo.fill.r, ufo.fill.g, ufo.fill.b);
+  noStroke();
+  ellipse(ufo.x, ufo.y, ufo.width, ufo.height);
+  pop();
 }
