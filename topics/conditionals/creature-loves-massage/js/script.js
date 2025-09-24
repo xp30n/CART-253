@@ -1,6 +1,6 @@
 /**
  * Creature Loves Massage
- * Pippin Barr
+ * Aliyah Renomeron-Ward
  * 
  * A creature that responds to mouse massage by changing colour
  */
