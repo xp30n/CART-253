@@ -117,4 +117,3 @@ function checkMouse() {
             line(bug.x - bug.w, bug.y + bug.h / 4, bug.x + bug.w, bug.y + bug.h / 4);
             pop();
         }
-
