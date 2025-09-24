@@ -1,6 +1,6 @@
 /**
  * Death by Boredom
- * Pippin Barr
+ * Aliyah Renomeron-Ward
  * 
  * A creature that can die of boredom...
  */
