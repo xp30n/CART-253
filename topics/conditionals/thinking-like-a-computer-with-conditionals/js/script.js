@@ -7,6 +7,14 @@
 
 "use strict";
 
+let spider = {
+    x: 200,
+    y: 200,
+    size: 50,
+    speedX: 2,
+    speedY: 4
+}
+
 /**
  * Create the canvas
 */
@@ -14,58 +22,51 @@ function setup() {
     createCanvas(600, 400);
 }
 
+function moveCircle() {
+    spider.x += spider.speedX; // this is the same as saying spider.x = spider.x + speedX
+    spider.y += spider.speedY;
+
+    if(spider.y > height || spider.y < 0) { // you cannot use && for this because the X and the Y are two independant conditions. You don't want to combine them, but do them separately
+        // spider.y = 0;
+        spider.speedY = spider.speedY * -1;
+    }
+
+    // the || (OR) statement can also do the same as the lines of code below: 
+
+    // // this will make it so that when the ball reaches the top, it will also bounce off.
+    // if(spider.y < 0 ) {
+    //     // spider.y = 0;
+    //     spider.speedY = spider.speedY * -1;
+    // }
+
+
+    if(spider.x > width) {
+        // spider.x = 0;
+        spider.speedX = spider.speedX * -1;
+    }
+
+    if(spider.x < 0) {
+        // spider.x = 0;
+        spider.speedX = spider.speedX * -1;
+    }
+
+}
+
+// if you want to 
 
 /**
  * Draw shapes based on conditions
- */
-function draw() {
-    background("#000000");
-
-    // Draw a square if the mouse is in the left third
-    if (mouseX < width * 0.33) {
-        drawSquare();
-    }
-    // Draw a circle if the mouse is in the right third
-    else if (mouseX > width * 0.66) {
-        drawCircle();
-    }
-    // Otherwise draw and X in the centre
-    else {
-        drawX();
-    }
-}
-
-/**
- * Draws a square on the left side of the canvas
- */
-function drawSquare() {
-    push();
-    fill("#ff0000");
-    noStroke();
-    rectMode(CENTER);
-    rect(width * 0.1666, height * 0.5, width * 0.33);
-    pop();
-}
-
-/**
- * Draws a circle on the right side of the canvas
  */
 function drawCircle() {
     push();
     fill("#ff0000");
     noStroke();
-    ellipse(width * 0.8333, height * 0.5, width * 0.33);
+    ellipse(spider.x, spider.y, spider.size, spider.size);
     pop();
 }
 
-/**
- * Draws an X in the centre of the canvas
- */
-function drawX() {
-    push();
-    stroke("#ff0000");
-    strokeWeight(10);
-    line(width * 0.33, height * 0.25, width * 0.66, height * 0.75);
-    line(width * 0.66, height * 0.25, width * 0.33, height * 0.75);
-    pop();
+function draw() {
+    background("black");
+    drawCircle();
+    moveCircle();
 }
