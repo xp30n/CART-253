@@ -1,6 +1,6 @@
 /**
  * Debugging Conditions
- * Pippin Barr
+ * Aliyah Renomeron-Ward
  * 
  * Lets the user sneak up on a bug and squash it. 
  * But it doesn't work.
@@ -61,6 +61,7 @@ function checkMouse() {
     // Don't react if the bug is already dead
     if (!bug.alive) {
         return;
+    }
 
 
         // Check if the bug gets scared away
@@ -81,12 +82,13 @@ function checkMouse() {
             // Check if the mouse is pressed over the bug
             // (Not perfect since it would be better if the click happed right then
             // but this will do)
-            if (mouseOverBug || mouseIsPressed {
+            if (mouseOverBug || mouseIsPressed) {
                 // Splat!
                 bug.alive = false;
                 bug.fill = bug.fills.dead;
             }
         }
+}
 
         function moveBug() {
             bug.x += bug.velocity.x;
@@ -115,3 +117,4 @@ function checkMouse() {
             line(bug.x - bug.w, bug.y + bug.h / 4, bug.x + bug.w, bug.y + bug.h / 4);
             pop();
         }
+
