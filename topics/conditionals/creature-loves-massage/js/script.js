@@ -48,25 +48,19 @@ function draw() {
  * Responds to user input
  */
 function checkInput() {
-    // Check if the mouse is pressed...
-    if (mouseIsPressed) {
-        // The mouse is pressed!
-        // Change the colour of the creature to show it's happy
-        // It likes the mouse! Squeak squeak!
-        creature.fill = creature.fills.happy;
-    }
-    // Mouse if not pressed, check if a key is pressed...
-    else if (keyIsPressed) {
-        // A key is pressed!
-        // Change the colour of the creature to show it's angry
-        // It hates those keys! Ugh!
-        creature.fill = creature.fills.angry;
-    }
-    else {
-        // The mouse isn't pressed and no key is pressed!
-        // Change the colour of the creature to show it's bored
-        creature.fill = creature.fills.bored;
-    }
+
+    const distance = dist(mouseX, mouseY, creature.x, creature.y);
+    const mouseOverlapsCreature = (distance < creature.size/2); // on this line, checking whether the distance between the mouse and the creature is less than the radius (diameter/2)
+
+    const mouseIsMoving = (movedX !== 0 || movedY !== 0); // ! means that something is NOT and the == means equals, so it means !== not equal to
+    // movement is keeping the creature interested. If the mouse is not moving, the creature will be bored, but as soon as you start moving the mouse WITHIN the circle, it becomes happy 
+
+   if (mouseOverlapsCreature && mouseIsMoving) {
+    creature.fill = creature.fills.happy;
+   }
+   else {
+    creature.fill = creature.fills.bored;
+   }
 }
 
 /**
