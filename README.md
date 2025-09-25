@@ -10,7 +10,7 @@ Witness greatness below:
 
 - <a href="https://xp30n.github.io/CART-253/topics/instructions/instructions-challenge" target="_blank">Instructions Challenge</a>
 - <a href="https://xp30n.github.io/CART-253/topics/variables/variables-challenge" target="_blank">Variables Challenge</a>
-- <a href="https://xp30n.github.io/CART-253/topics/conditionals/conditionals-challenge" target="_blank">Variables Challenge</a>
+- <a href="https://xp30n.github.io/CART-253/topics/conditionals/conditionals-challenge" target="_blank">Conditionals Challenge</a>
 - <a href="https://xp30n.github.io/CART-253/topics/instructions/art-jam" target="_blank">Art Jam Assignment</a>
 
 
