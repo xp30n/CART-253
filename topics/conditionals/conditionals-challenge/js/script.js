@@ -88,7 +88,7 @@ function checkTarget() {
  * Move the user circle, draw the two circles
  */
 function draw() {
-  background("#aaaaaa");
+  background("#b5dfffff");
 
   // Move user circle
   moveUser();
@@ -137,7 +137,9 @@ function drawPuck() {
   pop();
 }
 
-// Displays the target circle
+/**
+ * Displays the target circle
+ */
 function drawTarget() {
   push();
   noStroke();
