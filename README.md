@@ -13,7 +13,6 @@ Witness greatness below:
 - <a href="https://xp30n.github.io/CART-253/topics/conditionals/conditionals-challenge" target="_blank">Conditionals Challenge</a>
 - <a href="https://xp30n.github.io/CART-253/topics/art-jam" target="_blank">Art Jam Assignment</a>
 
+## Executing: Projects.... 🌐 * 📁 * 📎 ⛧°｡⋆
 
-Rest of projects loading.... 🌐
-
-![hands](./topics/version-control/version-control-workflow/assets/images/opia.jpeg)
+![hands](./topics/version-control/version-control-workflow/assets/images/loading.png)
