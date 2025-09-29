@@ -3,6 +3,9 @@
  * Aliyah
  * 
  * This is a visual representation of how Lia feels and how she thinks she looks:p
+ * It's super sick right?...
+ * No?
+ * Okay...
  */
 
 "use strict";
@@ -17,7 +20,7 @@ function setup() {
 
 
 /**
- * Parts of my drawing;
+ * Parts of my self portrait
 */
 function draw() {
     
@@ -52,5 +55,5 @@ function draw() {
     quad(180, 500, 400, 700, 620, 500, 520, 230);
     pop();
 
-    
+
 }
