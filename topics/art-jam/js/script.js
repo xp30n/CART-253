@@ -109,5 +109,13 @@ function draw() {
     triangle(583, 400, 450, 10, 456, 290);
     pop();
 
-    // starting to look like batman woah
+    // Face cutout of the ski mask
+    push();
+    noStroke();
+    fill(255, 255, 255);
+    rect(250, 420, 300, 100);
+    pop();
+
+    // Top half of face cutout
+    
 }
