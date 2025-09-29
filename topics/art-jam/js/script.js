@@ -12,9 +12,9 @@
 
 let liasMask = {
     fill: {
-        r: 0,
-        g: 0,
-        b: 139,
+        r: 44,
+        g: 55,
+        b: 242,
     }
 };
 
@@ -32,7 +32,7 @@ function setup() {
 */
 function draw() {
     
-    // Lia's ski mask - BE AWARE, THERE ARE A LOT OF SHAPES...
+    // LIA'S SKI MASK - BE AWARE, THERE ARE A LOT OF SHAPES...
     push();
     noStroke();
     fill(liasMask.fill.r, liasMask.fill.g, liasMask.fill.b);
@@ -42,7 +42,7 @@ function draw() {
     push();
     noStroke();
     fill(liasMask.fill.r, liasMask.fill.g, liasMask.fill.b);
-    quad(180, 500, 400, 700, 620, 500, 260, 230);
+    quad(180, 500, 400, 500, 620, 500, 260, 280);
     pop();
 
     push();
@@ -57,7 +57,7 @@ function draw() {
     quad(180, 500, 290, 700, 490, 700, 620, 500);
     pop(); 
 
-    // ski mask base/neck
+    // SKI MASK BASE/NECK AREA
     push();
     noStroke();
     fill(liasMask.fill.r, liasMask.fill.g, liasMask.fill.b);
@@ -68,5 +68,18 @@ function draw() {
     noStroke();
     fill(liasMask.fill.r, liasMask.fill.g, liasMask.fill.b);
     quad(220, 650, 400, 500, 560, 670, 400, 750);
+    pop();
+
+    // THE EARS OF THE MASK
+    push();
+    noStroke();
+    fill(liasMask.fill.r, liasMask.fill.g, liasMask.fill.b);
+    triangle(216, 400, 350, 20, 330, 290);
+    pop();
+
+    push();
+    noStroke();
+    fill(liasMask.fill.r, liasMask.fill.g, liasMask.fill.b);
+    triangle(583, 400, 450, 20, 456, 290);
     pop();
 }
