@@ -34,12 +34,6 @@ function draw() {
     push();
     noStroke();
     fill(0, 0, 139);
-    ellipse(width/2, 490, 350, 350);
-    pop();
-
-    push();
-    noStroke();
-    fill(0, 0, 139);
     quad(180, 500, 400, 700, 620, 500, 400, 300);
     pop();
 
@@ -57,7 +51,14 @@ function draw() {
 
     push();
     noStroke();
-    fill(8, 24, 168);
+    fill(0, 0, 139);
     quad(180, 500, 290, 700, 490, 700, 620, 500);
     pop(); 
+
+    // ski mask base/neck
+    push();
+    noStroke();
+    fill(0, 0, 139);
+    quad(250, 800, 290, 700, 490, 700, 540, 800);
+    
 }
