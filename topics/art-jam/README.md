@@ -10,19 +10,22 @@ by Aliyah Renomeron-Ward (૭ ｡•̀ ᵕ •́｡ )૭
 
 > Persona.exe is my self-portrait as a digital alter ego, recreated with p5.js. The mask conceals, the eyes reveal, and the code brings it all together.
 
-## Screenshots
+## Screenshots 🛸
 
 > Here are a few screenshots and images of the concept art I made!
 
 > ![Initial sketches](./assets/images/sketches.png)
-> ![Digital Recreation](./assets/images/final-render-blue.jpg)
 > ![Mapping out the shapes for the code](./assets/images/shape-mapping.JPG)
-> ![Final Render](./assets/images/final-render.JPG)
+> ![Final Render](./assets/images/final-lineart-render.jpg)
 
-## Attribution
+## Finished Project ➤
+
+> ![final product]
+
+## Attribution 🌀
 
 > - This project uses [p5.js](https://p5js.org).
 
-## System exit: Persona.exe offline.
+## System failure: Persona.exe offline 🚫
 
 ![System Gif](./assets/images/system-failure.gif)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
