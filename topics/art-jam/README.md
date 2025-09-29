@@ -16,7 +16,7 @@ Booting Persona.exe...Access Granted ⚠
 
 > Here are a few screenshots and images of the concept art I made!
 
-> ![Initial sketches](./assets/images/sketch.HEIC)
+> ![Initial sketches](./assets/images/sketches.png)
 > ![Digital Recreation](./assets/images/easier-block.JPG)
 > ![Mapping out the shapes for the code](./assets/images/shape-mapping.JPG)
 > ![Final Render](./assets/images/final-render.JPG)
