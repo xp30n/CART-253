@@ -27,4 +27,4 @@ by Aliyah Renomeron-Ward (૭ ｡•̀ ᵕ •́｡ )૭
 
 ## System exit: Persona.exe offline.
 
-![Final Render](./assets/images/system-failure.gif)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+![System Gif](./assets/images/system-failure.gif)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
