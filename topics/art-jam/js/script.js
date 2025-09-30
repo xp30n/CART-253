@@ -36,6 +36,15 @@ let liaBody = {
     }
 };
 
+// skin color
+let face = {
+    fill: {
+        r: 218,
+        g: 160,
+        b: 109
+    }
+};
+
 /**
  * Creates the canvas
 */
@@ -112,10 +121,33 @@ function draw() {
     // Face cutout of the ski mask
     push();
     noStroke();
-    fill(255, 255, 255);
+    fill(face.fill.r, face.fill.g, face.fill.b);
     rect(250, 420, 300, 100);
     pop();
 
+    // Bottom half of face cutout
+    push();
+    noStroke();
+    fill(face.fill.r, face.fill.g, face.fill.b);
+    triangle(250, 520, 400, 560, 550, 520);
+    pop();
+
     // Top half of face cutout
-    
+    push();
+    noStroke();
+    fill(face.fill.r, face.fill.g, face.fill.b);
+    triangle(250, 420, 400, 390, 550, 420);
+    pop();
+
+    push();
+    noStroke();
+    fill(face.fill.r, face.fill.g, face.fill.b);
+    triangle(250, 520, 400, 560, 290, 570);
+    pop();
+
+    push();
+    noStroke();
+    fill(face.fill.r, face.fill.g, face.fill.b);
+    triangle(400, 560, 551, 519, 498, 570);
+    pop();
 }
