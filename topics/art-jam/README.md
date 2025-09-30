@@ -28,4 +28,4 @@ by Aliyah Renomeron-Ward (૭ ｡•̀ ᵕ •́｡ )૭
 
 ## System failure: Persona.exe offline 🚫
 
-![System Gif](./assets/images/system-failure.gif)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+![System Gif](./assets/images/system-failure.gif)
