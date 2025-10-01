@@ -56,7 +56,9 @@ function setup() {
  * Parts of my self portrait
  */
 function draw() {
-  // Lia's body
+  /**
+   * Lia's Body
+   */
   push();
   noStroke();
   fill(liaBody.fill.r, liaBody.fill.g, liaBody.fill.b);
@@ -115,9 +117,10 @@ function draw() {
   triangle(583, 400, 450, 10, 456, 290);
   pop();
 
-  // -----------
+  /**
+   * Face cutout of the ski mask
+   */
 
-  // Face cutout of the ski mask
   push();
   noStroke();
   fill(face.fill.r, face.fill.g, face.fill.b);
@@ -150,12 +153,14 @@ function draw() {
   triangle(400, 560, 551, 519, 498, 570);
   pop();
 
-  // ----------
+  /**
+   * EYES
+   */
 
   // Left eye
   push();
-  stroke(50);
-  strokeWeight(4)
+  stroke(0);
+  strokeWeight(4);
   fill(255, 255, 255);
   ellipse(320, 470, 100, 100);
   pop();
@@ -171,10 +176,10 @@ function draw() {
   push();
   noStroke();
   fill(0, 0, 0);
-  rect(268, 422, 105,50);
+  rect(268, 422, 105, 50);
   pop();
 
-  // Eyelid
+  // Eyelid - TO MAKE MOVE
   push();
   noStroke();
   fill(face.fill.r, face.fill.g, face.fill.b);
@@ -183,8 +188,8 @@ function draw() {
 
   // Right eye
   push();
-  stroke(50);
-  strokeWeight(4)
+  stroke(0);
+  strokeWeight(4);
   fill(255, 255, 255);
   ellipse(480, 470, 100, 100);
   pop();
@@ -200,13 +205,58 @@ function draw() {
   push();
   noStroke();
   fill(0, 0, 0);
-  rect(427, 422, 105,50);
+  rect(427, 422, 105, 50);
   pop();
-  
+
   // Eyelid -- TO MAKE MOVE
   push();
   noStroke();
   fill(face.fill.r, face.fill.g, face.fill.b);
   rect(427, 418, 105, 50);
   pop();
+
+  /**
+   * Right Eyelashes
+   */
+
+  // Corner eyelash
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  triangle(530, 468, 550, 468, 525, 490);
+  pop();
+
+  // white inside
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  triangle(520, 472, 540, 472, 507, 500);
+  pop();
+ 
+  // second
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  triangle(527, 488, 550, 503, 521, 501);
+  pop();
+
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  triangle(520, 488, 541, 500, 520, 497);
+  pop();
+
+  // third
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  triangle(510, 507, 510, 535, 498, 516);
+  pop();
+
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  triangle(505, 502, 507.5, 526, 498, 508);
+  pop();
 }
+
