@@ -118,6 +118,8 @@ function draw() {
     triangle(583, 400, 450, 10, 456, 290);
     pop();
 
+    // ----------- 
+
     // Face cutout of the ski mask
     push();
     noStroke();
@@ -149,5 +151,48 @@ function draw() {
     noStroke();
     fill(face.fill.r, face.fill.g, face.fill.b);
     triangle(400, 560, 551, 519, 498, 570);
+    pop();
+
+
+    // ----------
+
+    // Left eye
+    push();
+    noStroke();
+    fill(255, 255 , 255);
+    ellipse(320, 470, 90, 90);
+    pop();
+
+    // Pupil 
+    push();
+    noStroke();
+    fill(0, 0, 0);
+    ellipse(320, 470, 60, 60);
+    pop();
+
+    push();
+    noStroke();
+    fill(face.fill.r, face.fill.g, face.fill.b);
+    rect(270, 420, 100, 50);
+    pop();
+
+    // Right eye
+    push();
+    noStroke();
+    fill(255, 255 ,255);
+    ellipse(480, 470, 90, 90);
+    pop();
+
+    // Pupil
+    push();
+    noStroke();
+    fill(0, 0, 0);
+    ellipse(480, 470, 60, 60);
+    pop();
+
+    push();
+    noStroke();
+    fill(face.fill.r, face.fill.g, face.fill.b);
+    rect(430, 420, 100, 50);
     pop();
 }
