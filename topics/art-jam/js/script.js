@@ -302,4 +302,8 @@ function draw() {
   fill(255, 255, 255);
   triangle(295, 502, 292.5, 526, 302, 508);
   pop();
+
+  /**
+   * EYEBROWS
+   */
 }
