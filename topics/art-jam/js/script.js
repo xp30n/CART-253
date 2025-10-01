@@ -232,7 +232,7 @@ function draw() {
   fill(255, 255, 255);
   triangle(520, 472, 540, 472, 507, 500);
   pop();
- 
+
   // second
   push();
   noStroke();
@@ -258,5 +258,48 @@ function draw() {
   fill(255, 255, 255);
   triangle(505, 502, 507.5, 526, 498, 508);
   pop();
-}
 
+  /**
+   * LEFT EYELASHES
+   */
+
+  // Corner eyelash
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  triangle(270, 468, 250, 468, 275, 490);
+  pop();
+
+  // white inside
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  triangle(281, 472, 260, 472, 293, 500);
+  pop();
+
+  // second
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  triangle(273, 488, 250, 503, 279, 501);
+  pop();
+
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  triangle(280, 488, 259, 500, 280, 497);
+  pop();
+
+  // third
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  triangle(290, 507, 290, 535, 302, 516);
+  pop();
+
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  triangle(295, 502, 292.5, 526, 302, 508);
+  pop();
+}
