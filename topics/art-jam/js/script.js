@@ -37,6 +37,12 @@ let liaBody = {
 
 // skin color
 let face = {
+  x: 250,
+  y: 420,
+  w: 300,
+  h: 100,
+  isShy: true,
+
   fill: {
     r: 218,
     g: 160,
@@ -44,13 +50,52 @@ let face = {
   },
 };
 
-let pupil = {
+// dimensions and color of Lia's left pupil
+let leftPupil = {
+  x: 320,
+  y: 470,
+  w: 70,
+  h: 70,
+
   fill: {
-    r: 255,
-    g: 255,
-    b: 255
-  },
+    r: 0,
+    g: 0,
+    b: 0,
+  }
 }
+
+// dimensions and color of Lia's right pupil
+let rightPupil = {
+  x: 480,
+  y: 470,
+  w: 70,
+  h: 70,
+
+  fill: {
+    r: 0,
+    g: 0,
+    b: 0,
+  }
+}
+
+function mousePressed() {
+  if (mouseX > face.x - face.w/2 && mouseX < face.x + face.w/2 && mouseY > face.y - face.h/2 && mouseY < face.y + face.h/2) {
+    if (face.isShy) {
+      // start blushing
+      face.fill.r = 218;
+      face.fill.g = 131;
+      face.fill.b = 109;
+      face.isShy = false;
+    } else {
+      // gets angry
+      face.fill.r = 218;
+      face.fill.g = 160;
+      face.fill.b = 109;
+      face.isShy = true;
+    }
+  }
+}
+
 
 /**
  * Creates the canvas
@@ -73,7 +118,10 @@ function draw() {
   rect(liaBody.x, liaBody.y, liaBody.w, liaBody.h, liaBody.br);
   pop();
 
-  // Lia's Ski Mask - BE AWARE, THERE ARE A LOT OF SHAPES...
+  /**
+   * Lia's Ski Mask - BE AWARE, THERE ARE A LOT OF SHAPES...
+   */
+
   push();
   noStroke();
   fill(liaMask.fill.r, liaMask.fill.g, liaMask.fill.b);
@@ -128,11 +176,11 @@ function draw() {
   /**
    * Face cutout of the ski mask
    */
-
+  // Middle face cutout 
   push();
   noStroke();
   fill(face.fill.r, face.fill.g, face.fill.b);
-  rect(250, 420, 300, 100);
+  rect(face.x, face.y, face.w, face.h);
   pop();
 
   // Bottom half of face cutout
@@ -176,8 +224,8 @@ function draw() {
   // Pupil
   push();
   noStroke();
-  fill(0, 0, 0);
-  ellipse(320, 470, 70, 70);
+  fill(leftPupil.fill.r, leftPupil.fill.g, leftPupil.fill.b);
+  ellipse(leftPupil.x, leftPupil.y, leftPupil.w, leftPupil.h);
   pop();
 
   // Top Eyeliner
@@ -205,8 +253,8 @@ function draw() {
   // Pupil
   push();
   noStroke();
-  fill(0, 0, 0);
-  ellipse(480, 470, 70, 70);
+  fill(rightPupil.fill.r, rightPupil.fill.g, rightPupil.fill.b);
+  ellipse(rightPupil.x, rightPupil.y, rightPupil.w, rightPupil.h);
   pop();
 
   // Top Eyeliner
@@ -327,5 +375,4 @@ function draw() {
   fill(0, 0, 0);
   line(370, 450, 270, 430);
   pop();
-
 }
