@@ -44,6 +44,14 @@ let face = {
   },
 };
 
+let pupil = {
+  fill: {
+    r: 255,
+    g: 255,
+    b: 255
+  },
+}
+
 /**
  * Creates the canvas
  */
@@ -208,7 +216,7 @@ function draw() {
   rect(427, 422, 105, 50);
   pop();
 
-  // Eyelid -- TO MAKE MOVE
+  // Eyelid
   push();
   noStroke();
   fill(face.fill.r, face.fill.g, face.fill.b);
@@ -304,6 +312,84 @@ function draw() {
   pop();
 
   /**
-   * EYEBROWS
+   * 
    */
+  // Right eyebrow
+  push();
+  strokeWeight(6);
+  fill(0, 0, 0);
+  line(430, 450, 530, 430);
+  pop();
+
+  // Left eyebrow
+  push();
+  strokeWeight(6);
+  fill(0, 0, 0);
+  line(370, 450, 270, 430);
+  pop();
+
+  /**
+   * Star pupil
+   */
+  // Left eye pupil
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  ellipse(320, 485, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(313, 480, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(329, 480, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(329, 494, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(313, 494, 15, 15);
+  pop();
+
+  // Right eye pupil
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  ellipse(480, 485, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(487, 480, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(471, 480, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(471, 494, 15, 15);
+  pop();
+
+  push();
+  noStroke();
+  fill(0, 0, 0);
+  ellipse(487, 494, 15, 15);
+  pop();
 }
