@@ -20,7 +20,7 @@ by Aliyah Renomeron-Ward (૭ ｡•̀ ᵕ •́｡ )૭
 
 ## Finished Project ➤
 
-> ![final product](/assets/images/finished-canvas.png)
+> ![final product](./assets/images/finished-canvas.png)
 
 ## Attribution 🌀
 
