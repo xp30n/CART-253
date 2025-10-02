@@ -87,7 +87,7 @@ function mousePressed() {
       face.fill.b = 109;
       face.isShy = false;
     } else {
-      // gets angry
+      // goes back to being regular Lia
       face.fill.r = 218;
       face.fill.g = 160;
       face.fill.b = 109;
@@ -235,7 +235,7 @@ function draw() {
   rect(268, 422, 105, 50);
   pop();
 
-  // Eyelid - TO MAKE MOVE
+  // Eyelid 
   push();
   noStroke();
   fill(face.fill.r, face.fill.g, face.fill.b);
