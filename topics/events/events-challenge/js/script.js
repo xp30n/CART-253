@@ -14,7 +14,6 @@ let score = 0;
 let gameOver = false;
 
 
-
 /**
  * Create the canvas
  */
@@ -34,6 +33,14 @@ function draw() {
     score += 0.05;
   }
   displayUI();
+}
+
+function keyPressed() {
+  gameOver = true;
+}
+
+function mousePressed() {
+  gameOver = true;
 }
 
 /**
