@@ -1,2 +1,0 @@
-## ART JAM RESPONSE
-
