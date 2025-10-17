@@ -1,4 +1,4 @@
-# ⚡ ideas.log
+# ⚡ ideas.exe
 
 `// system online` ☑️
 
