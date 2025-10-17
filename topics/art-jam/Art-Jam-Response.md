@@ -7,7 +7,7 @@ by Aliyah Renomeron-Ward (૭ ｡•̀ ᵕ •́｡ )૭
 
 > I thought it was really creative how she designed the portrait and chose to represent herself through an animal rather than a traditional self portrait of her face. It gives the project a playful and unique twist, showing her technical skills with the code that we've learned so far in the program. And the interactive movement of the eye makes it feel more alive and engaging.
 
-![Norah's Art Jam](https://norahwilcox.github.io/CART253/topics/art-jam/)
+![Norah's Art Jam](./assets/images/Norah-art-jam.png)
 [Link to her Art Jam](https://norahwilcox.github.io/CART253/topics/art-jam/)
 
 ## Leah's Art Jam:
