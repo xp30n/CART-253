@@ -11,4 +11,11 @@ by Aliyah Renomeron-Ward (૭ ｡•̀ ᵕ •́｡ )૭
 [Link to her Art Jam](https://norahwilcox.github.io/CART253/topics/art-jam/)
 
 ## Leah's Art Jam:
-> Leah's Art Jam was super cool. Like Norah's, it wasn't a traditional self portrait like you'd expect.
+> Leah's Art Jam was super interesting. Like Norah's, it wasn't a traditional self portrait like you'd expect, but a wall of cascading, multicolored stars that gets faster the longer you stay on the page. Rather than showing herself literally, she gave us a bit of an insight to her personality and artistic identity through her Art Jam submission. 
+
+> What stood out to me was her approach to the user interaction element, in the sense that it's indirect user interaction. There's no clicking or dragging involved, but a more subtle form of engagement. Despite the stars increasing in speed the longer you stay on the page, it felt calm and almost meditative. 10/10! 
+
+![Leah's Art Jam](./assets/images/leah-art-jam.png)
+[Link to her Art Jam](https://leahiscoding.github.io/CART-253/art-jam)
+
+## 
