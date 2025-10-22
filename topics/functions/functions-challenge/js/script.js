@@ -1,6 +1,6 @@
 /**
  * Bouncy Ball Ball Bonanza
- * Aliyah R.W.
+ * Aliyah Renomeron-Ward
  * 
  * The starting point for a ball-bouncing experience of
  * epic proportions!
@@ -16,14 +16,14 @@ const ball = {
     height: 10,
     velocity: {
         x: 0,
-        y: 10
+        y: 5
     }
 };
 
 // Our paddle
 const paddle = {
-    x: 300,
-    y: 280,
+    x: undefined,
+    y: undefined,
     width: 80,
     height: 10
 };
@@ -33,8 +33,19 @@ const paddle = {
 */
 function setup() {
     createCanvas(600, 300);
+
+    paddle.y = height - paddle.height;
 }
 
+// function ballVelocity() {
+//     let ball = {
+//         velocity: {
+//             x: 0,
+//             y: random(2, 10),
+//         }
+//     };
+//     return ball;
+// }
 
 /**
  * Move and display the ball and paddle
@@ -45,7 +56,7 @@ function draw() {
     movePaddle(paddle);
     moveBall(ball);
 
-    handleBounce(ball, paddle);
+    checkBallBounce(ball);
 
     drawPaddle(paddle);
     drawBall(ball);
@@ -55,21 +66,27 @@ function draw() {
  * Moves the paddle
  */
 function movePaddle(paddle) {
-
+    paddle.x = mouseX;
 }
 
 /**
  * Moves the ball passed in as a parameter
  */
 function moveBall(ball) {
-
+    ball.x += ball.velocity.x;
+    ball.y += ball.velocity.y;
 }
 
 /**
  * Bounces the provided ball off the provided paddle
  */
-function handleBounce(ball, paddle) {
-
+function checkBallBounce(ball) {
+    // Check if ball1 overlaps the paddle
+    const overlap = checkBallOverlap(ball, paddle);
+    // If there is an overlap, bounce the ball back up
+    if (overlap) {
+        ball.velocity.y *= -1;
+    }
 }
 
 /**
@@ -102,7 +119,7 @@ function drawBall(ball) {
  * their rectangles, and that rectA and rectB are displayed CENTERED on their
  * x,y coordinates.
  */
-function checkOverlap(rectA, rectB) {
+function checkBallOverlap(rectA, rectB) {
   return (rectA.x + rectA.width/2 > rectB.x - rectB.width/2 &&
           rectA.x - rectA.width/2 < rectB.x + rectB.width/2 &&
           rectA.y + rectA.height/2 > rectB.y - rectB.height/2 &&
