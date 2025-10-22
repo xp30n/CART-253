@@ -8,9 +8,20 @@
 
 "use strict";
 
-// Our ball
+// Our balls
 const ball = {
     x: 300,
+    y: 20,
+    width: 10,
+    height: 10,
+    velocity: {
+        x: 0,
+        y: 5
+    }
+};
+
+const ball2 = {
+    x: 350,
     y: 20,
     width: 10,
     height: 10,
@@ -37,16 +48,6 @@ function setup() {
     paddle.y = height - paddle.height;
 }
 
-// function ballVelocity() {
-//     let ball = {
-//         velocity: {
-//             x: 0,
-//             y: random(2, 10),
-//         }
-//     };
-//     return ball;
-// }
-
 /**
  * Move and display the ball and paddle
 */
@@ -55,11 +56,14 @@ function draw() {
 
     movePaddle(paddle);
     moveBall(ball);
+    moveBall(ball2);
 
     checkBallBounce(ball);
+    checkBallBounce(ball2);
 
     drawPaddle(paddle);
     drawBall(ball);
+    drawBall(ball2);
 }
 
 /**
