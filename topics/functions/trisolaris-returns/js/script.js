@@ -31,12 +31,7 @@ function draw() {
  * Draws a Trisolarian sun
  */
 function drawSun(x, y, size) {
-    // Calculate the stroke weight of the sun based on
-    // the distance of the mouse position
-    const minWeight = 20;
-    const maxWeight = 1;
-    let d = dist(mouseX, mouseY, x, y);
-    let weight = map(d, 0, width, minWeight, maxWeight);
+    let weight = calculateStrokeWeight(x, y);
 
     push();
     strokeWeight(weight);
@@ -45,3 +40,16 @@ function drawSun(x, y, size) {
     ellipse(x, y, size);
     pop();
 }
+
+function calculateStrokeWeight(x, y) {
+    // Calculate the stroke weight of the sun based on
+    // the distance of the mouse position
+    const minWeight = 1;
+    const maxWeight = 20;
+    let d = dist(mouseX, mouseY, x, y);
+    let result = map(d, 0, width, maxWeight, minWeight);
+
+    return result; // return means take whatever value i am going to give you and send it back when someone calls the function
+}
+
+// the "calculate stroke weight" functin just makes our code easier to read and understand. This helps to break down our code into a coherent unit! 
