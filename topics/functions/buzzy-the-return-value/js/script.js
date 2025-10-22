@@ -1,6 +1,6 @@
 /**
  * Buzzy the return value
- * Pippin Barr
+ * Aliyah R. W.
  * 
  * Two flies that buzz around on the canvas
  */
