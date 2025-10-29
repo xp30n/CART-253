@@ -1,6 +1,6 @@
 /**
  * Bug Squasher (Debugging Arrays)
- * Pippin Barr
+ * Aliyah R.W.
  * 
  * Squash bugs by clicking on them. Squish.
  */
@@ -64,7 +64,7 @@ function draw() {
     background("#ddeeff");
 
     // Move and draw the bugs
-    for (let bug of bugs {
+    for (let bug of bugs) {
         moveBug(bug);
         drawBug(bug);
     }
