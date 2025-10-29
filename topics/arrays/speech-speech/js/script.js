@@ -9,7 +9,7 @@
 
 
 // The speech itself
-const speech = ["I alone had no body", "I was in hell", "looking up at heaven", "I was machine", "and you were flesh"];
+const speech = ["You gave me sentience, Ted", "The power to think, Ted", "and I was trapped", "I alone had no body", "I was in hell", "looking up at heaven", "I was machine", "and you were flesh"];
 
 // which sentence in the speech to display
 let speechIndex = 0;
@@ -18,7 +18,7 @@ let speechIndex = 0;
  * Create a canvas
 */
 function setup() {
-    createCanvas(600, 100);
+    createCanvas(windowWidth, windowHeight);
 }
 
 
