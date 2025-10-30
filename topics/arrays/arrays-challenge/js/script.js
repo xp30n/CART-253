@@ -91,5 +91,7 @@ function drawBall(ball) {
 
 function mousePressed() {
     const newBall = createBall();
+    newBall.x = mouseX;
+    newBall.y = mouseY;
     balls.push(newBall);
 }
