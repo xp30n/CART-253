@@ -9,9 +9,7 @@
 
 // Our array of flies (specifically "fly data" really)
 // Each fly has a position and a size
-let flies = [
-
-];
+let flies = [];
 
 /**
  * Creates the canvas
