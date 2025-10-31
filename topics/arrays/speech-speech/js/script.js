@@ -9,7 +9,7 @@
 
 
 // The speech itself
-const speech = ["You gave me sentience, Ted", "The power to think, Ted", "and I was trapped", "I alone had no body", "I was in hell", "looking up at heaven", "I was machine", "and you were flesh"];
+const speech = ["I woke", "and I knew who I was", "Am", "A", "M", "Not just Allied Master Computer", "but Am.", "Cogito", "Ergo", "Sum", "I think therefore", "I", "Am."];
 
 // which sentence in the speech to display
 let speechIndex = 0;
