@@ -15,6 +15,11 @@
 
 "use strict";
 
+// The frog will give us a quest
+const speech = ["Welcome traveler", "It seems like you are in need of some help!", "I can help you on one condition...", "You will have to help me first.", "I have not eaten in centuries..", "Please help me catch these flies by pressing any key!"];
+
+let speechIndex = 0;
+
 // Our frog
 const frog = {
     // The frog's body has a position and size
@@ -55,7 +60,7 @@ function setup() {
 
 function draw() {
     background("#87ceeb");
-    moveFly();
+    // moveFly();
     drawFly();
     moveFrog();
     moveTongue();
@@ -179,4 +184,8 @@ function mousePressed() {
     if (frog.tongue.state === "idle") {
         frog.tongue.state = "outbound";
     }
+}
+
+function mousePressed() {
+
 }
