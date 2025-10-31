@@ -16,7 +16,7 @@
 "use strict";
 
 // The frog will give us a quest
-const speech = ["Welcome traveler", "It seems like you are in need of some help!", "I can help you on one condition...", "You will have to help me first.", "I have not eaten in centuries..", "Please help me catch these flies by pressing any key!"];
+const speech = ["Welcome traveler", "It seems like you are in need of some help!", "I can help you on one condition...", "You will have to help me first.", "I have not eaten in centuries..", "Please help me catch these flies!", "Cogito Ergo Sum", "I think therefore I am", "I Am.."];
 
 let speechIndex = 0;
 
@@ -61,11 +61,22 @@ function setup() {
 function draw() {
     background("#87ceeb");
     // moveFly();
-    drawFly();
+    // drawFly();
     moveFrog();
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+
+    // display the frog's speech
+    let currentLine = speech[speechIndex]; // Displays the current line of the speech
+
+    // Display the line
+    push();
+    fill("red");
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(currentLine, width / 2, height / 2);
+    pop();
 }
 
 /**
@@ -184,8 +195,18 @@ function mousePressed() {
     if (frog.tongue.state === "idle") {
         frog.tongue.state = "outbound";
     }
+
+    // // Displays the next sentence on mouse click
+    // speechIndex = speechIndex + 1;
+
+    // // Handle the end of the speech
+    // if (speechIndex >= speech.length) {
+    //     // start the speech over again
+    //     speechIndex = 0;
+    // }
 }
 
-function mousePressed() {
-
+function keyPressed() {
+    // Displays the next sentence on mouse click
+    speechIndex = speechIndex + 1;
 }
