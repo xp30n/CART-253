@@ -1,6 +1,6 @@
 /**
  * Frogfrogfrog
- * Pippin Barr
+ * Aliyah R.W.
  * 
  * A game of catching flies with your frog-tongue
  * 
@@ -15,10 +15,35 @@
 
 "use strict";
 
+let speechBubble = {
+    x: 160,
+    y: 260,
+    w: 340,
+    h: 55,
+    br: 20
+}
+
 // The frog will give us a quest
-const speech = ["Welcome traveler", "It seems like you are in need of some help!", "I can help you on one condition...", "You will have to help me first.", "I have not eaten in centuries..", "Please help me catch these flies!", "Cogito Ergo Sum", "I think therefore I am", "I Am.."];
+const speech = [
+    "Huzzah! A willing assistant!",
+    "Welcome traveler",
+    "to the sacred bog of Eternal Hunger.",
+    "My name is Sir Croaksworth,",
+    "Devourer of Destinies,",
+    "...and flies.",
+    "But alas,",
+    "I have not eaten in centuries.",
+    "Aid me, traveler!",
+    "Catch these flies, noble stranger,",
+    "and I shall grant you...",
+    "probably something important.",
+    "Thanks!"
+];
 
 let speechIndex = 0;
+
+// loads the custom font
+let pixelFont;
 
 // Our frog
 const frog = {
@@ -61,21 +86,43 @@ function setup() {
 function draw() {
     background("#87ceeb");
     // moveFly();
-    // drawFly();
+    drawFly();
     moveFrog();
-    moveTongue();
+    // moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+
+    // Draws the speech bubble
+    drawSpeechBubble();
 
     // display the frog's speech
     let currentLine = speech[speechIndex]; // Displays the current line of the speech
 
     // Display the line
     push();
-    fill("red");
-    textSize(32);
+    fill(255);
+    textSize(22);
+    textFont(pixelFont);
     textAlign(CENTER, CENTER);
-    text(currentLine, width / 2, height / 2);
+    text(currentLine, 330, 287);
+    pop();
+}
+
+function preload() {
+    pixelFont = loadFont('assets/fonts/pixel-game.otf');
+}
+
+function drawSpeechBubble() {
+    push();
+    noStroke();
+    fill(0);
+    rect(
+        speechBubble.x,
+        speechBubble.y,
+        speechBubble.w,
+        speechBubble.h,
+        speechBubble.br
+    );
     pop();
 }
 
@@ -195,15 +242,6 @@ function mousePressed() {
     if (frog.tongue.state === "idle") {
         frog.tongue.state = "outbound";
     }
-
-    // // Displays the next sentence on mouse click
-    // speechIndex = speechIndex + 1;
-
-    // // Handle the end of the speech
-    // if (speechIndex >= speech.length) {
-    //     // start the speech over again
-    //     speechIndex = 0;
-    // }
 }
 
 function keyPressed() {
