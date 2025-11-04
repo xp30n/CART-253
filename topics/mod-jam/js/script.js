@@ -36,10 +36,10 @@ let speech = [
   "BUT ALAS,",
   "I have not eaten\n in centuries.",
   "Aid me, traveler!",
-  "Catch these flies,\n noble stranger,",
+  "Catch these flies,",
   "and I shall\n grant you...",
   "probably something\n important..",
-  "Thanks!",
+  "HUZZAAH! ONWARD\n NOW TRAVELER",
 ];
 
 let speechIndex = 0;
