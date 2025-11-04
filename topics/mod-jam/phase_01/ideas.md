@@ -58,3 +58,6 @@
 
 # Whole point of the game? 
 > You need to help the frog get some flies. He hasn't eaten in centuries and requires sustenance
+
+### After the game starts, what happens?
+> 

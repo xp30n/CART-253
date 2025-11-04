@@ -87,7 +87,7 @@ function draw() {
     background("#87ceeb");
     // moveFly();
     drawFly();
-    moveFrog();
+    // moveFrog();
     // moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
