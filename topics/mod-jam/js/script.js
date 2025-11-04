@@ -7,6 +7,8 @@
 
 "use strict";
 
+let pixelFont;
+
 // SIR CROAKSWORTH IN THE FLESH
 let croaksworth = {
     x: -290,
@@ -16,8 +18,6 @@ let croaksworth = {
     targetX: 300,
     speed: 0.4 // hehe...
 }
-
-let arrivalStatement = ["At Last..."]
 
 let speech = [
     "Huzzah! A willing assistant!",
@@ -35,11 +35,14 @@ let speech = [
     "Thanks!"
 ]
 
+let speechIndex = 0;
+
 // Loads Sir Croaksworth portrait
 let croaksworthImage;
 
 function preload() {
     croaksworthImage = loadImage('assets/images/croaksworth.png');
+    pixelFont = loadFont('assets/fonts/pixel-game.otf');
 }
 
 /**
@@ -60,11 +63,20 @@ function draw() {
 
     drawDialogueWindow();
 
+    // Displays Sir Croaksworth opening speech 
+    let currentLine = speech[speechIndex]; 
+    push();
+    fill(255);
+    textSize(25);
+    textFont(pixelFont);
+    textAlign(CENTER, CENTER);
+    text(currentLine, 420, 140);
+    pop();
 }
 
 function drawCroaksworth() {
 
-    // Moves Sir Croaksworth across the screen to the desired X position
+    // Moves Sir Croaksworth across the screen to the middle of the canvas
     if (croaksworth.x < croaksworth.targetX) {
         croaksworth.x += croaksworth.speed;
     } else [
@@ -83,4 +95,9 @@ function drawDialogueWindow() {
     strokeWeight(5)
     rect(240, 70, 355, 140);
     pop();
+}
+
+function keyPressed() {
+    // Displays the next sentence on mouse click
+    speechIndex = speechIndex + 1;
 }
