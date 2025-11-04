@@ -12,7 +12,7 @@ let starFont;
 
 // SIR CROAKSWORTH IN THE FLESH
 let croaksworth = {
-  x: -295,
+  x: -235,
   y: 270,
   w: 230,
   h: 230,
@@ -20,19 +20,24 @@ let croaksworth = {
   speed: 0.4, // hehe...
 };
 
+// his intro speech
 let speech = [
-  "At last...\n I have arrived",
   "Huzzah!\n A willing assistant!",
   "Welcome traveler",
   "to the sacred bog\n of Eternal Hunger.",
+  "......",
   "My name is\n Sir Croaksworth,",
   "Devourer of Destinies,",
   "...and flies.",
-  "But alas,",
+  "I apologize for\n my leisurely arrival..",
+  "My frog legs are\n ancient,", 
+  "my croak\n ancient-er",
+  "and my wisdom\n ancient-er-er",
+  "BUT ALAS,",
   "I have not eaten\n in centuries.",
   "Aid me, traveler!",
   "Catch these flies,\n noble stranger,",
-  "and I shall grant you...",
+  "and I shall\n grant you...",
   "probably something\n important..",
   "Thanks!",
 ];
@@ -51,7 +56,7 @@ let croaksworthImage;
 
 function preload() {
   croaksworthImage = loadImage("assets/images/croaksworth.png");
-  pixelFont = loadFont("assets/fonts/pixel-game.otf");
+  pixelFont = loadFont("assets/fonts/pixel-font.ttf");
   starFont = loadFont("assets/fonts/star-crush.ttf");
   textSound = loadSound("assets/sounds/text-sound.mp3");
 }
@@ -92,6 +97,11 @@ function draw() {
     }
   }
 
+  // Sir Croaksworth's intro speech
+  textSize(23)
+  textFont(pixelFont);
+  stroke("#00A303")
+  strokeWeight(3)
   textAlign(CENTER, CENTER);
   text(currentText, 420, 185);
 
@@ -111,7 +121,7 @@ function draw() {
   stroke(0);
   textFont(pixelFont);
   strokeWeight(4);
-  text("Press any key to begin your quest...", width/2, 530);
+  text("Press any key to begin your quest...", 440, 530);
 }
 
 function drawCroaksworth() {
