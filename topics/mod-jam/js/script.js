@@ -40,6 +40,7 @@ let speech = [
   "and I shall\n grant you...",
   "probably something\n important..",
   "HUZZAAH! ONWARD\n NOW TRAVELER",
+  "Press Z to begin!"
 ];
 
 let speechIndex = 0;
@@ -116,12 +117,12 @@ function draw() {
   text("The Legend of Croaksworth:\n Breath of the Hunger", 420, 70);
 
   // Text of instructions for the player
-  textSize(25);
+  textSize(20);
   fill(255);
   stroke(0);
   textFont(pixelFont);
   strokeWeight(4);
-  text("Press any key to begin your quest...", 440, 530);
+  text("Press any key to listen to Sir Croaksworth...", 440, 530);
 }
 
 function drawCroaksworth() {
