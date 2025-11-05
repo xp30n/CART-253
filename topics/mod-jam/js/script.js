@@ -17,7 +17,10 @@ let starFont;
 // Images
 let backgroundImage;
 let croaksworthImage;
-let swordImage;
+
+// Gameplay screen images
+let wizardFrogImage;
+let dayImage;
 
 // Music
 let backgroundMusic;
@@ -35,24 +38,6 @@ let croaksworth = {
   h: 250,
   targetX: 300,
   speed: 0.4, // hehe...he's a lil slow
-};
-
-let froggie = {
-  // The frog's body has a position and size
-  body: {
-    x: 320,
-    y: 520,
-    size: 150,
-  },
-  // The frog's tongue has a position, size, speed, and state
-  tongue: {
-    x: undefined,
-    y: 480,
-    size: 20,
-    speed: 20,
-    // Determines how the tongue moves each frame
-    state: "idle", // State can be: idle, outbound, inbound
-  },
 };
 
 let fly = {
@@ -99,7 +84,8 @@ function preload() {
   // Image Preloads
   backgroundImage = loadImage("assets/images/title-screen.jpeg");
   croaksworthImage = loadImage("assets/images/croaksworth.png");
-  swordImage = loadImage("assets/images/sword.png");
+  dayImage = loadImage("assets/images/evening.png");
+  wizardFrogImage = loadImage("assets/images/floating-croakie.png");
 
   // Font Preloads
   pixelFont = loadFont("assets/fonts/pixel-font.ttf");
@@ -229,7 +215,9 @@ function drawInstructionsScreen() {
  */
 
 function drawGameplayScreen() {
-  background("#003287");
+  background(dayImage);
+
+  noCursor();
 
   // stop the background music of the intro
   if (backgroundMusic.isPlaying()) {
@@ -243,20 +231,18 @@ function drawGameplayScreen() {
   // starts the gameplay music
   if (!gameplayMusic.isPlaying()) {
     gameplayMusic.loop();
-    gameplayMusic.setVolume(0.2);
+    gameplayMusic.setVolume(0.3);
   }
+
+  drawWizardFrog();
 
   // draws the moving functions
   moveFly();
-  moveFroggie();
-  moveTongue();
 
   // draw functions
   drawFly();
-  drawFroggie();
 
-  // Check overlap
-  checkTongueFlyOverlap();
+  checkOverlap();
 }
 /**
  * FUNCTIONS
@@ -281,26 +267,10 @@ function drawDialogueWindow() {
   pop();
 }
 
-function drawFroggie() {
-  push();
-  fill("#ff0000");
-  noStroke();
-  ellipse(froggie.tongue.x, froggie.tongue.y, froggie.tongue.size);
-  pop();
-
-  // Draw the rest of the tongue
-  push();
-  stroke("#ff0000");
-  strokeWeight(froggie.tongue.size);
-  line(froggie.tongue.x, froggie.tongue.y, froggie.body.x, froggie.body.y);
-  pop();
-
-  // Draw the frog's body
-  push();
-  fill("#00ff00");
-  noStroke();
-  ellipse(froggie.body.x, froggie.body.y, froggie.body.size);
-  pop();
+function drawWizardFrog() {
+  imageMode(CENTER);
+  image(wizardFrogImage, mouseX, mouseY, 120, 140);
+  imageMode(CORNER); // stops the background from moving:(
 }
 
 function drawFly() {
@@ -315,6 +285,14 @@ function drawFly() {
 function moveFly() {
   fly.x += fly.speed;
   if (fly.x > width) {
+    resetFly();
+  }
+}
+
+function checkOverlap() {
+  const d = dist(mouseX, mouseY, fly.x, fly.y);
+  const caught = d < 90;
+  if (caught) {
     resetFly();
   }
 }
@@ -340,12 +318,6 @@ function mousePressed() {
       gameplayMusic.setVolume(0.2);
       musicStarted = true;
     }
-
-    // activate the tongue when the mouse is pressed
-    if (froggie.tongue.state === "idle") {
-      froggie.tongue.state = "outbound";
-    }
-
   }
 }
 
@@ -367,10 +339,6 @@ function keyPressed() {
     // if it's the last line of the array, then proceed to the next state when user presses Z
     if (speechIndex === speech.length - 1 && (key === "z" || key === "Z")) {
       state = "gameplay";
-
-      froggie.tongue.x = froggie.body.x;
-      froggie.tongue.y = froggie.body.y - 40;
-      froggie.tongue.state = "idle";
     }
     // lets me skip to the gameplay screen for easier access
     if (key === "d" || key === "D") {
@@ -384,49 +352,4 @@ function keyPressed() {
 function resetFly() {
   fly.x = 0;
   fly.y = random(0, 300);
-}
-
-function moveFroggie() {
-  froggie.body.x = mouseX;
-}
-
-/**
- * Handles moving the tongue based on its state
- */
-function moveTongue() {
-  // Tongue matches the frog's x
-  froggie.tongue.x = froggie.body.x;
-  // If the tongue is idle, it doesn't do anything
-  if (froggie.tongue.state === "idle") {
-    // Do nothing
-  }
-  // If the tongue is outbound, it moves up
-  else if (froggie.tongue.state === "outbound") {
-    froggie.tongue.y += -froggie.tongue.speed;
-    // The tongue bounces back if it hits the top
-    if (froggie.tongue.y <= 0) {
-      froggie.tongue.state = "inbound";
-    }
-  }
-  // If the tongue is inbound, it moves down
-  else if (froggie.tongue.state === "inbound") {
-    froggie.tongue.y += froggie.tongue.speed;
-    // The tongue stops if it hits the bottom
-    if (froggie.tongue.y >= height) {
-      froggie.tongue.state = "idle";
-    }
-  }
-}
-
-function checkTongueFlyOverlap() {
-  // Get distance from tongue to fly
-  const d = dist(froggie.tongue.x, froggie.tongue.y, fly.x, fly.y);
-  // Check if it's an overlap
-  const eaten = d < froggie.tongue.size / 2 + fly.size / 2;
-  if (eaten) {
-    // Reset the fly
-    resetFly();
-    // Bring back the tongue
-    froggie.tongue.state = "inbound";
-  }
 }
