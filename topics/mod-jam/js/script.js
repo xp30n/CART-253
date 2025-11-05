@@ -168,7 +168,7 @@ function drawTitleScreen() {
  */
 
 function drawInstructionsScreen() {
-  // Adjusts tarts Sir Croaksworth position to be off the screen at first
+  // Adjusts Sir Croaksworth position to be off the screen at first
   if (!instructionsStarted) {
     croaksworth.x = -235;
     croaksworth.y = 270;
