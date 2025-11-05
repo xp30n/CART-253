@@ -31,6 +31,12 @@ let musicStarted = false; // music starts off
 // Instructions screen begins hidden
 let instructionsStarted = false;
 
+// score tracking
+let fliesCaught = 0;
+let fireballHits = 0;
+let maxHits = 4;
+let gameOver = false;
+
 // SIR CROAKSWORTH IN THE FLESH
 let croaksworth = {
   x: 165,
@@ -125,7 +131,7 @@ function setup() {
     flies.push(createFly());
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     // spawn 6 fireballs
     fireballs.push(createFireball());
   }
@@ -275,6 +281,27 @@ function drawGameplayScreen() {
   textFont(pixelFont);
   text("Dodge the fireballs!", 820, 550);
 
+  // draws the score and the hits
+  textSize(20);
+  textAlign(LEFT, TOP);
+  stroke(0);
+  strokeWeight(3);
+  fill(255);
+  textFont(pixelFont);
+  text(`Flies Eaten: ${fliesCaught}`, 20, 20);
+  text(`Hits: ${fireballHits}/${maxHits}`, 20, 50);
+
+  // game over screen
+  if (gameOver) {
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    stroke(0);
+    strokeWeight(6);
+    fill("red");
+    text("GAME OVER", width / 2, height / 2);
+    noLoop(); // freezes the game
+  }
+
   drawWizardFrog();
 
   // fly functions
@@ -290,6 +317,7 @@ function drawGameplayScreen() {
 
   checkOverlap();
 }
+
 /**
  * FUNCTIONS
  */
@@ -326,7 +354,7 @@ function createFly() {
   return {
     x: random(width),
     y: random(100, 400),
-    bodySize: (15),
+    bodySize: 15,
     speed: random(3, 10),
     wingWidth: 6,
     wingHeight: 25,
@@ -365,13 +393,13 @@ function createFireball() {
     y: random(100, 400),
     w: random(30, 40),
     h: random(30, 40),
-    speed: random(4, 6)
-  }
+    speed: random(4, 6),
+  };
 }
 
 function drawFireball(fireball) {
   push();
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(fireballImage, fireball.x, fireball.y, fireball.w, fireball.h);
   pop();
 }
@@ -383,12 +411,15 @@ function moveFireball(fireball) {
   }
 }
 
-
 // if the flies and the cursor overlap, the flies will reset on the left side again
 function checkOverlap() {
+  if (gameOver) return; // stop checking for the game over
+
   for (let fly of flies) {
     const d = dist(mouseX, mouseY, fly.x, fly.y);
-    if (d < 70) { // collision radius
+    if (d < 70) {
+      // collision radius
+      fliesCaught++; // checks how many flies are caught
       resetFly(fly);
     }
   }
@@ -396,7 +427,11 @@ function checkOverlap() {
   for (let fireball of fireballs) {
     const d = dist(mouseX, mouseY, fireball.x, fireball.y);
     if (d < 50) {
-
+      fireballHits++;
+      resetFireball(fireball);
+      if (fireballHits >= maxHits) {
+        gameOver = true;
+      }
     }
   }
 }
@@ -453,15 +488,16 @@ function keyPressed() {
   }
 }
 
-// resets the fly to offscreen
+// resets the fly to off screen
 function resetFly(fly) {
   fly.x = 0;
   fly.y = random(100, 400);
   fly.speed = random(3, 10);
 }
 
+// resets the fireballs to off screen
 function resetFireball(fireball) {
   fireball.x = 0;
-  fireball.y = random(100,400);
+  fireball.y = random(100, 400);
   fireball.speed = random(4, 6);
 }

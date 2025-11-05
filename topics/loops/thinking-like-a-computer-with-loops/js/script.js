@@ -19,25 +19,9 @@ function setup() {
 function draw() {
     background(0);
 
-    // Draw some circles
-    let x = 0;
-    const y = height / 2;
-    while (x <= width) {
-        push();
-        stroke(255);
-        ellipse(x, y, 10);
-        pop();
-
-        x += 50;
-    }
-
-    // Draw some more circles
-    x = width / 2;
-    for (let y = 0; y <= height; y += 50) {
-        push();
-        noFill();
-        stroke(255);
-        ellipse(x, y, 15);
-        pop();
-    }
+     let x = 0;
+     let y = heigjt / 2;
+     let rectWidth = 50;
+     fill(255, 0, 0);
+     rect(x, y, rectWidth);
 }
