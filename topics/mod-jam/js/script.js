@@ -20,7 +20,7 @@ let croaksworthImage;
 let swordImage;
 
 // Music
-let backgroundMusic
+let backgroundMusic;
 let musicstarted = false; // music starts off
 
 // Instructions screen begins hidden
@@ -97,30 +97,82 @@ function setup() {
 function draw() {
   background("#278EF5");
 
-  // Draws the background window for the text
-  drawDialogueWindow();
+  if (state === "title") {
+    drawTitlescreen();
+  } else if (state === "instructions") {
+    drawInstructionsScreen();
+  }
+}
 
+/**
+ * TITLE SCREEN
+ */
+
+function drawTitleScreen() {
+  background(backgroundImage);
+
+  // Sir Croaksworth's portait on the title screen
+  croaksworth.x = 165;
+  croaksworth.y = 190;
+  croaksworth.w = 250;
+  croaksworth.h = 250;
+
+  // Draws Sir Croaksworth on the canvas
+  drawSirCroaksworth();
+
+  // Title text
+  textSize(45);
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  textAlign(RIGHT, RIGHT);
+  textFont(starFont);
+  text("The Legend of Sir Croaksworth:\n Breath of the Hunger", 820, 70);
+
+  // Instructions to change to next state
+  textSize(30);
+  text("Click to begin your quest", 820, 540);
+}
+
+/**
+ * Instructions Screen
+ */
+
+function drawInstructionsScreen() {
+    // Adjusts tarts Sir Croaksworth position to be off the screen at first
+  if (!instructionsStarted) {
+    croaksworth.x = -235; 
+    croaksworth.y = 270;
+    croaksworth.w = 230;
+    croaksworth.h = 230;
+    instructionsStarted = true;
+  }
+
+  // Croaksworth moves in to the middle of the canvas
+  if (croaksworth.x < croaksworth.targetX) {
+    croaksworth.x += croaksworth.speed;
+  } else {
+    croaksworth.x = croaksworth.targetX;
+  }
+
+  // Draw dialogue window
+  drawDialogueWindow();
+  drawSirCroaksworth();
+
+  // Typing text
   let fullText = speech[speechIndex];
 
-  // typing sound effect
   if (charIndex < fullText.length) {
-    // the frog speaks!
-    if (!textSound.isPlaying()) {
-      textSound.loop(); // loop the sound while the Sir Croaksworth is talking. Or else. 
-    }
-
+    if (!textSound.isPlaying()) textSound.loop();
     if (frameCount % speed === 0) {
       currentText += fullText[charIndex];
       charIndex++;
     }
   } else {
-    // the typing is done, so stop playing the sound dammit
-    if (textSound.isPlaying()) {
-      textSound.stop();
-    }
+    if (textSound.isPlaying()) textSound.stop();
   }
 
-  // Sir Croaksworth's intro speech
+  // Displays Sir Croaksworth's speech
   textSize(23);
   textFont(pixelFont);
   stroke("#00A303");
@@ -128,55 +180,10 @@ function draw() {
   textAlign(CENTER, CENTER);
   text(currentText, 420, 185);
 
-  // Load the beautiful Sir Croaksworth's portrait
-  drawCroaksworth();
-
-  // Tells the user to press any key to keep Sir Croaksworth talking
+  // Instructions on how to proceed through his long speech
   textSize(20);
   fill(255);
   stroke(0);
-  textFont(pixelFont);
   strokeWeight(4);
   text("(Press any key)", 410, 530);
-}
-
-function drawCroaksworth() {
-  // Moves Sir Croaksworth across the screen to the middle of the canvas
-  if (croaksworth.x < croaksworth.targetX) {
-    croaksworth.x += croaksworth.speed;
-  } else [(croaksworth.x = croaksworth.targetX)];
-
-  // Draws Sir Croaksworth
-  image(
-    croaksworthImage,
-    croaksworth.x,
-    croaksworth.y,
-    croaksworth.w,
-    croaksworth.h
-  );
-}
-
-// Draws the dialogue window for Sir Croaksworth's speech
-function drawDialogueWindow() {
-  push();
-  fill(0);
-  stroke("white");
-  strokeWeight(5);
-  rect(250, 125, 340, 120);
-  pop();
-}
-
-function keyPressed() {
-  if (getAudioContext().state !== "running") {
-    getAudioContext().resume();
-  }
-
-  if (charIndex >= speech[speechIndex].length) {
-    // move to next line
-    if (speechIndex < speech.length - 1) {
-      speechIndex++;
-      currentText = "";
-      charIndex = 0;
-    }
-  }
 }
