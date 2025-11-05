@@ -7,7 +7,7 @@
 
 "use strict";
 
-// This is the title screen
+// We start off on the title screen:3
 let state = "title";
 
 // Fonts
@@ -35,6 +35,31 @@ let croaksworth = {
   targetX: 300,
   speed: 0.4, // hehe...he's a lil slow
 };
+
+let froggie = {
+    // The frog's body has a position and size
+    body: {
+        x: 320,
+        y: 520,
+        size: 150
+    },
+    // The frog's tongue has a position, size, speed, and state
+    tongue: {
+        x: undefined,
+        y: 480,
+        size: 20,
+        speed: 20,
+        // Determines how the tongue moves each frame
+        state: "idle" // State can be: idle, outbound, inbound
+    }
+};
+
+let fly = {
+    x: 0,
+    y: 200, // Will be random
+    size: 10,
+    speed: 3
+}
 
 // Sir Croaksworth's Introduction speech
 let speech = [
@@ -89,6 +114,8 @@ function preload() {
  */
 function setup() {
   createCanvas(840, 560);
+
+  resetFly();
 }
 
 /**
@@ -196,6 +223,18 @@ function drawInstructionsScreen() {
 
 function drawGameplayScreen() {
     background("#003287");
+
+    // draws the moving functions
+    moveFly();
+    moveFroggie();
+    moveTongue();
+
+    // draw functions
+    drawFly();
+    drawFroggie();
+
+    // Check overlap
+    checkTongueFlyOverlap();
 }
 /**
  * FUNCTIONS
@@ -220,6 +259,38 @@ function drawDialogueWindow() {
   pop();
 }
 
+function drawFroggie() {
+    push();
+    fill("#ff0000");
+    noStroke();
+    ellipse(froggie.tongue.x, froggie.tongue.y, froggie.tongue.size);
+    pop();
+
+    // Draw the rest of the tongue
+    push();
+    stroke("#ff0000");
+    strokeWeight(froggie.tongue.size);
+    line(froggie.tongue.x, froggie.tongue.y, froggie.body.x, froggie.body.y);
+    pop();
+
+    // Draw the frog's body
+    push();
+    fill("#00ff00");
+    noStroke();
+    ellipse(froggie.body.x, froggie.body.y, froggie.body.size);
+    pop();
+}
+
+function drawFly() {
+    // Draws the fly as a black circle
+    push();
+    noStroke();
+    fill("#000000");
+    ellipse(fly.x, fly.y, fly.size);
+    pop();
+
+}
+
 // Start music only only when the user clicks
 function mousePressed() {
   if (!musicStarted) {
@@ -231,6 +302,13 @@ function mousePressed() {
   // Transition to instructions screen if on title and mouse is pressed
   if (state === "title") {
     state = "instructions";
+  }
+
+  // if we are on the gameplay screen and the mouse is pressed, activate the tongue functions
+  if (state ==="gameplay") {
+    if (frog.tongue.state === "idle") {
+        frog.tongue.state = "outbound";
+    }
   }
 }
 
@@ -247,11 +325,68 @@ function keyPressed() {
         currentText = "";
         charIndex = 0;
       }
+    }
 
-      // if it's the last line of the array, then proceed to the next state
+    // if it's the last line of the array, then proceed to the next state
       else if (key === "z" || key === "Z") {
         state = "gameplay";
       }
-    }
+
+      // lets me skip to the gameplay screen for easier access
+      if (key === "d" || key === "D") {
+        state = "gameplay";
+        speechIndex = speech.length -1;
+        currentText = speech[speechIndex];
+      }
   }
+}
+
+function resetFly() {
+    fly.x = 0;
+    fly.y = random(0, 300);
+}
+
+function moveFroggie() {
+    froggie.body.x = mouseX;
+}
+
+/**
+ * Handles moving the tongue based on its state
+ */
+function moveTongue() {
+    // Tongue matches the frog's x
+    froggie.tongue.x = froggie.body.x;
+    // If the tongue is idle, it doesn't do anything
+    if (froggie.tongue.state === "idle") {
+        // Do nothing
+    }
+    // If the tongue is outbound, it moves up
+    else if (froggie.tongue.state === "outbound") {
+        froggie.tongue.y += -froggie.tongue.speed;
+        // The tongue bounces back if it hits the top
+        if (froggie.tongue.y <= 0) {
+            froggie.tongue.state = "inbound";
+        }
+    }
+    // If the tongue is inbound, it moves down
+    else if (froggie.tongue.state === "inbound") {
+        froggie.tongue.y += froggie.tongue.speed;
+        // The tongue stops if it hits the bottom
+        if (froggie.tongue.y >= height) {
+            froggie.tongue.state = "idle";
+        }
+    }
+}
+
+function checkTongueFlyOverlap() {
+    // Get distance from tongue to fly
+    const d = dist(froggie.tongue.x, froggie.tongue.y, fly.x, fly.y);
+    // Check if it's an overlap
+    const eaten = (d < froggie.tongue.size/2 + fly.size/2);
+    if (eaten) {
+        // Reset the fly
+        resetFly();
+        // Bring back the tongue
+        froggie.tongue.state = "inbound";
+    }
 }
