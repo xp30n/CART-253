@@ -1,24 +1,42 @@
 /**
- * Title of Project
- * Author Name
+ * Star-Field
+ * Aliyah
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Draws a star field with a for-loop
  */
 
 "use strict";
 
+const numstars = 200;
+
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * sets up the canvas
 */
 function setup() {
-
+    createCanvas(700, 700)
 }
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * Draws the star-field
 */
 function draw() {
+    background(0);
 
+    randomSeed(1);
+    for (let i = 0; i < numstars; i++) {
+        drawStar();
+    }
+}
+
+function drawStar() {
+    const x = random(0, width);
+    const y = random(0, height);
+    const diameter = random(2, 5);
+
+    push();
+    fill(255);
+    noStroke();
+    ellipse(x, y, diameter);
+    pop();
 }
