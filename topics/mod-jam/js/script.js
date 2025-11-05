@@ -40,12 +40,24 @@ let croaksworth = {
   speed: 0.4, // hehe...he's a lil slow
 };
 
+// the properties of the flies
 let fly = {
   x: 0,
   y: 200, // Will be random
-  size: 10,
+  bodySize: 15,
   speed: 3,
+
+  // wings
+  wingWidth: 7,
+  wingHeight: 25,
+
+  // head
+  headSize: 10,
 };
+
+// adding multiple flies:
+let flies = [];
+
 
 // Sir Croaksworth's Introduction speech
 let speech = [
@@ -103,7 +115,10 @@ function preload() {
 function setup() {
   createCanvas(840, 560);
 
-  resetFly();
+  for (let i = 0; i < 7; i++) {
+    // spawn 7 flies
+    flies.push(createFly());
+  }
 }
 
 /**
@@ -112,10 +127,11 @@ function setup() {
 function draw() {
   if (state !== "instructions" && textSound.isPlaying()) {
     textSound.stop();
-  }  
+  }
 
   background("#278EF5");
 
+  // changes the state of the game
   if (state === "title") {
     drawTitleScreen();
   } else if (state === "instructions") {
@@ -240,24 +256,29 @@ function drawGameplayScreen() {
   strokeWeight(5);
   textAlign(RIGHT, RIGHT);
   textFont(pixelFont);
-  text("Catch the flies by moving your mouse to control Sir Croaksworth", 820, 520);
+  text(
+    "Catch the flies by moving your mouse to control Sir Croaksworth",
+    820,
+    520
+  );
 
   textFont(pixelFont);
   text("Dodge the fireballs!", 820, 550);
 
   drawWizardFrog();
 
-  // draws the moving functions
-  moveFly();
-
-  // draw functions
-  drawFly();
+  // fly functions
+  for (let fly of flies) {
+    moveFly(fly);
+    drawFly(fly);
+  }
 
   checkOverlap();
 }
 /**
  * FUNCTIONS
  */
+
 function drawSirCroaksworth() {
   image(
     croaksworthImage,
@@ -278,33 +299,58 @@ function drawDialogueWindow() {
   pop();
 }
 
+// wizard frog cursor
 function drawWizardFrog() {
   imageMode(CENTER);
   image(wizardFrogImage, mouseX, mouseY, 120, 140);
   imageMode(CORNER); // stops the background from moving:(
 }
 
-function drawFly() {
-  // Draws the fly as a black circle
+// create the flies
+function createFly() {
+  return {
+    x: random(width),
+    y: random(100, 400),
+    bodySize: (15),
+    speed: random(3, 10),
+    wingWidth: 6,
+    wingHeight: 25,
+    headSize: 9,
+  };
+}
+
+function drawFly(fly) {
+  // Draws the fly
   push();
   noStroke();
+
+  // fly's wings
+  fill(255);
+  ellipse(fly.x + 4, fly.y - 13, fly.wingWidth, fly.wingHeight);
+
+  // draw the body & head
   fill("#000000");
-  ellipse(fly.x, fly.y, fly.size);
+  ellipse(fly.x, fly.y, fly.bodySize);
+  ellipse(fly.x + 10, fly.y, fly.headSize);
+
   pop();
 }
 
-function moveFly() {
+// move the flies from left to right at random speeds
+function moveFly(fly) {
   fly.x += fly.speed;
   if (fly.x > width) {
-    resetFly();
+    resetFly(fly);
   }
 }
 
+// if the flies and the cursor overlap, the flies will reset on the left side again
 function checkOverlap() {
-  const d = dist(mouseX, mouseY, fly.x, fly.y);
-  const caught = d < 90;
-  if (caught) {
-    resetFly();
+  for (let fly of flies) {
+    const d = dist(mouseX, mouseY, fly.x, fly.y);
+    if (d < 70) { // collision radius
+      resetFly(fly);
+    }
   }
 }
 
@@ -347,7 +393,7 @@ function keyPressed() {
       }
     }
 
-    // if it's the last line of the array, then proceed to the next state when user presses Z
+    // if it's the last line of the array, then proceed to the next game state when user presses Z
     if (speechIndex === speech.length - 1 && (key === "z" || key === "Z")) {
       state = "gameplay";
     }
@@ -360,7 +406,9 @@ function keyPressed() {
   }
 }
 
-function resetFly() {
+// resets the fly to offscreen
+function resetFly(fly) {
   fly.x = 0;
-  fly.y = random(0, 300);
+  fly.y = random(100, 400);
+  fly.speed = random(3, 10);
 }
