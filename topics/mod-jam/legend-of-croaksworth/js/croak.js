@@ -1,68 +1,19 @@
-// Croaksworth's head
-    // push();
-    // noStroke();
-    // fill("#50c878");
-    // ellipse(width / 2, height / 2, 200, 150)
-    // pop();
+/**
+ * Legend of Croaksworth: Breath of the Hunger
+ * Aliyah Renomeron-Ward
+ * 
+ * Quick! Help Sir Croaksworth catch flies! He hasn't eaten in centuries!
+ * 
+ * Instructions:
+ * - Move the Sir Croaksworth with your mouse
+ * - Click to launch the tongue
+ * - Catch flies
+ * 
+ * Made with p5
+ * https://p5js.org/
+ */
 
-    // // Left Eye
-    // push();
-    // noStroke();
-    // fill("#50c878");
-    // ellipse(360, 220, 60, 80)
-    // pop();
-
-    // // Left Pupil
-    // push();
-    // noStroke();
-    // fill("#000000ff");
-    // ellipse(360, 220, 40, 50)
-    // pop();
-
-    // // Right Eye
-    // push();
-    // noStroke();
-    // fill("#50c878");
-    // ellipse(480, 220, 60, 80)
-    // pop();
-
-    // // Right Pupil
-    // push();
-    // noStroke();
-    // fill("#000000ff");
-    // ellipse(480, 220, 40, 50)
-    // pop();
-
-
-    let speechBubble = {
-    x: 160,
-    y: 260,
-    w: 340,
-    h: 55,
-    br: 20
-}
-
-// The frog will give us a quest
-const speech = [
-    "Huzzah! A willing assistant!",
-    "Welcome traveler",
-    "to the sacred bog of Eternal Hunger.",
-    "My name is Sir Croaksworth,",
-    "Devourer of Destinies,",
-    "...and flies.",
-    "But alas,",
-    "I have not eaten in centuries.",
-    "Aid me, traveler!",
-    "Catch these flies, noble stranger,",
-    "and I shall grant you...",
-    "probably something important.",
-    "Thanks!"
-];
-
-let speechIndex = 0;
-
-// loads the custom font
-let pixelFont;
+"use strict";
 
 // Our frog
 const frog = {
@@ -104,45 +55,12 @@ function setup() {
 
 function draw() {
     background("#87ceeb");
-    // moveFly();
+    moveFly();
     drawFly();
-    // moveFrog();
-    // moveTongue();
+    moveFrog();
+    moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
-
-    // Draws the speech bubble
-    drawSpeechBubble();
-
-    // display the frog's speech
-    let currentLine = speech[speechIndex]; // Displays the current line of the speech
-
-    // Display the line
-    push();
-    fill(255);
-    textSize(22);
-    textFont(pixelFont);
-    textAlign(CENTER, CENTER);
-    text(currentLine, 330, 287);
-    pop();
-}
-
-function preload() {
-    pixelFont = loadFont('assets/fonts/pixel-game.otf');
-}
-
-function drawSpeechBubble() {
-    push();
-    noStroke();
-    fill(0);
-    rect(
-        speechBubble.x,
-        speechBubble.y,
-        speechBubble.w,
-        speechBubble.h,
-        speechBubble.br
-    );
-    pop();
 }
 
 /**
@@ -261,9 +179,4 @@ function mousePressed() {
     if (frog.tongue.state === "idle") {
         frog.tongue.state = "outbound";
     }
-}
-
-function keyPressed() {
-    // Displays the next sentence on mouse click
-    speechIndex = speechIndex + 1;
 }
