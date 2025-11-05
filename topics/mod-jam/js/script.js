@@ -35,7 +35,9 @@ let instructionsStarted = false;
 let fliesCaught = 0;
 let fireballHits = 0;
 let maxHits = 4;
+let maxEaten = 30;
 let gameOver = false;
+let gameWin = false;
 
 // SIR CROAKSWORTH IN THE FLESH
 let croaksworth = {
@@ -291,17 +293,6 @@ function drawGameplayScreen() {
   text(`Flies Eaten: ${fliesCaught}`, 20, 20);
   text(`Hits: ${fireballHits}/${maxHits}`, 20, 50);
 
-  // game over screen
-  if (gameOver) {
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    stroke(0);
-    strokeWeight(6);
-    fill("red");
-    text("GAME OVER", width / 2, height / 2);
-    noLoop(); // freezes the game
-  }
-
   drawWizardFrog();
 
   // fly functions
@@ -313,6 +304,25 @@ function drawGameplayScreen() {
   for (let fireball of fireballs) {
     moveFireball(fireball);
     drawFireball(fireball);
+  }
+
+  // if the user catches 30 flies, they win, otherwise if they get caught by the fireballs 4 times they lose! 
+  if (gameWin) {
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    stroke(0);
+    strokeWeight(6);
+    fill("lime");
+    text("YOU WIN!\n Press R to restart", width / 2, height / 2);
+    noLoop();
+  } else if (gameOver) {
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    stroke(0);
+    strokeWeight(6);
+    fill("red");
+    text("GAME OVER\n Press R to restart", width / 2, height / 2);
+    noLoop(); // freezes the game
   }
 
   checkOverlap();
@@ -413,7 +423,7 @@ function moveFireball(fireball) {
 
 // if the flies and the cursor overlap, the flies will reset on the left side again
 function checkOverlap() {
-  if (gameOver) return; // stop checking for the game over
+  if (gameOver || gameWin) return; // stop checking for the game over
 
   for (let fly of flies) {
     const d = dist(mouseX, mouseY, fly.x, fly.y);
@@ -421,6 +431,9 @@ function checkOverlap() {
       // collision radius
       fliesCaught++; // checks how many flies are caught
       resetFly(fly);
+      if (fliesCaught >= maxEaten) {
+        gameWin = true;
+      }
     }
   }
 
@@ -485,6 +498,15 @@ function keyPressed() {
       speechIndex = speech.length - 1;
       currentText = speech[speechIndex];
     }
+  }
+
+  // If the person is on the game over screen or the gamewin screen, they have to press r to restart
+  if ((gameOver || gameWin) && key === "r" || key === "R"){
+    fliesCaught = 0;
+    fireballHits = 0;
+    gameOver = false;
+    gameWin = false;
+    loop(); // restart the game
   }
 }
 
