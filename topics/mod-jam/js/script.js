@@ -85,14 +85,14 @@ function preload() {
 }
 
 /**
- * sets up the canvas
+ * SETS UP THE CANVAS
  */
 function setup() {
   createCanvas(840, 560);
 }
 
 /**
- * Draws the canvas
+ * DRAWS THE CANVAS
  */
 function draw() {
   background("#278EF5");
@@ -135,7 +135,7 @@ function drawTitleScreen() {
 }
 
 /**
- * Instructions Screen
+ * INSTRUCTIONS SCREEN
  */
 
 function drawInstructionsScreen() {
@@ -187,3 +187,48 @@ function drawInstructionsScreen() {
   strokeWeight(4);
   text("(Press any key)", 410, 530);
 }
+
+
+/**
+ * FUNCTIONS
+ */
+function drawSirCroaksworth() {
+    image(croaksworthImage, croaksworth.x, croaksworth.y, croaksworth.w, croaksworth.h);
+  }
+  
+  // RPG style dialogue window
+  function drawDialogueWindow() {
+    push();
+    fill(0);
+    stroke("white");
+    strokeWeight(5);
+    rect(250, 125, 340, 120);
+    pop();
+  }
+  
+  // Start music only only when the user clicks
+  function mousePressed() {
+    if (!musicStarted) {
+      backgroundMusic.loop();
+      backgroundMusic.setVolume(0.2);
+      musicStarted = true;
+    }
+  
+    // Transition to instructions screen if on title
+    if (state === "title") {
+      state = "instructions";
+    }
+  }
+  
+  // when a key is pressed, the next array of speech will appear
+  function keyPressed() {
+    if (getAudioContext().state !== "running") getAudioContext().resume();
+  
+    if (state === "instructions" && charIndex >= speech[speechIndex].length) {
+      if (speechIndex < speech.length - 1) {
+        speechIndex++;
+        currentText = "";
+        charIndex = 0;
+      }
+    }
+  }
