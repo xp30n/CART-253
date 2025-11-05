@@ -58,6 +58,9 @@ let fly = {
 // adding multiple flies:
 let flies = [];
 
+// Adds the fireballs
+
+let fireballs = [];
 
 // Sir Croaksworth's Introduction speech
 let speech = [
@@ -118,6 +121,11 @@ function setup() {
   for (let i = 0; i < 7; i++) {
     // spawn 7 flies
     flies.push(createFly());
+  }
+
+  for (let i = 0; i < 5; i++) {
+    // spawn 6 fireballs
+    fireballs.push(createFireball());
   }
 }
 
@@ -273,6 +281,11 @@ function drawGameplayScreen() {
     drawFly(fly);
   }
 
+  for (let fireball of fireballs) {
+    moveFireball(fireball);
+    drawFireball(fireball);
+  }
+
   checkOverlap();
 }
 /**
@@ -304,6 +317,15 @@ function drawWizardFrog() {
   imageMode(CENTER);
   image(wizardFrogImage, mouseX, mouseY, 120, 140);
   imageMode(CORNER); // stops the background from moving:(
+}
+
+function createFireball() {
+  return {
+    x: random(width),
+    y: random(100, 400),
+    size: random(20, 25),
+    speed: random(4, 6)
+  }
 }
 
 // create the flies
@@ -344,12 +366,35 @@ function moveFly(fly) {
   }
 }
 
+function drawFireball(fireball) {
+  push();
+  noStroke();
+  fill("#ff8826");
+  ellipse(fireball.x, fireball.y, fireball.size);
+  pop();
+}
+
+function moveFireball(fireball) {
+  fireball.x += fireball.speed;
+  if (fireball.x > width) {
+    resetFireball(fireball);
+  }
+}
+
+
 // if the flies and the cursor overlap, the flies will reset on the left side again
 function checkOverlap() {
   for (let fly of flies) {
     const d = dist(mouseX, mouseY, fly.x, fly.y);
     if (d < 70) { // collision radius
       resetFly(fly);
+    }
+  }
+
+  for (let fireball of fireballs) {
+    const d = dist(mouseX, mouseY, fireball.x, fireball.y);
+    if (d < 50) {
+      
     }
   }
 }
@@ -411,4 +456,10 @@ function resetFly(fly) {
   fly.x = 0;
   fly.y = random(100, 400);
   fly.speed = random(3, 10);
+}
+
+function resetFireball(fireball) {
+  fireball.x = 0;
+  fireball.y = random(100,400);
+  fireball.speed = random(4, 6);
 }
