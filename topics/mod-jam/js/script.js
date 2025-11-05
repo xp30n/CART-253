@@ -7,18 +7,33 @@
 
 "use strict";
 
-// Font Variables
+// This is the title screen
+let state = "title";
+
+// Fonts
 let pixelFont;
 let starFont;
 
+// Images
+let backgroundImage;
+let croaksworthImage;
+let swordImage;
+
+// Music
+let backgroundMusic
+let musicstarted = false; // music starts off
+
+// Instructions screen begins hidden
+let instructionsstarted = false;
+
 // SIR CROAKSWORTH IN THE FLESH
 let croaksworth = {
-  x: -235,
-  y: 270,
-  w: 230,
-  h: 230,
+  x: 165,
+  y: 190,
+  w: 250,
+  h: 250,
   targetX: 300,
-  speed: 0.4, // hehe...
+  speed: 0.4, // hehe...he's a lil slow
 };
 
 // Sir Croaksworth's Introduction speech
@@ -54,18 +69,19 @@ let speed = 2;
 let typing = false;
 let textSound;
 
-// Loads Sir Croaksworth portrait
-let croaksworthImage;
-
 function preload() {
   // Image Preloads
+  backgroundImage = loadImage("assets.images/background-image.jpeg");
   croaksworthImage = loadImage("assets/images/croaksworth.png");
+  swordImage = loadImage("assets/images/sword.png");
 
   // Font Preloads
   pixelFont = loadFont("assets/fonts/pixel-font.ttf");
+  starFont = loadFont("assets/fonts/star-crush.ttf");
 
   // Sound Preloads
   textSound = loadSound("assets/sounds/text-sound.mp3");
+  backgroundMusic = loadSounds("assets/sounds/background-music.mp3");
 }
 
 /**
