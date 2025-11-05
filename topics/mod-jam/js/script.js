@@ -21,10 +21,10 @@ let swordImage;
 
 // Music
 let backgroundMusic;
-let musicstarted = false; // music starts off
+let musicStarted = false; // music starts off
 
 // Instructions screen begins hidden
-let instructionsstarted = false;
+let instructionsStarted = false;
 
 // SIR CROAKSWORTH IN THE FLESH
 let croaksworth = {
@@ -71,7 +71,7 @@ let textSound;
 
 function preload() {
   // Image Preloads
-  backgroundImage = loadImage("assets.images/background-image.jpeg");
+  backgroundImage = loadImage("assets/images/title-screen.jpeg");
   croaksworthImage = loadImage("assets/images/croaksworth.png");
   swordImage = loadImage("assets/images/sword.png");
 
@@ -81,7 +81,7 @@ function preload() {
 
   // Sound Preloads
   textSound = loadSound("assets/sounds/text-sound.mp3");
-  backgroundMusic = loadSounds("assets/sounds/background-music.mp3");
+  backgroundMusic = loadSound("assets/sounds/background-music.mp3");
 }
 
 /**
@@ -98,7 +98,7 @@ function draw() {
   background("#278EF5");
 
   if (state === "title") {
-    drawTitlescreen();
+    drawTitleScreen();
   } else if (state === "instructions") {
     drawInstructionsScreen();
   }
