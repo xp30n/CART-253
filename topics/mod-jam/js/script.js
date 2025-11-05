@@ -52,7 +52,7 @@ let speech = [
   "I have not eaten\n in centuries.",
   "My mana depletes\n and my strength wanes.",
   "Aid me, traveler!",
-  "Catch some flies\n by pressing S.",
+  "Help me catch\n some flies",
   "and I shall\n grant you...",
   "probably something\n important..",
   "HUZZAAH! ONWARD\n NOW TRAVELER",
@@ -101,6 +101,8 @@ function draw() {
     drawTitleScreen();
   } else if (state === "instructions") {
     drawInstructionsScreen();
+  } else if (state === "gameplay") {
+    drawGameplayScreen();
   }
 }
 
@@ -139,9 +141,9 @@ function drawTitleScreen() {
  */
 
 function drawInstructionsScreen() {
-    // Adjusts tarts Sir Croaksworth position to be off the screen at first
+  // Adjusts tarts Sir Croaksworth position to be off the screen at first
   if (!instructionsStarted) {
-    croaksworth.x = -235; 
+    croaksworth.x = -235;
     croaksworth.y = 270;
     croaksworth.w = 230;
     croaksworth.h = 230;
@@ -188,47 +190,68 @@ function drawInstructionsScreen() {
   text("(Press any key)", 410, 530);
 }
 
+/**
+ * GAMEPLAY SCREEN
+ */
 
+function drawGameplayScreen() {
+    background("#003287");
+}
 /**
  * FUNCTIONS
  */
 function drawSirCroaksworth() {
-    image(croaksworthImage, croaksworth.x, croaksworth.y, croaksworth.w, croaksworth.h);
+  image(
+    croaksworthImage,
+    croaksworth.x,
+    croaksworth.y,
+    croaksworth.w,
+    croaksworth.h
+  );
+}
+
+// RPG style dialogue window
+function drawDialogueWindow() {
+  push();
+  fill(0);
+  stroke("white");
+  strokeWeight(5);
+  rect(250, 125, 340, 120);
+  pop();
+}
+
+// Start music only only when the user clicks
+function mousePressed() {
+  if (!musicStarted) {
+    backgroundMusic.loop();
+    backgroundMusic.setVolume(0.2);
+    musicStarted = true;
   }
-  
-  // RPG style dialogue window
-  function drawDialogueWindow() {
-    push();
-    fill(0);
-    stroke("white");
-    strokeWeight(5);
-    rect(250, 125, 340, 120);
-    pop();
+
+  // Transition to instructions screen if on title and mouse is pressed
+  if (state === "title") {
+    state = "instructions";
   }
-  
-  // Start music only only when the user clicks
-  function mousePressed() {
-    if (!musicStarted) {
-      backgroundMusic.loop();
-      backgroundMusic.setVolume(0.2);
-      musicStarted = true;
-    }
-  
-    // Transition to instructions screen if on title
-    if (state === "title") {
-      state = "instructions";
-    }
-  }
-  
-  // when a key is pressed, the next array of speech will appear
-  function keyPressed() {
-    if (getAudioContext().state !== "running") getAudioContext().resume();
-  
-    if (state === "instructions" && charIndex >= speech[speechIndex].length) {
+}
+
+// when a key is pressed, the next array of speech will appear
+function keyPressed() {
+  if (getAudioContext().state !== "running") getAudioContext().resume();
+
+  if (state === "instructions") {
+    // Check if the text is done being typed
+    if (charIndex >= speech[speechIndex].length) {
+      // If it's not the last line of the array, go to the next
       if (speechIndex < speech.length - 1) {
         speechIndex++;
         currentText = "";
         charIndex = 0;
       }
+
+      // if it's the last line of the array, then proceed to the next state
+      else if (key === "z" || key === "Z") {
+        state = "gameplay";
+      }
     }
   }
+}
