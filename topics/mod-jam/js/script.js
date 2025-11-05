@@ -207,7 +207,7 @@ function drawInstructionsScreen() {
   fill(255);
   stroke(0);
   strokeWeight(4);
-  text("(Press any key)", 410, 530);
+  text("(Press any key or D to skip)", 410, 530);
 }
 
 /**
@@ -233,6 +233,17 @@ function drawGameplayScreen() {
     gameplayMusic.loop();
     gameplayMusic.setVolume(0.3);
   }
+
+  textSize(18);
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  textAlign(RIGHT, RIGHT);
+  textFont(pixelFont);
+  text("Catch the flies by moving your mouse to control Sir Croaksworth", 820, 520);
+
+  textFont(pixelFont);
+  text("Dodge the fireballs!", 820, 550);
 
   drawWizardFrog();
 
