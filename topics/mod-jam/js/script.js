@@ -444,7 +444,7 @@ function checkOverlap() {
 
   for (let fireball of fireballs) {
     const d = dist(mouseX, mouseY, fireball.x, fireball.y);
-    if (d < 50) {
+    if (d < 60) {
       fireballHits++;
       resetFireball(fireball);
       if (fireballHits >= maxHits) {
