@@ -68,7 +68,6 @@ let fly = {
 let flies = [];
 
 // Adds the fireballs
-
 let fireballs = [];
 
 // Sir Croaksworth's Introduction speech
@@ -87,7 +86,8 @@ let speech = [
   "I have not eaten\n in centuries.",
   "My mana depletes\n and my strength wanes.",
   "Aid me, traveler!",
-  "Help me catch\n some flies",
+  "Help me catch\n 30 flies",
+  "to replenish my mana",
   "and I shall\n grant you...",
   "probably something\n important..",
   "HUZZAAH! ONWARD\n NOW TRAVELER",
@@ -128,11 +128,13 @@ function preload() {
 function setup() {
   createCanvas(840, 560);
 
+  // makes sure  that seven flies are on the screen at all times
   for (let i = 0; i < 7; i++) {
     // spawn 7 flies
     flies.push(createFly());
   }
 
+  // makes sure theres 6 fireballs on screen at all times
   for (let i = 0; i < 6; i++) {
     // spawn 6 fireballs
     fireballs.push(createFireball());
@@ -251,6 +253,7 @@ function drawInstructionsScreen() {
 function drawGameplayScreen() {
   background(dayImage);
 
+  // replaces the cursor with the image of sir croaksworth
   noCursor();
 
   // stop the background music of the intro
@@ -268,6 +271,7 @@ function drawGameplayScreen() {
     gameplayMusic.setVolume(0.3);
   }
 
+  // tells the user how to play
   textSize(18);
   fill(255);
   stroke(0);
@@ -280,6 +284,7 @@ function drawGameplayScreen() {
     520
   );
 
+  // tells the user to dodge the fireballs
   textFont(pixelFont);
   text("Dodge the fireballs!", 820, 550);
 
@@ -313,7 +318,7 @@ function drawGameplayScreen() {
     stroke(0);
     strokeWeight(6);
     fill("lime");
-    text("YOU WIN!\n Press R to restart", width / 2, height / 2);
+    text("MANA RESTORED!\n Press R to restart", width / 2, height / 2);
     noLoop();
   } else if (gameOver) {
     textAlign(CENTER, CENTER);
@@ -321,7 +326,7 @@ function drawGameplayScreen() {
     stroke(0);
     strokeWeight(6);
     fill("red");
-    text("GAME OVER\n Press R to restart", width / 2, height / 2);
+    text("GAME OVER!\n Press R to restart", width / 2, height / 2);
     noLoop(); // freezes the game
   }
 
