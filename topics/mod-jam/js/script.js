@@ -21,6 +21,7 @@ let swordImage;
 
 // Music
 let backgroundMusic;
+let gameplayMusic;
 let musicStarted = false; // music starts off
 
 // Instructions screen begins hidden
@@ -107,6 +108,7 @@ function preload() {
   // Sound Preloads
   textSound = loadSound("assets/sounds/text-sound.mp3");
   backgroundMusic = loadSound("assets/sounds/background-music.mp3");
+  gameplayMusic = loadSound("assets/sounds/gameplay-music.mp3");
 }
 
 /**
@@ -229,8 +231,19 @@ function drawInstructionsScreen() {
 function drawGameplayScreen() {
   background("#003287");
 
+  // stop the background music of the intro
+  if (backgroundMusic.isPlaying()) {
+    backgroundMusic.stop();
+  }
+  // stop the text sounds
   if (textSound.isPlaying()) {
     textSound.stop();
+  }
+
+  // starts the gameplay music
+  if (!gameplayMusic.isPlaying()) {
+    gameplayMusic.loop();
+    gameplayMusic.setVolume(0.2);
   }
 
   // draws the moving functions
@@ -319,11 +332,20 @@ function mousePressed() {
     state = "instructions";
   }
 
-  // if we are on the gameplay screen and the mouse is pressed, activate the tongue functions
+  // conditions for gameplay screen
   if (state === "gameplay") {
+    // Start the music
+    if (!musicStarted && !gameplayMusic.isPlaying()) {
+      gameplayMusic.loop();
+      gameplayMusic.setVolume(0.2);
+      musicStarted = true;
+    }
+
+    // activate the tongue when the mouse is pressed
     if (froggie.tongue.state === "idle") {
       froggie.tongue.state = "outbound";
     }
+
   }
 }
 
