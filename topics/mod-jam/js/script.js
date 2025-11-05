@@ -21,6 +21,7 @@ let croaksworthImage;
 // Gameplay screen images
 let wizardFrogImage;
 let dayImage;
+let fireballImage;
 
 // Music
 let backgroundMusic;
@@ -101,6 +102,7 @@ function preload() {
   croaksworthImage = loadImage("assets/images/croaksworth.png");
   dayImage = loadImage("assets/images/evening.png");
   wizardFrogImage = loadImage("assets/images/floating-croakie.png");
+  fireballImage = loadImage("assets/images/fireball.png");
 
   // Font Preloads
   pixelFont = loadFont("assets/fonts/pixel-font.ttf");
@@ -319,15 +321,6 @@ function drawWizardFrog() {
   imageMode(CORNER); // stops the background from moving:(
 }
 
-function createFireball() {
-  return {
-    x: random(width),
-    y: random(100, 400),
-    size: random(20, 25),
-    speed: random(4, 6)
-  }
-}
-
 // create the flies
 function createFly() {
   return {
@@ -366,11 +359,20 @@ function moveFly(fly) {
   }
 }
 
+function createFireball() {
+  return {
+    x: random(width),
+    y: random(100, 400),
+    w: random(30, 40),
+    h: random(30, 40),
+    speed: random(4, 6)
+  }
+}
+
 function drawFireball(fireball) {
   push();
-  noStroke();
-  fill("#ff8826");
-  ellipse(fireball.x, fireball.y, fireball.size);
+  imageMode(CENTER)
+  image(fireballImage, fireball.x, fireball.y, fireball.w, fireball.h);
   pop();
 }
 
@@ -394,7 +396,7 @@ function checkOverlap() {
   for (let fireball of fireballs) {
     const d = dist(mouseX, mouseY, fireball.x, fireball.y);
     if (d < 50) {
-      
+
     }
   }
 }
