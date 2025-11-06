@@ -10,7 +10,8 @@ Witness greatness below:
 
 ### Jam Assignments👾
 - <a href="https://xp30n.github.io/CART-253/topics/art-jam" target="_blank">Art Jam</a>
-- <a href="#" target="_blank">Mod Jam coming soon to a repository near you</a>
+- <a href="https://xp30n.github.io/CART-253/topics/mod-jam" target="_blank">Mod Jam</a>
+
 
 ### Challenges💿
 - <a href="https://xp30n.github.io/CART-253/topics/instructions/instructions-challenge" target="_blank">Instructions Challenge</a>
