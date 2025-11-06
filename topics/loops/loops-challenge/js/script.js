@@ -26,15 +26,23 @@ function draw() {
     let h = 500;
     let s = 0;
 
-    while (x <= 500) {
-        stroke(s);
-        line(x, y, w, h);
-        x+= 50;
+    // vertical lines
+    while (x <= height) {
+        stroke(0);
+        line(x, 0, x, h);
+        x += 50;
+        s += 50; 
         w += 50;
     }
 
-    stroke(0);
-    line(x, y, w, h);
-    x+= 50;
-    w += 50;
+    // horizontal lines
+    s = 0;
+    y = 0;
+
+    while (y <= height) {
+        stroke(0);
+        line(0, y, w, y);
+        y += 50;
+        s += 50;
+    }
 }
