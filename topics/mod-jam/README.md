@@ -1,35 +1,49 @@
-# TITLE OF PROJECT
+# THE LEGEND OF SIR CROAKSWORTH: BREATH OF THE HUNGER
 
-AUTHOR NAME
+Aliyah R.W
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://xp30n.github.io/CART-253/topics/mod-jam)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+> This is the legend of Sir Croaksworth.
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+> *He is an ancient wizard* who has been in a coma for quite some time now! But he just woke up, only to find you standing there!
 
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+> Thus, you must help Sir Croaksworth regain his mana by catching 30 flies so that he may once again be a functioning member of society, while dodging the fireballs that come your way!
 
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+## Changes
+
+> Added a title screen
+> Added an introduction screen
+> Added a scoring system: Player must catch 30 flies, and dodge all the fireballs
+> Movement of the Sir Croaksworth by following the mouse position
+> Added some gameplay and intro music
+> Used both keyboard and mouse functions to progress through the game
 
 ## Screenshot(s)
 
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
+Here are some screenshots of Sir Croaksworth's Adventure
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![Title](./assets/images/intro.png)
+> ![Intructions](./assets/images/starting.png)
+> ![Gameplay](./assets/images/game.png)
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
+Elements used:
 
-> - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - This project uses [p5.js](https://p5js.org)
+> - Used part of the code from [FrogFrogFrog Project](https://pippinbarr.com/frogfrogfrog)
+> - PNGS taken from pinterest
+
+> *Intro music*: Options - Mario Kart Wii OST
+Composers: Asuka Hayazaki & Ryo Nagamatsu
+Game: Mario Kart Wii
+
+> *Gameplay music*: Mob Psycho 100 OST | GOGO REIGEN! | GOGO霊幻!
+by: Kenji Kawai
 
 ## License
-
-This bit should include the license you want to apply to your work. For example:
 
 > This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
