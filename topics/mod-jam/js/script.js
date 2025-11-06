@@ -35,7 +35,7 @@ let instructionsStarted = false;
 let fliesCaught = 0;
 let fireballHits = 0;
 let maxHits = 4;
-let maxEaten = 30;
+let maxEaten = 50;
 let gameOver = false;
 let gameWin = false;
 
@@ -86,7 +86,7 @@ let speech = [
   "I have not eaten\n in centuries.",
   "My mana depletes\n and my strength wanes.",
   "Aid me, traveler!",
-  "Help me catch\n 30 flies",
+  "Help me catch\n 50 flies",
   "to replenish my mana",
   "and I shall\n grant you...",
   "probably something\n important..",
