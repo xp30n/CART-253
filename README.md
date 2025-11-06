@@ -20,6 +20,9 @@ Witness greatness below:
 - <a href="https://xp30n.github.io/CART-253/topics/mod-jam/phase_01/ideas.md" target="_blank">Making Challenge</a>
 - <a href="https://xp30n.github.io/CART-253/topics/functions/functions-challenge" target="_blank">Functions Challenge</a>
 - <a href="https://xp30n.github.io/CART-253/topics/arrays/arrays-challenge" target="_blank">Arrays Challenge</a>
+- <a href="https://xp30n.github.io/CART-253/topics/loops/loops-challenge" target="_blank">Loops Challenge</a>
+
+
 
 ## Executing: Projects.... 🌐 * 📁 * 📎 ⛧°｡⋆
 
