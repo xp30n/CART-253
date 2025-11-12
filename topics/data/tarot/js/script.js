@@ -1,6 +1,6 @@
 /**
  * Tarot
- * Pippin Barr
+ * Aliyah R.W
  * 
  * Some experiments with data representing a Tarot deck
  */
