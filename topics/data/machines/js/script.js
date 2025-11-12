@@ -1,6 +1,6 @@
 /**
  * Machines
- * Pippin Barr
+ * Aliyah R.W
  * 
  * A starting point for a project that displays different machines
  * on the canvas. Eventually I'd like to be able to drag and drop
