@@ -24,7 +24,6 @@ Witness greatness below:
 - <a href="https://xp30n.github.io/CART-253/topics/data/data-challenge" target="_blank">Data Challenge</a>
 
 
-
 ## Executing: Projects.... 🌐 * 📁 * 📎 ⛧°｡⋆
 
 ![hands](./topics/version-control/version-control-workflow/assets/images/loading.png)
