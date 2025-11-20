@@ -3,7 +3,7 @@
  * Aliyah R.W.
  * 
  * You stumble across some pages from a little dragon hatchling's notebook.
- * In his entries, he talks about his adventures during his quest to find his master
+ * In his entries, he talks about his adventures during his quest to find his master and older brother
  * Uncover what happened and where this little hatchling went. 
  */
 
@@ -15,6 +15,11 @@ let state = "title"
 // Loads the title screen background
 let titleBackground;
 
+// Loads the act buttons
+let actOne;
+let actTwo;
+let actThree;
+
 // Loads the custom fonts
 let alfanaFont;
 
@@ -22,7 +27,10 @@ let alfanaFont;
 function preload() {
 
     // Image preloads
-    titleBackground = loadImage("assets/images/title-screen2.jpeg");
+    titleBackground = loadImage("assets/images/background-title.jpeg");
+    actOne = loadImage("assets/images/act1.png");
+    actTwo = loadImage("assets/images/act2.png");
+    actThree = loadImage("assets/images/act3.png");
 
     // Font preloads 
     alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -33,7 +41,7 @@ function preload() {
  * Creates the canvas
 */
 function setup() {
-    createCanvas(1000, 600);
+    createCanvas(900, 700);
 }
 
 /**
@@ -54,11 +62,18 @@ function drawTitleScreen() {
    background(titleBackground);
 
     // Title text
-    textSize(35);
+    textSize(45);
     fill(255);
     stroke(0);
     strokeWeight(4);
     textAlign(CENTER, CENTER);
     textFont(alfanaFont);
-    text("The Lonely Hatchling", 500, 200);
-}   
+    text("The Lonely Hatchling", 450, 220);
+
+    // Draws the act one button
+    drawActOne();
+}
+
+function drawActOne() {
+    image(actOne, 100, 300, 400, 200);
+}
