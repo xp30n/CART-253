@@ -70,10 +70,12 @@ function drawTitleScreen() {
     textFont(alfanaFont);
     text("The Lonely Hatchling", 450, 220);
 
-    // Draws the act one button
-    drawActOne();
+    // Draws each act button
+    drawActs();
 }
 
-function drawActOne() {
-    image(actOne, 100, 300, 400, 200);
+function drawActs() {
+    image(actOne, 400, 300, 100, 50);
+    image(actTwo, 400, 400, 100, 50);
+    image(actThree, 400, 500, 100, 50);
 }
