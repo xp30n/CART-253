@@ -20,9 +20,31 @@ let actOne;
 let actTwo;
 let actThree;
 
+
+// Act buttons height and width
+let actButtons = {
+    width: 130,
+    height: 60
+}
+
+// Act buttons positioning
+let act1Button = {
+    x: 380,
+    y: 370,
+}
+
+let act2Button = {
+    x: 380, 
+    y: 440,
+}
+
+let act3Button = {
+    x: 380, 
+    y: 510,
+}
+
 // Loads the custom fonts
 let alfanaFont;
-
 
 function preload() {
 
@@ -60,7 +82,7 @@ function drawTitleScreen() {
     // Loads the background
    background(titleBackground);
 
-    // Title text
+    // Title 
     textSize(65);
     fill(255);
     stroke(0);
@@ -69,6 +91,7 @@ function drawTitleScreen() {
     textFont(alfanaFont);
     text("The Brave\n Little Dragon", 450, 220);
 
+    // subtitle
     textSize(25)
     text("An Interactive Story", 450, 330);
 
@@ -77,7 +100,7 @@ function drawTitleScreen() {
 }
 
 function drawActs() {
-    image(actOne, 380, 370, 130, 60);
-    image(actTwo, 380, 440, 130, 60);
-    image(actThree, 380, 510, 130, 60);
+    image(actOne, act1Button.x, act1Button.y, actButtons.width, actButtons.height);
+    image(actTwo, act2Button.x, act2Button.y, actButtons.width, actButtons.height);
+    image(actThree, act3Button.x, act3Button.y, actButtons.width, actButtons.height);
 }
