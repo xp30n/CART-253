@@ -1,10 +1,10 @@
 /**
- * 
+ * The Brave Little Dragon
  * Aliyah R.W.
  * 
  * You stumble across some pages from a little dragon hatchling's notebook.
- * In his entries, he talks about his adventures during his quest to find his master and older brother
- * Uncover what happened and where this little hatchling went. 
+ * In his entries, he talks about his adventures during his quest to find his older brother
+ * Uncover what happened and where this little dragon hatchling went. 
  */
 
 "use strict";
@@ -54,7 +54,6 @@ function draw() {
     if (state === "title") (
         drawTitleScreen()
     )
-
 }
 
 function drawTitleScreen() {
@@ -62,20 +61,23 @@ function drawTitleScreen() {
    background(titleBackground);
 
     // Title text
-    textSize(45);
+    textSize(65);
     fill(255);
     stroke(0);
     strokeWeight(4);
     textAlign(CENTER, CENTER);
     textFont(alfanaFont);
-    text("The Lonely Hatchling", 450, 220);
+    text("The Brave\n Little Dragon", 450, 220);
+
+    textSize(25)
+    text("An Interactive Story", 450, 330);
 
     // Draws each act button
     drawActs();
 }
 
 function drawActs() {
-    image(actOne, 400, 300, 100, 50);
-    image(actTwo, 400, 400, 100, 50);
-    image(actThree, 400, 500, 100, 50);
+    image(actOne, 380, 370, 130, 60);
+    image(actTwo, 380, 440, 130, 60);
+    image(actThree, 380, 510, 130, 60);
 }
