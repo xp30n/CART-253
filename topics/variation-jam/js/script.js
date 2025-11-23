@@ -14,6 +14,7 @@ let state = "title";
 
 // Loads the title screen background
 let titleBackground;
+let actOneBackground;
 
 // Loads the act buttons
 let actOne;
@@ -46,11 +47,15 @@ let act3Button = {
 let alfanaFont;
 
 function preload() {
-  // Image preloads
+  // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
   actOne = loadImage("assets/images/act1.png");
   actTwo = loadImage("assets/images/act2.png");
   actThree = loadImage("assets/images/act3.png");
+
+  // Image Preloads - Act One
+  actOneBackground = loadImage("assets/images/act1-bg.jpeg");
+
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -177,5 +182,5 @@ function mousePressed() {
  * ACT ONE SCREEN
  */
 function drawActOne() {
-  background(0);
+  background(actOneBackground);
 }
