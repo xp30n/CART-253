@@ -16,6 +16,9 @@ let state = "title";
 let titleBackground;
 let actOneBackground;
 
+// Loads the journal image
+let questBook;
+
 // Loads the act buttons
 let actOne;
 let actTwo;
@@ -48,7 +51,6 @@ let alfanaFont;
 let fantasyFont;
 
 function preload() {
-
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
   actOne = loadImage("assets/images/act1.png");
@@ -57,6 +59,7 @@ function preload() {
 
   // Image Preloads - Act One
   actOneBackground = loadImage("assets/images/forest.jpeg");
+  questBook = loadImage("assets/images/quest-book.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -74,7 +77,7 @@ function setup() {
  * Draws the canvas
  */
 function draw() {
-    // sets the default cursor to the arrow
+  // sets the default cursor to the arrow
   cursor(ARROW);
 
   // Handles the states of the game
@@ -183,26 +186,33 @@ function mousePressed() {
 }
 
 /**
- * ACT ONE SCREEN
+ * /// ACT ONE SCREEN ///
  */
 // The introduction dialogue for this interactive story
 let intro = [
-    "The forest is peaceful\n as you stride through,",
-    "On a journey of your own,\n lost in a sea of thoughts.",
-    "All of a sudden,\n you come across a\n discarded journal.",
-    "Picking it up,",
-    "You notice it's covered\n in dirt and it seems to be\n quite old.",
-    "The front cover reads:\n Talo's Quests!"
+  "The forest is peaceful\n as you stride through,",
+  "On a journey of your own,\n lost in a sea of thoughts.",
+  "All of a sudden,\n you come across a\n discarded journal.",
+  "Picking it up,",
+  "You notice it's covered\n in dirt and it seems to be\n quite old.",
+  "The front cover reads:\n Talo's Quests!",
 ];
 
 let introIndex = 0;
 
 let currentText;
 
+let dialogueWindow = {
+    x: 200, 
+    y: 440, 
+    width: 500, 
+    height: 170,
+    fill: "#0A3001",
+}
+
 // Draws the screen for act one
 function drawActOne() {
-
-    // Gives the background a custom image
+  // Gives the background a custom image
   background(actOneBackground);
 
   // Adds the dialogue window to the canvas
@@ -222,21 +232,21 @@ function drawActOne() {
   // Displays the instructions for how to proceed through the array
   textSize(20);
   text("Press Spacebar to continue", 450, 420);
-
 }
 
 function drawDialogueWindow() {
-    // Creates the dialogue window
-    push();
-    stroke(255);
-    strokeWeight(4);
-    fill("#0A3001");
-    rect(200, 440, 500, 170);
-    pop();
+  // Creates the dialogue window
+  push();
+  stroke(255);
+  strokeWeight(4);
+  fill(dialogueWindow.fill);
+  rect(dialogueWindow.x, dialogueWindow.y, dialogueWindow.width, dialogueWindow.height);
+  pop();
 }
 
+// Allows the user to go through the introduction text using the spacebar
 function keyPressed() {
-    if (key === " ") {
-        introIndex = introIndex +1;
-    }
+  if (key === " ") {
+    introIndex = introIndex + 1;
+  }
 }
