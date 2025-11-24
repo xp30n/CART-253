@@ -185,6 +185,21 @@ function mousePressed() {
 /**
  * ACT ONE SCREEN
  */
+// The introduction dialogue for this interactive story
+let intro = [
+    "The forest is peaceful\n as you stride through,",
+    "On a journey of your own,\n lost in a sea of thoughts.",
+    "All of a sudden,\n you come across a\n discarded journal.",
+    "Picking it up,",
+    "You notice it's covered\n in dirt and it seems to be\n quite old.",
+    "The front cover reads:\n Talo's Quests!"
+];
+
+let introIndex = 0;
+
+let currentText;
+
+// Draws the screen for act one
 function drawActOne() {
 
     // Gives the background a custom image
@@ -192,6 +207,19 @@ function drawActOne() {
 
   // Adds the dialogue window to the canvas
   drawDialogueWindow();
+
+  // Displays the introduction array
+  if (state === "intro") {
+    currentText = intro[introIndex];
+  }
+
+  // Displays the intro dialogue within the dialogue window
+  textSize(45);
+  textFont(fantasyFont);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text(currentText, 450, 520);
+
 }
 
 function drawDialogueWindow() {
