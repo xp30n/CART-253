@@ -48,7 +48,7 @@ let alfanaFont;
 let fantasyFont;
 
 function preload() {
-    
+
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
   actOne = loadImage("assets/images/act1.png");
@@ -89,7 +89,7 @@ function draw() {
  * TITLE SCREEN
  */
 function drawTitleScreen() {
-  // Loads the background
+  // Loads the background image
   background(titleBackground);
 
   // Title
@@ -186,5 +186,20 @@ function mousePressed() {
  * ACT ONE SCREEN
  */
 function drawActOne() {
+
+    // Gives the background a custom image
   background(actOneBackground);
+
+  // Adds the dialogue window to the canvas
+  drawDialogueWindow();
+}
+
+function drawDialogueWindow() {
+    // Creates the dialogue window
+    push();
+    stroke(255);
+    strokeWeight(4);
+    fill("#0A3001");
+    rect(200, 440, 500, 170);
+    pop();
 }
