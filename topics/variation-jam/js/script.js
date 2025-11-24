@@ -209,16 +209,19 @@ function drawActOne() {
   drawDialogueWindow();
 
   // Displays the introduction array
-  if (state === "intro") {
-    currentText = intro[introIndex];
-  }
+  let currentText = intro[introIndex];
 
   // Displays the intro dialogue within the dialogue window
   textSize(45);
   textFont(fantasyFont);
   fill(255);
+  noStroke();
   textAlign(CENTER, CENTER);
   text(currentText, 450, 520);
+
+  // Displays the instructions for how to proceed through the array
+  textSize(20);
+  text("Press Spacebar to continue", 450, 420);
 
 }
 
@@ -230,4 +233,10 @@ function drawDialogueWindow() {
     fill("#0A3001");
     rect(200, 440, 500, 170);
     pop();
+}
+
+function keyPressed() {
+    if (key === " ") {
+        introIndex = introIndex +1;
+    }
 }
