@@ -12,7 +12,7 @@
 // Starting off on the title screen
 let state = "title";
 
-// Loads the title screen background
+// Loads the backgrounds for each act/scene
 let titleBackground;
 let actOneBackground;
 
@@ -21,7 +21,7 @@ let actOne;
 let actTwo;
 let actThree;
 
-// Act buttons height and width
+// Act buttons universal height and width
 let actButtons = {
   width: 130,
   height: 60,
@@ -45,8 +45,10 @@ let act3Button = {
 
 // Loads the custom fonts
 let alfanaFont;
+let fantasyFont;
 
 function preload() {
+    
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
   actOne = loadImage("assets/images/act1.png");
@@ -54,11 +56,11 @@ function preload() {
   actThree = loadImage("assets/images/act3.png");
 
   // Image Preloads - Act One
-  actOneBackground = loadImage("assets/images/act1-bg.jpeg");
-
+  actOneBackground = loadImage("assets/images/forest.jpeg");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
+  fantasyFont = loadFont("assets/fonts/fantasy1.ttf");
 }
 
 /**
@@ -72,9 +74,8 @@ function setup() {
  * Draws the canvas
  */
 function draw() {
+    // sets the default cursor to the arrow
   cursor(ARROW);
-
-  background(0);
 
   // Handles the states of the game
   if (state === "title") {
@@ -108,6 +109,7 @@ function drawTitleScreen() {
   drawActs();
 }
 
+// Draws the act buttons
 function drawActs() {
   // --- ACT 1 ---
   image(
@@ -117,6 +119,7 @@ function drawActs() {
     actButtons.width,
     actButtons.height
   );
+  // Changing the mouse to become a hand when a user is hovering over the buttons
   if (
     mouseX > act1Button.x &&
     mouseX < act1Button.x + actButtons.width &&
@@ -163,6 +166,7 @@ function drawActs() {
   }
 }
 
+// Check if the mouse is over the mouse buttons
 function checkOverlap() {
   return (
     mouseX > act1Button.x &&
