@@ -16,9 +16,6 @@ let state = "title";
 let titleBackground;
 let actOneBackground;
 
-// Loads the journal image
-let questBook;
-
 // Loads the act buttons
 let actOne;
 let actTwo;
@@ -210,6 +207,9 @@ let dialogueWindow = {
     fill: "#0A3001",
 }
 
+// Loads the journal image
+let questBook;
+
 // Draws the screen for act one
 function drawActOne() {
   // Gives the background a custom image
@@ -232,6 +232,9 @@ function drawActOne() {
   // Displays the instructions for how to proceed through the array
   textSize(20);
   text("Press Spacebar to continue", 450, 420);
+
+  // Displays Talo's questbook
+  drawJournal();
 }
 
 function drawDialogueWindow() {
@@ -242,6 +245,10 @@ function drawDialogueWindow() {
   fill(dialogueWindow.fill);
   rect(dialogueWindow.x, dialogueWindow.y, dialogueWindow.width, dialogueWindow.height);
   pop();
+}
+
+function drawJournal() {
+    image(questBook, 200, 100, 100, 100)
 }
 
 // Allows the user to go through the introduction text using the spacebar
