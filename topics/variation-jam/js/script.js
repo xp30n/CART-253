@@ -57,7 +57,7 @@ function preload() {
 
   // Image Preloads - Act One
   actOneBackground = loadImage("assets/images/forest.jpeg");
-  questBook = loadImage("assets/images/quest-book.png");
+  questBookImage = loadImage("assets/images/quest-book.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -196,8 +196,14 @@ let intro = [
   "The front cover reads:\n Talo's Quests!",
 ];
 
+// Starting on the first line of the array and displaying the string of arrays
 let introIndex = 0;
 let currentText;
+
+// Journal Image scaling variables
+let showJournalImage;
+let journalScale = 0;
+
 
 // Properties for the dialogue window
 let dialogueWindow = {
@@ -207,6 +213,8 @@ let dialogueWindow = {
     height: 170,
     fill: "#0A3001",
 }
+
+let questBookImage;
 
 // Properties for the questbook image
 let questBook = {
@@ -224,6 +232,15 @@ function drawActOne() {
 
   // Adds the dialogue window to the canvas
   drawDialogueWindow();
+
+  // If we are on line 2 of the intro speech array, then display the journal
+  if (introIndex === 2) {
+    showJournalImage = true;
+  }
+  // After the line 2 of the array appears, scale the journal to full size
+  if (showJournalImage && journalScale < 1) {
+    journalScale += 0.05;
+  }
 
   // Displays the introduction array
   let currentText = intro[introIndex];
@@ -256,7 +273,14 @@ function drawDialogueWindow() {
 
 // Draws the journal
 function drawJournal() {
-    image(questBook, questBook.x, questBook.y, questBook.width, questBook.height);
+  if (showJournalImage) {
+    push();
+    translate(450, 300);
+    scale(journalScale);
+    imageMode(CENTER);
+    image(questBookImage, 0, 0, questBook.width, questBook.height);
+    pop();
+  }
 }
 
 // Allows the user to go through the introduction text using the spacebar
