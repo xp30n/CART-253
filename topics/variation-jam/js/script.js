@@ -47,6 +47,7 @@ let act3Button = {
 let alfanaFont;
 let fantasyFont;
 
+
 function preload() {
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
@@ -196,9 +197,9 @@ let intro = [
 ];
 
 let introIndex = 0;
-
 let currentText;
 
+// Properties for the dialogue window
 let dialogueWindow = {
     x: 200, 
     y: 440, 
@@ -207,11 +208,17 @@ let dialogueWindow = {
     fill: "#0A3001",
 }
 
-// Loads the journal image
-let questBook;
+// Properties for the questbook image
+let questBook = {
+    x: 350, 
+    y: 200, 
+    width: 200, 
+    height: 200,
+}
 
 // Draws the screen for act one
 function drawActOne() {
+
   // Gives the background a custom image
   background(actOneBackground);
 
@@ -237,8 +244,8 @@ function drawActOne() {
   drawJournal();
 }
 
+// Creates the dialogue window
 function drawDialogueWindow() {
-  // Creates the dialogue window
   push();
   stroke(255);
   strokeWeight(4);
@@ -247,8 +254,9 @@ function drawDialogueWindow() {
   pop();
 }
 
+// Draws the journal
 function drawJournal() {
-    image(questBook, 200, 100, 100, 100)
+    image(questBook, questBook.x, questBook.y, questBook.width, questBook.height);
 }
 
 // Allows the user to go through the introduction text using the spacebar
