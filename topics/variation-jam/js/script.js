@@ -12,8 +12,8 @@
 // Starting off on the title screen
 let state = "title";
 
+// Declares the contents of JSON file
 let storyData;
-
 
 /****************************************
  *        TITLE SCREEN VARIABLES
@@ -109,6 +109,7 @@ let questBook = {
 let firstPage;
 let secondPage;
 
+let enteredJournal = false;
 let showSecondPage = false;
 
 // First page variables
@@ -261,22 +262,6 @@ function drawActs() {
   }
 }
 
-// Check if the mouse is over the mouse buttons
-function checkOverlap() {
-  return (
-    mouseX > act1Button.x &&
-    mouseX < act1Button.x + actButtons.width &&
-    mouseY > act1Button.y &&
-    mouseY < act1Button.y + actButtons.height
-  );
-}
-
-function mousePressed() {
-  if (state === "title" && checkOverlap()) {
-    state = "actOne";
-  }
-}
-
 /****************************************
  *              ACT ONE SCENE
  ****************************************/
@@ -384,23 +369,44 @@ function drawSecondPage() {
 }
 
 /****************************************
- *               INPUT
+ *                INPUTS
  ****************************************/
 
-function keyPressed() {
-  if (key === " ") { // Allows the user to go through the introduction text using the spacebar
-    introIndex = introIndex + 1;
-  }
+// Check if the mouse is over the mouse buttons
+function checkOverlap() {
+  return (
+    mouseX > act1Button.x &&
+    mouseX < act1Button.x + actButtons.width &&
+    mouseY > act1Button.y &&
+    mouseY < act1Button.y + actButtons.height
+  );
+}
 
-  // Switches to the journal scene if the user presses N
-  if ((key === "N" || key === "n") && state === "actOne") {
-    state = "journalScene";
-  }
-
-  // If a user presses the spacebar, it will switch to the second part of the journal
-  if ((key === " " || key === " ") && state === "journalScene") {
-    showSecondPage = true;
+function mousePressed() {
+  if (state === "title" && checkOverlap()) {
+    state = "actOne";
   }
 }
 
+function keyPressed() {
 
+  // If there is more text, continue the intro, otherwise switch scenes
+  if (state === "actOne" && key === " ") {
+    if (introIndex < intro.length - 1) {
+      introIndex++;
+    }
+    else {
+      state = "journalScene";
+      enteredJournal = true;
+    }
+  }
+
+  // If a user presses the spacebar, it will switch to the second part of the journal
+  if (key === " " && state === "journalScene") {
+    if (enteredJournal) {
+      enteredJournal = false;
+      return;
+    }
+    showSecondPage = true;
+  }
+}
