@@ -85,7 +85,7 @@ function draw() {
     drawTitleScreen();
   } else if (state === "actOne") {
     drawActOne();
-  } else if (state ==="journalScene") {
+  } else if (state === "journalScene") {
     drawJournalScene();
   }
 }
@@ -222,8 +222,8 @@ let questBookImage;
 
 // Properties for the questbook image
 let questBook = {
-    x: 350, 
-    y: 200, 
+    x: 0, 
+    y: 0, 
     width: 200, 
     height: 200,
 }
@@ -282,7 +282,7 @@ function drawJournal() {
     translate(450, 300);
     scale(journalScale);
     imageMode(CENTER);
-    image(questBookImage, 0, 0, questBook.width, questBook.height);
+    image(questBookImage, questBook.x, questBook.y, questBook.width, questBook.height);
     pop();
   }
 }
@@ -293,21 +293,59 @@ function keyPressed() {
     introIndex = introIndex + 1;
   }
 
-  if ((key === "J" || key === "j") && state === "journalScene") {
+  // Switches to the journal scene if the user presses N
+  if ((key === "N" || key === "n") && state === "actOne") {
+    state = "journalScene";
+  }
+
+  // If a user presses the spacebar, it will switch to the second part of the journal
+  if ((key === " " || key === " ") && state === "journalScene") {
     showSecondPage = true;
   }
 }
 
-let firstPage;
-let secondPage;
-
-let showSecondPage = true;
 
 /**
  * /// JOURNAL SCENE
  */
 
+let firstPage;
+let secondPage;
+
+let showSecondPage = false;
+
+let firstPageImage = {
+  x: 90, 
+  y: 50, 
+  width: 760, 
+  height: 600,
+}
+
+let secondPageImage = {
+  x: 90,
+  y: 50, 
+  width: 760, 
+  height: 600
+}
+
 function drawJournalScene() {
   background(actOneBackground);
+
+  // Initially shows the first page of the journal, then shows the second page after keyPressed
+  if (!showSecondPage) {
+    drawFirstPage();
+  } else {
+    drawSecondPage();
+  }
+}
+
+// Function for the first page png
+function drawFirstPage() {
+  image(firstPage, firstPageImage.x, firstPageImage.y, firstPageImage.width, firstPageImage.height);
+}
+
+// Function for the second page png
+function drawSecondPage() {
+  image(secondPage, secondPageImage.x, secondPageImage.y, secondPageImage.width, secondPageImage.height);
 }
 
