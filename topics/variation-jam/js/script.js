@@ -70,6 +70,7 @@ let fantasyFont;
  *           ACT ONE VARIABLES
  ****************************************/
 
+
 // The introduction dialogue for this interactive story
 let intro = [];
 
@@ -100,7 +101,6 @@ let questBook = {
   width: 200,
   height: 200,
 };
-
 
 /****************************************
  *        JOURNAL SCENE VARIABLES
