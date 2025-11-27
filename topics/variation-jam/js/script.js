@@ -12,6 +12,10 @@
 // Starting off on the title screen
 let state = "title";
 
+// ------------------
+// TITLE SCREEN VARIABLES
+// ------------------
+
 // Loads the backgrounds for each act/scene
 let titleBackground;
 let actOneBackground;
@@ -43,12 +47,91 @@ let act3Button = {
   y: 510,
 };
 
+// Title positioning
+let titleText = {
+  x: 450,
+  y: 220,
+};
+
+// Subtitle positioning
+let subtitleText = {
+  x: 450,
+  y: 330,
+};
+
 // Loads the custom fonts
 let alfanaFont;
 let fantasyFont;
 
+// ------------------
+// ACT 1 VARIABLES
+// ------------------
+
+// The introduction dialogue for this interactive story
+let intro = [
+  "The forest is peaceful\n as you stride through,",
+  "On a journey of your own,\n lost in a sea of thoughts.",
+  "All of a sudden,\n you come across a\n discarded journal.",
+  "Picking it up,",
+  "You notice it's covered\n in dirt and it seems to be\n quite old.",
+  "The front cover reads:\n Talo's Quests!",
+];
+
+// Starting on the first line of the array and displaying the string of arrays
+let introIndex = 0;
+let currentText;
+
+// Journal Image scaling variables
+let showJournalImage;
+let journalScale = 0;
+
+// Properties for the dialogue window
+let dialogueWindow = {
+  x: 200,
+  y: 440,
+  width: 500,
+  height: 170,
+  fill: "#0A3001",
+};
+
+// Declares the questbook
+let questBookImage;
+
+// Properties for the questbook image
+let questBook = {
+  x: 0,
+  y: 0,
+  width: 200,
+  height: 200,
+};
+
+// ------------------
+// JOURNAL SCENE VARIABLES
+// ------------------
+
+let firstPage;
+let secondPage;
+
+let showSecondPage = false;
+
+// First page variables
+let firstPageImage = {
+  x: 90,
+  y: 50,
+  width: 760,
+  height: 600,
+};
+
+// Second page variables
+let secondPageImage = {
+  x: 90,
+  y: 50,
+  width: 760,
+  height: 600,
+};
 
 function preload() {
+  
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
   actOne = loadImage("assets/images/act1.png");
@@ -104,11 +187,11 @@ function drawTitleScreen() {
   strokeWeight(4);
   textAlign(CENTER, CENTER);
   textFont(alfanaFont);
-  text("The Bravest\n Little Dragon", 450, 220);
+  text("The Bravest\n Little Dragon", titleText.x, titleText.y);
 
   // Subtitle
   textSize(25);
-  text("An Interactive Story", 450, 330);
+  text("An Interactive Story", subtitleText.x, subtitleText.y);
 
   // Draws each act button
   drawActs();
@@ -190,47 +273,9 @@ function mousePressed() {
 /**
  * /// ACT ONE SCREEN ///
  */
-// The introduction dialogue for this interactive story
-let intro = [
-  "The forest is peaceful\n as you stride through,",
-  "On a journey of your own,\n lost in a sea of thoughts.",
-  "All of a sudden,\n you come across a\n discarded journal.",
-  "Picking it up,",
-  "You notice it's covered\n in dirt and it seems to be\n quite old.",
-  "The front cover reads:\n Talo's Quests!",
-];
-
-// Starting on the first line of the array and displaying the string of arrays
-let introIndex = 0;
-let currentText;
-
-// Journal Image scaling variables
-let showJournalImage;
-let journalScale = 0;
-
-
-// Properties for the dialogue window
-let dialogueWindow = {
-    x: 200, 
-    y: 440, 
-    width: 500, 
-    height: 170,
-    fill: "#0A3001",
-}
-
-let questBookImage;
-
-// Properties for the questbook image
-let questBook = {
-    x: 0, 
-    y: 0, 
-    width: 200, 
-    height: 200,
-}
 
 // Draws the screen for act one
 function drawActOne() {
-
   // Gives the background a custom image
   background(actOneBackground);
 
@@ -271,7 +316,12 @@ function drawDialogueWindow() {
   stroke(255);
   strokeWeight(4);
   fill(dialogueWindow.fill);
-  rect(dialogueWindow.x, dialogueWindow.y, dialogueWindow.width, dialogueWindow.height);
+  rect(
+    dialogueWindow.x,
+    dialogueWindow.y,
+    dialogueWindow.width,
+    dialogueWindow.height
+  );
   pop();
 }
 
@@ -282,7 +332,13 @@ function drawJournal() {
     translate(450, 300);
     scale(journalScale);
     imageMode(CENTER);
-    image(questBookImage, questBook.x, questBook.y, questBook.width, questBook.height);
+    image(
+      questBookImage,
+      questBook.x,
+      questBook.y,
+      questBook.width,
+      questBook.height
+    );
     pop();
   }
 }
@@ -304,29 +360,9 @@ function keyPressed() {
   }
 }
 
-
 /**
  * /// JOURNAL SCENE
  */
-
-let firstPage;
-let secondPage;
-
-let showSecondPage = false;
-
-let firstPageImage = {
-  x: 90, 
-  y: 50, 
-  width: 760, 
-  height: 600,
-}
-
-let secondPageImage = {
-  x: 90,
-  y: 50, 
-  width: 760, 
-  height: 600
-}
 
 function drawJournalScene() {
   background(actOneBackground);
@@ -341,11 +377,22 @@ function drawJournalScene() {
 
 // Function for the first page png
 function drawFirstPage() {
-  image(firstPage, firstPageImage.x, firstPageImage.y, firstPageImage.width, firstPageImage.height);
+  image(
+    firstPage,
+    firstPageImage.x,
+    firstPageImage.y,
+    firstPageImage.width,
+    firstPageImage.height
+  );
 }
 
 // Function for the second page png
 function drawSecondPage() {
-  image(secondPage, secondPageImage.x, secondPageImage.y, secondPageImage.width, secondPageImage.height);
+  image(
+    secondPage,
+    secondPageImage.x,
+    secondPageImage.y,
+    secondPageImage.width,
+    secondPageImage.height
+  );
 }
-
