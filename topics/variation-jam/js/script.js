@@ -58,6 +58,8 @@ function preload() {
   // Image Preloads - Act One
   actOneBackground = loadImage("assets/images/forest.jpeg");
   questBookImage = loadImage("assets/images/quest-book.png");
+  firstPage = loadImage("assets/images/first-page.png");
+  secondPage = loadImage("assets/images/second-page.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -83,6 +85,8 @@ function draw() {
     drawTitleScreen();
   } else if (state === "actOne") {
     drawActOne();
+  } else if (state ==="journalScene") {
+    drawJournalScene();
   }
 }
 
@@ -234,7 +238,7 @@ function drawActOne() {
   drawDialogueWindow();
 
   // If we are on line 2 of the intro speech array, then display the journal
-  if (introIndex === 2) {
+  if (introIndex === 3) {
     showJournalImage = true;
   }
   // After the line 2 of the array appears, scale the journal to full size
@@ -288,4 +292,22 @@ function keyPressed() {
   if (key === " ") {
     introIndex = introIndex + 1;
   }
+
+  if ((key === "J" || key === "j") && state === "journalScene") {
+    showSecondPage = true;
+  }
 }
+
+let firstPage;
+let secondPage;
+
+let showSecondPage = true;
+
+/**
+ * /// JOURNAL SCENE
+ */
+
+function drawJournalScene() {
+  background(actOneBackground);
+}
+
