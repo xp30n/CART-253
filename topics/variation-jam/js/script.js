@@ -12,6 +12,8 @@
 // Starting off on the title screen
 let state = "title";
 
+let storyData;
+
 
 /****************************************
  *        TITLE SCREEN VARIABLES
@@ -69,14 +71,7 @@ let fantasyFont;
  ****************************************/
 
 // The introduction dialogue for this interactive story
-let intro = [
-  "The forest is peaceful\n as you stride through,",
-  "On a journey of your own,\n lost in a sea of thoughts.",
-  "All of a sudden,\n you come across a\n discarded journal.",
-  "Picking it up,",
-  "You notice it's covered\n in dirt and it seems to be\n quite old.",
-  "The front cover reads:\n Talo's Quests!",
-];
+let intro = [];
 
 // Starting on the first line of the array and displaying the string of arrays
 let introIndex = 0;
@@ -154,6 +149,9 @@ function preload() {
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
   fantasyFont = loadFont("assets/fonts/fantasy1.ttf");
+
+  // Json File
+  storyData = loadJSON("assets/data/story.json");
 }
 
 /****************************************
@@ -166,6 +164,9 @@ function setup() {
 function draw() {
   // sets the default cursor to the arrow
   cursor(ARROW);
+
+  // Loads the data from the JSON file
+  intro = storyData.act1.intro;
 
   // Handles the states of the game
   if (state === "title") {
