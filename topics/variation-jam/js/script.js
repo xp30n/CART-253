@@ -12,9 +12,10 @@
 // Starting off on the title screen
 let state = "title";
 
-// ------------------
-// TITLE SCREEN VARIABLES
-// ------------------
+
+/****************************************
+ *        TITLE SCREEN VARIABLES
+ ****************************************/
 
 // Loads the backgrounds for each act/scene
 let titleBackground;
@@ -63,9 +64,9 @@ let subtitleText = {
 let alfanaFont;
 let fantasyFont;
 
-// ------------------
-// ACT 1 VARIABLES
-// ------------------
+/****************************************
+ *           ACT ONE VARIABLES
+ ****************************************/
 
 // The introduction dialogue for this interactive story
 let intro = [
@@ -105,9 +106,10 @@ let questBook = {
   height: 200,
 };
 
-// ------------------
-// JOURNAL SCENE VARIABLES
-// ------------------
+
+/****************************************
+ *        JOURNAL SCENE VARIABLES
+ ****************************************/
 
 let firstPage;
 let secondPage;
@@ -130,8 +132,13 @@ let secondPageImage = {
   height: 600,
 };
 
+
+/****************************************
+ *                PRELOAD
+ ****************************************/
+
 function preload() {
-  
+
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
   actOne = loadImage("assets/images/act1.png");
@@ -149,16 +156,13 @@ function preload() {
   fantasyFont = loadFont("assets/fonts/fantasy1.ttf");
 }
 
-/**
- * Creates the canvas
- */
+/****************************************
+ *             SETUP & DRAW
+ ****************************************/
 function setup() {
   createCanvas(900, 700);
 }
 
-/**
- * Draws the canvas
- */
 function draw() {
   // sets the default cursor to the arrow
   cursor(ARROW);
@@ -173,9 +177,11 @@ function draw() {
   }
 }
 
-/**
- * TITLE SCREEN
- */
+
+/****************************************
+ *             TITLE SCREEN
+ ****************************************/
+
 function drawTitleScreen() {
   // Loads the background image
   background(titleBackground);
@@ -270,11 +276,10 @@ function mousePressed() {
   }
 }
 
-/**
- * /// ACT ONE SCREEN ///
- */
+/****************************************
+ *              ACT ONE SCENE
+ ****************************************/
 
-// Draws the screen for act one
 function drawActOne() {
   // Gives the background a custom image
   background(actOneBackground);
@@ -325,7 +330,6 @@ function drawDialogueWindow() {
   pop();
 }
 
-// Draws the journal
 function drawJournal() {
   if (showJournalImage) {
     push();
@@ -343,9 +347,47 @@ function drawJournal() {
   }
 }
 
-// Allows the user to go through the introduction text using the spacebar
+
+/****************************************
+ *            JOURNAL SCENE
+ ****************************************/
+function drawJournalScene() {
+  background(actOneBackground);
+
+  // Initially shows the first page of the journal, then shows the second page after keyPressed
+  if (!showSecondPage) {
+    drawFirstPage();
+  } else {
+    drawSecondPage();
+  }
+}
+
+function drawFirstPage() {
+  image(
+    firstPage,
+    firstPageImage.x,
+    firstPageImage.y,
+    firstPageImage.width,
+    firstPageImage.height
+  );
+}
+
+function drawSecondPage() {
+  image(
+    secondPage,
+    secondPageImage.x,
+    secondPageImage.y,
+    secondPageImage.width,
+    secondPageImage.height
+  );
+}
+
+/****************************************
+ *               INPUT
+ ****************************************/
+
 function keyPressed() {
-  if (key === " ") {
+  if (key === " ") { // Allows the user to go through the introduction text using the spacebar
     introIndex = introIndex + 1;
   }
 
@@ -360,39 +402,4 @@ function keyPressed() {
   }
 }
 
-/**
- * /// JOURNAL SCENE
- */
 
-function drawJournalScene() {
-  background(actOneBackground);
-
-  // Initially shows the first page of the journal, then shows the second page after keyPressed
-  if (!showSecondPage) {
-    drawFirstPage();
-  } else {
-    drawSecondPage();
-  }
-}
-
-// Function for the first page png
-function drawFirstPage() {
-  image(
-    firstPage,
-    firstPageImage.x,
-    firstPageImage.y,
-    firstPageImage.width,
-    firstPageImage.height
-  );
-}
-
-// Function for the second page png
-function drawSecondPage() {
-  image(
-    secondPage,
-    secondPageImage.x,
-    secondPageImage.y,
-    secondPageImage.width,
-    secondPageImage.height
-  );
-}
