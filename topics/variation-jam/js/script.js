@@ -24,13 +24,13 @@ let titleBackground;
 let actOneBackground;
 
 // Loads the start button
-let startButton;
+let startButtonImage;
 
-let startButtonImage = {
-  x: 200,
-  y: 200,
-  width: 300,
-
+let startButton = {
+  x: 335,
+  y: 410,
+  width: 230,
+  height: 90
 }
 
 // Title positioning
@@ -42,7 +42,7 @@ let titleText = {
 // Subtitle positioning
 let subtitleText = {
   x: 450,
-  y: 330,
+  y: 340,
 };
 
 // Loads the custom fonts
@@ -122,7 +122,7 @@ function preload() {
 
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
-  startButton = loadImage("assets/images/startButton.png");
+  startButtonImage = loadImage("assets/images/startButton.png");
 
   // Image Preloads - Act One
   actOneBackground = loadImage("assets/images/forest.jpeg");
@@ -212,7 +212,7 @@ function drawButton(img, btn) {
 
 // Draws the act buttons
 function drawActs() {
-  drawButton(actOne, startButton);
+  drawButton(startButtonImage, startButton);
 }
 
 /****************************************
