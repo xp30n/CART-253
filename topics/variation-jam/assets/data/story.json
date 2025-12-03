@@ -2,12 +2,18 @@
     "act1": {
       "intro": [
         "The forest is peaceful\n as you stride through,",
-        "On a journey of your own,\n lost in a sea of thoughts.",
+        "On a journey\n of your own,",
+        "lost in a sea\n of thoughts.",
         "All of a sudden,\n you come across a\n discarded journal.",
         "Picking it up,",
-        "You notice it's covered\n in dirt and it seems to be\n quite old.",
+        "You notice it's\n covered in dirt and\n looks quite old.",
         "The front cover reads:\n Talo's Quests!"
-      ]
+      ],
+      "phaseTwo": {
+        "intro2": [
+          "Being the curious creature\n that you are",
+          "you decide to find"
+        ]
+      }
     }
   }
-  

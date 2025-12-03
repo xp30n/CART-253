@@ -64,7 +64,7 @@ let subtitleText = {
 
 // Loads the custom fonts
 let alfanaFont;
-let fantasyFont;
+let pixelFont;
 
 /****************************************
  *           ACT ONE VARIABLES
@@ -107,6 +107,8 @@ let questBook = {
 
 let firstPage;
 
+let enteredJournal = false;
+
 // First page variables
 let firstPageImage = {
   x: 90,
@@ -134,7 +136,7 @@ function preload() {
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
-  fantasyFont = loadFont("assets/fonts/fantasy1.ttf");
+  pixelFont = loadFont("assets/fonts/pixel-font.ttf");
 
   // Json File
   storyData = loadJSON("assets/data/story.json");
@@ -162,6 +164,8 @@ function draw() {
     drawActOne();
   } else if (state === "journalScene") {
     drawJournalScene();
+  } else if (state === "instructions"){
+    drawInstructionsScene();
   }
 }
 
@@ -236,16 +240,16 @@ function drawActOne() {
   }
 
   // Displays the intro dialogue within the dialogue window
-  textSize(45);
-  textFont(fantasyFont);
+  textSize(35);
+  textFont(pixelFont);
   fill(255);
   noStroke();
   textAlign(CENTER, CENTER);
   text(currentText, 450, 520);
 
   // Displays the instructions for how to proceed through the array
-  textSize(20);
-  text("Press Spacebar to continue", 450, 420);
+  textSize(25);
+  text("Press Spacebar to continue", 450, 650);
 
   // Displays Talo's questbook
   drawJournal();
@@ -306,6 +310,15 @@ function drawFirstPage() {
 }
 
 /****************************************
+ *          INSTRUCTIONS SCENE
+ ****************************************/
+
+function drawInstructionsScene() {
+
+  background(0);
+}
+
+/****************************************
  *                INPUTS
  ****************************************/
 
@@ -313,9 +326,9 @@ function drawFirstPage() {
 function checkOverlap() {
   return (
     mouseX > act1Button.x &&
-    mouseX < act1Button.x + actButtons.width &&
+    mouseX < act1Button.x + act1Button.width &&
     mouseY > act1Button.y &&
-    mouseY < act1Button.y + actButtons.height
+    mouseY < act1Button.y + act1Button.height
   );
 }
 
@@ -331,10 +344,18 @@ function keyPressed() {
   if (state === "actOne" && key === " ") {
     if (introIndex < intro.length - 1) {
       introIndex++;
+      enteredJournal = true;
     }
     else {
       state = "journalScene";
-      enteredJournal = true;
     }
+  }
+
+  if (state === "journalScene" && key === " "){
+    if (enteredJournal) {
+      enteredJournal = false;
+      return;
+    }
+    state = "instructions";
   }
 }
