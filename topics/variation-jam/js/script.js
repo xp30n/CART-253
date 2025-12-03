@@ -23,32 +23,15 @@ let storyData;
 let titleBackground;
 let actOneBackground;
 
-// Loads the act buttons
-let actOne;
-let actTwo;
-let actThree;
+// Loads the start button
+let startButton;
 
-// Act buttons positioning
-let act1Button = {
-  x: 380,
-  y: 370,
-  width: 130,
-  height: 60,
-};
+let startButtonImage = {
+  x: 200,
+  y: 200,
+  width: 300,
 
-let act2Button = {
-  x: 380,
-  y: 440,
-  width: 130,
-  height: 60,
-};
-
-let act3Button = {
-  x: 380,
-  y: 510,
-  width: 130,
-  height: 60,
-};
+}
 
 // Title positioning
 let titleText = {
@@ -126,6 +109,12 @@ let intro2Index = 0;
 let intro2 = [];
 
 /****************************************
+ *           GAME 1 VARIABLES
+ ****************************************/
+
+let gameOneBackground;
+
+/****************************************
  *                PRELOAD
  ****************************************/
 
@@ -133,14 +122,15 @@ function preload() {
 
   // Image preloads - Title
   titleBackground = loadImage("assets/images/background-title.jpeg");
-  actOne = loadImage("assets/images/act1.png");
-  actTwo = loadImage("assets/images/act2.png");
-  actThree = loadImage("assets/images/act3.png");
+  startButton = loadImage("assets/images/startButton.png");
 
   // Image Preloads - Act One
   actOneBackground = loadImage("assets/images/forest.jpeg");
   questBookImage = loadImage("assets/images/quest-book.png");
   firstPage = loadImage("assets/images/journal.png");
+
+  // Image Preloads - Game 1 (Act 2)
+  gameOneBackground = loadImage("assets/images/fairyGarden.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -175,7 +165,7 @@ function draw() {
     drawJournalScene();
   } else if (state === "phase2"){
     drawPhase2();
-  } else if (state === "game1") {
+  } else if (state === "gameOne") {
     drawGameOne();
   }
 }
@@ -222,9 +212,7 @@ function drawButton(img, btn) {
 
 // Draws the act buttons
 function drawActs() {
-  drawButton(actOne, act1Button);
-  drawButton(actTwo, act2Button);
-  drawButton(actThree, act3Button);
+  drawButton(actOne, startButton);
 }
 
 /****************************************
@@ -359,7 +347,7 @@ function drawPhase2() {
  ****************************************/
 
 function drawGameOne() {
-  background(0);
+  background(gameOneBackground);
 }
 
 /****************************************
@@ -369,10 +357,10 @@ function drawGameOne() {
 // Check if the mouse is over the mouse buttons
 function checkOverlap() {
   return (
-    mouseX > act1Button.x &&
-    mouseX < act1Button.x + act1Button.width &&
-    mouseY > act1Button.y &&
-    mouseY < act1Button.y + act1Button.height
+    mouseX > startButton.x &&
+    mouseX < startButton.x + startButton.width &&
+    mouseY > startButton.y &&
+    mouseY < startButton.y + startButton.height
   );
 }
 
@@ -408,7 +396,7 @@ function keyPressed() {
       intro2Index++;
     } 
     else {
-      state = "game1";
+      state = "gameOne";
     }
   }
 }
