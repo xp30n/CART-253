@@ -118,6 +118,11 @@ let firstPageImage = {
 };
 
 /****************************************
+ *           PHASE 2 VARIABLES
+ ****************************************/
+
+
+/****************************************
  *                PRELOAD
  ****************************************/
 
@@ -148,14 +153,14 @@ function preload() {
 
 function setup() {
   createCanvas(900, 700);
+
+  // Loads the data from the JSON file
+  intro = storyData.act1.intro;
 }
 
 function draw() {
   // sets the default cursor to the arrow
   cursor(ARROW);
-
-  // Loads the data from the JSON file
-  intro = storyData.act1.intro;
 
   // Handles the states of the game
   if (state === "title") {
@@ -164,8 +169,8 @@ function draw() {
     drawActOne();
   } else if (state === "journalScene") {
     drawJournalScene();
-  } else if (state === "instructions"){
-    drawInstructionsScene();
+  } else if (state === "phase2"){
+    drawPhase2();
   }
 }
 
@@ -243,7 +248,8 @@ function drawActOne() {
   textSize(35);
   textFont(pixelFont);
   fill(255);
-  noStroke();
+  stroke(0);
+  strokeWeight(4)
   textAlign(CENTER, CENTER);
   text(currentText, 450, 520);
 
@@ -307,15 +313,23 @@ function drawFirstPage() {
     firstPageImage.width,
     firstPageImage.height
   );
+
+  // Displays the text indicating how to continue to next scene
+  textSize(25);
+  textFont(pixelFont);
+  fill(255);
+  stroke(0);
+  strokeWeight(4)
+  textAlign(CENTER, CENTER);
+  text("Press Spacebar to continue", 450, 670);
 }
 
 /****************************************
- *          INSTRUCTIONS SCENE
+ *          PHASE 2 SCENE
  ****************************************/
 
-function drawInstructionsScene() {
-
-  background(0);
+function drawPhase2() {
+  background(actOneBackground);
 }
 
 /****************************************
@@ -356,6 +370,6 @@ function keyPressed() {
       enteredJournal = false;
       return;
     }
-    state = "instructions";
+    state = "phase2";
   }
 }
