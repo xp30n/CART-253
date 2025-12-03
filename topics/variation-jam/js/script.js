@@ -2,9 +2,9 @@
  * The Bravest Little Dragon
  * Aliyah R.W.
  *
- * You stumble across a journal from a little dragon hatchling.
- * In his entries, he talks about his adventures during his quest to find his older brother.
- * Uncover what happened and where this little dragon hatchling went.
+ * You stumble across a journal from a little dragon hatchling named Talo.
+ * In his entries, he talks about his missing older brother, Solin.
+ * Play the minigames and uncover what happened to the yound dragon. 
  */
 
 "use strict";
@@ -28,26 +28,26 @@ let actOne;
 let actTwo;
 let actThree;
 
-// Act buttons universal height and width
-let actButtons = {
-  width: 130,
-  height: 60,
-};
-
 // Act buttons positioning
 let act1Button = {
   x: 380,
   y: 370,
+  width: 130,
+  height: 60,
 };
 
 let act2Button = {
   x: 380,
   y: 440,
+  width: 130,
+  height: 60,
 };
 
 let act3Button = {
   x: 380,
   y: 510,
+  width: 130,
+  height: 60,
 };
 
 // Title positioning
@@ -69,7 +69,6 @@ let fantasyFont;
 /****************************************
  *           ACT ONE VARIABLES
  ****************************************/
-
 
 // The introduction dialogue for this interactive story
 let intro = [];
@@ -107,10 +106,6 @@ let questBook = {
  ****************************************/
 
 let firstPage;
-let secondPage;
-
-let enteredJournal = false;
-let showSecondPage = false;
 
 // First page variables
 let firstPageImage = {
@@ -119,15 +114,6 @@ let firstPageImage = {
   width: 760,
   height: 600,
 };
-
-// Second page variables
-let secondPageImage = {
-  x: 90,
-  y: 50,
-  width: 760,
-  height: 600,
-};
-
 
 /****************************************
  *                PRELOAD
@@ -144,8 +130,7 @@ function preload() {
   // Image Preloads - Act One
   actOneBackground = loadImage("assets/images/forest.jpeg");
   questBookImage = loadImage("assets/images/quest-book.png");
-  firstPage = loadImage("assets/images/first-page.png");
-  secondPage = loadImage("assets/images/second-page.png");
+  firstPage = loadImage("assets/images/journal.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -158,6 +143,7 @@ function preload() {
 /****************************************
  *             SETUP & DRAW
  ****************************************/
+
 function setup() {
   createCanvas(900, 700);
 }
@@ -178,7 +164,6 @@ function draw() {
     drawJournalScene();
   }
 }
-
 
 /****************************************
  *             TITLE SCREEN
@@ -205,61 +190,26 @@ function drawTitleScreen() {
   drawActs();
 }
 
+function drawButton(img, btn) {
+  // Draws the button images
+  image(img, btn.x, btn.y, btn.width, btn.height);
+
+  // Changes the cursor om hover
+  if (
+    mouseX > btn.x &&
+    mouseX < btn.x + btn.width &&
+    mouseY > btn.y &&
+    mouseY < btn.y + btn.height
+  ) {
+    cursor(HAND);
+  }
+}
+
 // Draws the act buttons
 function drawActs() {
-  // --- ACT 1 ---
-  image(
-    actOne,
-    act1Button.x,
-    act1Button.y,
-    actButtons.width,
-    actButtons.height
-  );
-  // Changing the mouse to become a hand when a user is hovering over the buttons
-  if (
-    mouseX > act1Button.x &&
-    mouseX < act1Button.x + actButtons.width &&
-    mouseY > act1Button.y &&
-    mouseY < act1Button.y + actButtons.height
-  ) {
-    cursor(HAND);
-  }
-
-  // --- ACT 2 ---
-  image(
-    actTwo,
-    act2Button.x,
-    act2Button.y,
-    actButtons.width,
-    actButtons.height
-  );
-
-  if (
-    mouseX > act2Button.x &&
-    mouseX < act2Button.x + actButtons.width &&
-    mouseY > act2Button.y &&
-    mouseY < act2Button.y + actButtons.height
-  ) {
-    cursor(HAND);
-  }
-
-  // --- ACT 3 ---
-  image(
-    actThree,
-    act3Button.x,
-    act3Button.y,
-    actButtons.width,
-    actButtons.height
-  );
-
-  if (
-    mouseX > act3Button.x &&
-    mouseX < act3Button.x + actButtons.width &&
-    mouseY > act3Button.y &&
-    mouseY < act3Button.y + actButtons.height
-  ) {
-    cursor(HAND);
-  }
+  drawButton(actOne, act1Button);
+  drawButton(actTwo, act2Button);
+  drawButton(actThree, act3Button);
 }
 
 /****************************************
@@ -273,6 +223,9 @@ function drawActOne() {
   // Adds the dialogue window to the canvas
   drawDialogueWindow();
 
+  // Displays the introduction array
+  let currentText = intro[introIndex];
+
   // If we are on line 2 of the intro speech array, then display the journal
   if (introIndex === 3) {
     showJournalImage = true;
@@ -281,9 +234,6 @@ function drawActOne() {
   if (showJournalImage && journalScale < 1) {
     journalScale += 0.05;
   }
-
-  // Displays the introduction array
-  let currentText = intro[introIndex];
 
   // Displays the intro dialogue within the dialogue window
   textSize(45);
@@ -337,17 +287,14 @@ function drawJournal() {
 /****************************************
  *            JOURNAL SCENE
  ****************************************/
+
 function drawJournalScene() {
   background(actOneBackground);
 
-  // Initially shows the first page of the journal, then shows the second page after keyPressed
-  if (!showSecondPage) {
-    drawFirstPage();
-  } else {
-    drawSecondPage();
-  }
+  drawFirstPage();
 }
 
+// Draws the first two pages of Talo's journal
 function drawFirstPage() {
   image(
     firstPage,
@@ -355,16 +302,6 @@ function drawFirstPage() {
     firstPageImage.y,
     firstPageImage.width,
     firstPageImage.height
-  );
-}
-
-function drawSecondPage() {
-  image(
-    secondPage,
-    secondPageImage.x,
-    secondPageImage.y,
-    secondPageImage.width,
-    secondPageImage.height
   );
 }
 
@@ -399,14 +336,5 @@ function keyPressed() {
       state = "journalScene";
       enteredJournal = true;
     }
-  }
-
-  // If a user presses the spacebar, it will switch to the second part of the journal
-  if (key === " " && state === "journalScene") {
-    if (enteredJournal) {
-      enteredJournal = false;
-      return;
-    }
-    showSecondPage = true;
   }
 }
