@@ -175,6 +175,8 @@ function draw() {
     drawJournalScene();
   } else if (state === "phase2"){
     drawPhase2();
+  } else if (state === "game1") {
+    drawGameOne();
   }
 }
 
@@ -353,6 +355,14 @@ function drawPhase2() {
 }
 
 /****************************************
+ *               GAME 1
+ ****************************************/
+
+function drawGameOne() {
+  background(0);
+}
+
+/****************************************
  *                INPUTS
  ****************************************/
 
@@ -396,6 +406,9 @@ function keyPressed() {
   if (state === "phase2" && key === " ") {
     if (intro2Index < intro2.length - 1) {
       intro2Index++;
+    } 
+    else {
+      state = "game1";
     }
   }
 }
