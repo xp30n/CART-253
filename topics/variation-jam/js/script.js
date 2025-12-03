@@ -121,6 +121,9 @@ let firstPageImage = {
  *           PHASE 2 VARIABLES
  ****************************************/
 
+// Declares the intro 2 array from JSON file
+let intro2Index = 0;
+let intro2 = [];
 
 /****************************************
  *                PRELOAD
@@ -156,6 +159,7 @@ function setup() {
 
   // Loads the data from the JSON file
   intro = storyData.act1.intro;
+  intro2 = storyData.act1.phaseTwo.intro2;
 }
 
 function draw() {
@@ -330,6 +334,22 @@ function drawFirstPage() {
 
 function drawPhase2() {
   background(actOneBackground);
+
+  drawDialogueWindow();
+
+  let currentText = intro2[intro2Index];
+
+  textSize(35);
+  textFont(pixelFont);
+  fill(255);
+  stroke(0);
+  strokeWeight(4)
+  textAlign(CENTER, CENTER);
+  text(currentText, 450, 520);
+
+  // Displays the instructions for how to proceed through the array
+  textSize(25);
+  text("Press Spacebar to continue", 450, 650);
 }
 
 /****************************************
@@ -371,5 +391,11 @@ function keyPressed() {
       return;
     }
     state = "phase2";
+  }
+
+  if (state === "phase2" && key === " ") {
+    if (intro2Index < intro2.length - 1) {
+      intro2Index++;
+    }
   }
 }
