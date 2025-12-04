@@ -109,10 +109,16 @@ let intro2Index = 0;
 let intro2 = [];
 
 /****************************************
- *           GAME 1 VARIABLES
+ *           GAME MENU VARIABLES
  ****************************************/
 
+// Loads background
 let gameMenuBackground;
+
+// Loads game buttons
+let gameOneButton;
+let gameTwoButton;
+let gameThreeButton;
 
 /****************************************
  *                PRELOAD
@@ -131,6 +137,10 @@ function preload() {
 
   // Image Preloads - Game 1 (Act 2)
   gameMenuBackground = loadImage("assets/images/fairyGarden.png");
+  gameOneButton = loadImage("assets/images/game1.png");
+  gameTwoButton = loadImage("assets/images/game2.png");
+  gameThreeButton = loadImage("assets/images/game3.png");
+  homeButton = loadImage("assets/images/homeButton.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -343,7 +353,7 @@ function drawPhase2() {
 }
 
 /****************************************
- *               GAME 1
+ *              GAME MENU
  ****************************************/
 
 function drawMenuScreen() {
