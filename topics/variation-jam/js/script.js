@@ -30,7 +30,7 @@ let startButton = {
   x: 335,
   y: 410,
   width: 230,
-  height: 90
+  height: 100
 }
 
 // Title positioning
@@ -112,7 +112,7 @@ let intro2 = [];
  *           GAME 1 VARIABLES
  ****************************************/
 
-let gameOneBackground;
+let gameMenuBackground;
 
 /****************************************
  *                PRELOAD
@@ -130,7 +130,7 @@ function preload() {
   firstPage = loadImage("assets/images/journal.png");
 
   // Image Preloads - Game 1 (Act 2)
-  gameOneBackground = loadImage("assets/images/fairyGarden.png");
+  gameMenuBackground = loadImage("assets/images/fairyGarden.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -165,8 +165,8 @@ function draw() {
     drawJournalScene();
   } else if (state === "phase2"){
     drawPhase2();
-  } else if (state === "gameOne") {
-    drawGameOne();
+  } else if (state === "gameMenu") {
+    drawMenuScreen();
   }
 }
 
@@ -346,8 +346,16 @@ function drawPhase2() {
  *               GAME 1
  ****************************************/
 
-function drawGameOne() {
-  background(gameOneBackground);
+function drawMenuScreen() {
+  background(gameMenuBackground);
+
+  textSize(35);
+  textFont(pixelFont);
+  fill(255);
+  stroke(0);
+  strokeWeight(4)
+  textAlign(CENTER, CENTER);
+  text("Game Menu", 450, 520);
 }
 
 /****************************************
@@ -396,7 +404,7 @@ function keyPressed() {
       intro2Index++;
     } 
     else {
-      state = "gameOne";
+      state = "gameMenu";
     }
   }
 }
