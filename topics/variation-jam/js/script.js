@@ -174,11 +174,12 @@ let jarImageTwo;
 // Loads the home button
 let homeButtonImage;
 
+// Properties of the home button
 let homeButton = {
-  x: 200,
-  y: 200,
-  width: 820,
-  height: 200,
+  x: 810,
+  y: 620,
+  width: 80,
+  height: 70,
 }
 
 /****************************************
@@ -271,7 +272,7 @@ function drawTitleScreen() {
   text("An Interactive Story", subtitleText.x, subtitleText.y);
 
   // Draws the start button
-  drawActs();
+  drawStart();
 }
 
 function drawButton(img, btn) {
@@ -290,7 +291,7 @@ function drawButton(img, btn) {
 }
 
 // Draws the act buttons
-function drawActs() {
+function drawStart() {
   drawButton(startButtonImage, startButton);
 }
 
