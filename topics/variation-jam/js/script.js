@@ -152,6 +152,22 @@ let gameBackgrounds;
 
 let fairyImage;
 
+let fairy1 = {
+  x: 300,
+  y: 20,
+  width: 40,
+  height: 40,
+  velocityY: 3
+}
+
+let fairy2 = {
+  x: 200,
+  y: 20,
+  width: 40,
+  height: 40,
+  velocityY: 4
+}
+
 /****************************************
  *                PRELOAD
  ****************************************/
@@ -176,6 +192,7 @@ function preload() {
 
   // Game One Preloads
   gameBackgrounds = loadImage("assets/images/fairyGardenBlur.png");
+  fairyImage = loadImage("assets/images/fairy.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -238,7 +255,7 @@ function drawTitleScreen() {
   textSize(25);
   text("An Interactive Story", subtitleText.x, subtitleText.y);
 
-  // Draws each act button
+  // Draws the start button
   drawActs();
 }
 
@@ -419,7 +436,20 @@ function drawGames() {
  ****************************************/
 
 function drawFirstGame() {
+  // Loads the background
   background(gameBackgrounds);
+
+  // Draws the fairies on the screen
+  drawFairy(fairy1);
+  drawFairy(fairy2);
+}
+
+// Creates the fairies
+function drawFairy(f) {
+  push();
+  imageMode(CENTER);
+  image(fairyImage, f.x, f.y, f.width, f.height);
+  pop();
 }
 
 /****************************************
@@ -441,6 +471,7 @@ function mousePressed() {
     state = "actOne";
   }
   
+  // Checks if a user is hovering over either of the game buttons and if they click it.
   if (state === "gameMenu") {
     if (isHovering(gameOne)) {
       state = "firstGame";
