@@ -184,6 +184,9 @@ let jar = {
   height: 100
 }
 
+// Target goal for the amount of fairies to catch
+let maxScore = 15;
+
 /****************************************
  *                PRELOAD
  ****************************************/
@@ -467,6 +470,16 @@ function drawFirstGame() {
   drawJar();
 
   updateFairies();
+
+  drawProgressBar();
+
+  textSize(20);
+  textFont(pixelFont);
+  fill(255);
+  stroke(0);
+  strokeWeight(4)
+  textAlign(LEFT, LEFT);
+  text("Catch the falling\nfairies and fill the jar! ", 10, 660);
 }
 
 // Creates the fairies
@@ -532,6 +545,31 @@ function checkJarCatch(fairy) {
     fairy.y + fairy.height / 2 > jar.y - jar.height /2 &&
     fairy.y - fairy.height / 2 < jar.y + jar.height / 2
   );
+}
+
+function drawProgressBar() {
+  let barX = 50;
+  let barY = 50;
+  let barWidth= 300;
+  let barHeight = 25;
+
+  // Outline of the progress bar
+  push();
+  stroke(255);
+  strokeWeight(3);
+  noFill();
+  rect(barX, barY, barWidth, barHeight);
+  
+  // Changes the fill of the bar based on the score
+  let fillAmount = map(score, 0, maxScore, 0, barWidth);
+  fillAmount = constrain(fillAmount, 0, barWidth);
+
+  // Blue fill to match the fairies
+  noStroke();
+  fill("#39aacfff");
+  rect(barX, barY, fillAmount, barHeight);
+  pop();
+
 }
 
 /****************************************
