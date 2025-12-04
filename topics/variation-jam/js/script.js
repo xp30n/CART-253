@@ -151,6 +151,8 @@ let gameBackgrounds;
 // Loads the fairy images and places them on the canvas
 let fairyImage;
 
+let fairies = [];
+
 let fairy1 = {
   x: 300,
   y: 20,
@@ -176,17 +178,6 @@ let jar = {
   y: undefined,
   width: 80,
   height: 100
-}
-
-// Loads the home button
-let homeButtonImage;
-
-// Properties of the home button
-let homeButton = {
-  x: 810,
-  y: 620,
-  width: 80,
-  height: 70,
 }
 
 /****************************************
@@ -215,7 +206,6 @@ function preload() {
   fairyImage = loadImage("assets/images/fairy.png");
   jarImage = loadImage("assets/images/openJar.png");
   jarImageTwo = loadImage("assets/images/closedJar.png");
-  homeButtonImage = loadImage("assets/images/homeButton.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -235,6 +225,11 @@ function setup() {
   // Loads the data from the JSON file
   intro = storyData.act1.intro;
   intro2 = storyData.act1.phaseTwo.intro2;
+
+  // Adds 2-4 fairies to the canvas
+  for (let i = 0; i < 3; i++) {
+    fairies.push(createFairy());
+  }
 }
 
 function draw() {
@@ -463,16 +458,11 @@ function drawFirstGame() {
   // Loads the background
   background(gameBackgrounds);
 
-  // Draws the fairies on the screen
-  drawFairy(fairy1);
-  drawFairy(fairy2);
-
-  // Draws the home button - Will lead back to the menu
-  drawHomeButton();
-
   // Creates the jar and moves it
   moveJar();
   drawJar();
+
+  updateFairies();
 }
 
 // Creates the fairies
@@ -483,8 +473,29 @@ function drawFairy(f) {
   pop();
 }
 
-function drawHomeButton() {
-  image(homeButtonImage, homeButton.x, homeButton.y, homeButton.width, homeButton.height);
+// Creates the fairies off the canvas and give them a random velocoity when they eventually fall
+function createFairy() {
+  return {
+    x: random(50, 840),
+    y: random(-300, -50),
+    width: 40,
+    height: 40,
+    velocityY: random(3, 7)
+  }
+}
+
+// Updates the fairies to reappear at the toip of the screen when they pass the bottom of the screen
+function updateFairies() {
+  for (let f of fairies) {
+    // Allows the fairies to fall down vertically
+    f.y += f.velocityY;
+
+    drawFairy(f);
+
+    if (f.y > 750) {
+      Object.assign(f, createFairy());
+    }
+  }
 }
 
 function drawJar() {
@@ -498,6 +509,8 @@ function moveJar() {
   jar.x = mouseX;
   jar.y = height - jar.height / 2;
 }
+
+
 
 /****************************************
  *                INPUTS
