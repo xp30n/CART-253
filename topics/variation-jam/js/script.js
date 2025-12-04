@@ -150,6 +150,8 @@ let gameThree = {
 
 let gameBackgrounds;
 
+let fairyImage;
+
 /****************************************
  *                PRELOAD
  ****************************************/
@@ -172,7 +174,7 @@ function preload() {
   gameThreeButtonImage = loadImage("assets/images/game3.png");
   homeButtonImage = loadImage("assets/images/homeButton.png");
 
-  // Game Background
+  // Game One Preloads
   gameBackgrounds = loadImage("assets/images/fairyGardenBlur.png");
 
   // Font preloads
@@ -417,7 +419,7 @@ function drawGames() {
  ****************************************/
 
 function drawFirstGame() {
-  background(gameMenuBackground);
+  background(gameBackgrounds);
 }
 
 /****************************************
@@ -425,24 +427,24 @@ function drawFirstGame() {
  ****************************************/
 
 // Check if the mouse is over the mouse buttons
-function checkOverlap() {
+function isHovering(btn) {
   return (
-    mouseX > startButton.x &&
-    mouseX < startButton.x + startButton.width &&
-    mouseY > startButton.y &&
-    mouseY < startButton.y + startButton.height
+    mouseX > btn.x &&
+    mouseX < btn.x + btn.width &&
+    mouseY > btn.y &&
+    mouseY < btn.y + btn.height
   );
-
- 
 }
 
 function mousePressed() {
-  if (state === "title" && checkOverlap()) {
+  if (state === "title" && isHovering(startButton)) {
     state = "actOne";
   }
   
-  if (state === "gameMenu" && checkOverlap()) {
-    state = "firstGame";
+  if (state === "gameMenu") {
+    if (isHovering(gameOne)) {
+      state = "firstGame";
+    }
   }
 }
 
