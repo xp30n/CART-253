@@ -116,9 +116,39 @@ let intro2 = [];
 let gameMenuBackground;
 
 // Loads game buttons
-let gameOneButton;
-let gameTwoButton;
-let gameThreeButton;
+let gameOneButtonImage;
+let gameTwoButtonImage;
+let gameThreeButtonImage;
+
+// Loads the home button
+let homeButtonImage;
+
+let gameOne = {
+  x: 340,
+  y: 320,
+  width: 230,
+  height: 110
+}
+
+let gameTwo = {
+  x: 340,
+  y: 440,
+  width: 230,
+  height: 110
+}
+
+let gameThree = {
+  x: 340,
+  y: 570,
+  width: 230,
+  height: 110
+}
+
+/****************************************
+ *            FIRST GAME VARS
+ ****************************************/
+
+let gameBackgrounds;
 
 /****************************************
  *                PRELOAD
@@ -135,12 +165,15 @@ function preload() {
   questBookImage = loadImage("assets/images/quest-book.png");
   firstPage = loadImage("assets/images/journal.png");
 
-  // Image Preloads - Game 1 (Act 2)
+  // Image Preloads - Game 1 (Phase 2)
   gameMenuBackground = loadImage("assets/images/fairyGarden.png");
-  gameOneButton = loadImage("assets/images/game1.png");
-  gameTwoButton = loadImage("assets/images/game2.png");
-  gameThreeButton = loadImage("assets/images/game3.png");
-  homeButton = loadImage("assets/images/homeButton.png");
+  gameOneButtonImage = loadImage("assets/images/game1.png");
+  gameTwoButtonImage = loadImage("assets/images/game2.png");
+  gameThreeButtonImage = loadImage("assets/images/game3.png");
+  homeButtonImage = loadImage("assets/images/homeButton.png");
+
+  // Game Background
+  gameBackgrounds = loadImage("assets/images/fairyGardenBlur.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -177,6 +210,8 @@ function draw() {
     drawPhase2();
   } else if (state === "gameMenu") {
     drawMenuScreen();
+  } else if (state === "firstGame") {
+    drawFirstGame();
   }
 }
 
@@ -359,13 +394,30 @@ function drawPhase2() {
 function drawMenuScreen() {
   background(gameMenuBackground);
 
-  textSize(35);
+  textSize(45);
   textFont(pixelFont);
   fill(255);
   stroke(0);
   strokeWeight(4)
   textAlign(CENTER, CENTER);
-  text("Game Menu", 450, 520);
+  text("Choose Your Adventure!", 460, 280);
+
+  drawGames();
+}
+
+// Draws the game buttons
+function drawGames() {
+  drawButton(gameOneButtonImage, gameOne);
+  drawButton(gameTwoButtonImage, gameTwo);
+  drawButton(gameThreeButtonImage, gameThree);
+}
+
+/****************************************
+ *             FIRST GAME
+ ****************************************/
+
+function drawFirstGame() {
+  background(gameMenuBackground);
 }
 
 /****************************************
@@ -380,11 +432,17 @@ function checkOverlap() {
     mouseY > startButton.y &&
     mouseY < startButton.y + startButton.height
   );
+
+ 
 }
 
 function mousePressed() {
   if (state === "title" && checkOverlap()) {
     state = "actOne";
+  }
+  
+  if (state === "gameMenu" && checkOverlap()) {
+    state = "firstGame";
   }
 }
 
