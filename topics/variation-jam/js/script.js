@@ -171,6 +171,13 @@ let fairy2 = {
 let jarImage;
 let jarImageTwo;
 
+let jar = {
+  x: undefined,
+  y: undefined,
+  width: 80,
+  height: 100
+}
+
 // Loads the home button
 let homeButtonImage;
 
@@ -447,6 +454,7 @@ function drawGames() {
   drawButton(gameThreeButtonImage, gameThree);
 }
 
+
 /****************************************
  *             FIRST GAME
  ****************************************/
@@ -461,6 +469,10 @@ function drawFirstGame() {
 
   // Draws the home button - Will lead back to the menu
   drawHomeButton();
+
+  // Creates the jar and moves it
+  moveJar();
+  drawJar();
 }
 
 // Creates the fairies
@@ -475,6 +487,17 @@ function drawHomeButton() {
   image(homeButtonImage, homeButton.x, homeButton.y, homeButton.width, homeButton.height);
 }
 
+function drawJar() {
+  push();
+  imageMode(CENTER);
+  image(jarImage, jar.x, jar.y, jar.width, jar.height);
+  pop();
+}
+
+function moveJar() {
+  jar.x = mouseX;
+  jar.y = height - jar.height / 2;
+}
 
 /****************************************
  *                INPUTS
