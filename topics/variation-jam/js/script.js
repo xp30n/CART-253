@@ -185,7 +185,7 @@ let jar = {
 }
 
 // Target goal for the amount of fairies to catch
-let maxScore = 15;
+let maxScore = 20;
 
 /****************************************
  *                PRELOAD
@@ -497,7 +497,7 @@ function createFairy() {
     y: random(-300, -50),
     width: 40,
     height: 40,
-    velocityY: random(3, 7)
+    velocityY: random(4, 8)
   }
 }
 
@@ -518,6 +518,14 @@ function updateFairies() {
     // tracks if the fairy is caught in the jar with collision
     if (checkJarCatch(f)) {
       score++; // increases your score for every fairy caight
+      fairies[i] = createFairy();
+      continue;
+    }
+    if (checkJarCatch(f)) {
+      // Increases the score hits the max, if so, then stop tracking the score
+      if (score < maxScore) {
+        score++;
+      }
       fairies[i] = createFairy();
       continue;
     }
