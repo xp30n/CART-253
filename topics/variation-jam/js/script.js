@@ -120,8 +120,6 @@ let gameOneButtonImage;
 let gameTwoButtonImage;
 let gameThreeButtonImage;
 
-// Loads the home button
-let homeButtonImage;
 
 let gameOne = {
   x: 340,
@@ -150,6 +148,7 @@ let gameThree = {
 
 let gameBackgrounds;
 
+// Loads the fairy images and places them on the canvas
 let fairyImage;
 
 let fairy1 = {
@@ -166,6 +165,20 @@ let fairy2 = {
   width: 40,
   height: 40,
   velocityY: 4
+}
+
+// Loads the jar pngs
+let jarImage;
+let jarImageTwo;
+
+// Loads the home button
+let homeButtonImage;
+
+let homeButton = {
+  x: 200,
+  y: 200,
+  width: 820,
+  height: 200,
 }
 
 /****************************************
@@ -188,11 +201,13 @@ function preload() {
   gameOneButtonImage = loadImage("assets/images/game1.png");
   gameTwoButtonImage = loadImage("assets/images/game2.png");
   gameThreeButtonImage = loadImage("assets/images/game3.png");
-  homeButtonImage = loadImage("assets/images/homeButton.png");
 
   // Game One Preloads
   gameBackgrounds = loadImage("assets/images/fairyGardenBlur.png");
   fairyImage = loadImage("assets/images/fairy.png");
+  jarImage = loadImage("assets/images/openJar.png");
+  jarImageTwo = loadImage("assets/images/closedJar.png");
+  homeButtonImage = loadImage("assets/images/homeButton.png");
 
   // Font preloads
   alfanaFont = loadFont("assets/fonts/alfana.otf");
@@ -442,6 +457,9 @@ function drawFirstGame() {
   // Draws the fairies on the screen
   drawFairy(fairy1);
   drawFairy(fairy2);
+
+  // Draws the home button - Will lead back to the menu
+  drawHomeButton();
 }
 
 // Creates the fairies
@@ -451,6 +469,11 @@ function drawFairy(f) {
   image(fairyImage, f.x, f.y, f.width, f.height);
   pop();
 }
+
+function drawHomeButton() {
+  image(homeButtonImage, homeButton.x, homeButton.y, homeButton.width, homeButton.height);
+}
+
 
 /****************************************
  *                INPUTS
@@ -507,5 +530,9 @@ function keyPressed() {
     else {
       state = "gameMenu";
     }
+  }
+
+  if (state === "actOne" && key === "S" || key === "s"){
+    state = "firstGame";
   }
 }
