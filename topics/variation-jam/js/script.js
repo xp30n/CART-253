@@ -151,7 +151,11 @@ let gameBackgrounds;
 // Loads the fairy images and places them on the canvas
 let fairyImage;
 
+// Creates the fairies array
 let fairies = [];
+
+// Starts your score at 0
+let score = 0;
 
 let fairy1 = {
   x: 300,
@@ -486,15 +490,26 @@ function createFairy() {
 
 // Updates the fairies to reappear at the toip of the screen when they pass the bottom of the screen
 function updateFairies() {
-  for (let f of fairies) {
-    // Allows the fairies to fall down vertically
-    f.y += f.velocityY;
+  for (let i = fairies.length - 1; i >= 0; i--) {
+    let f = fairies[i];
+    
+    // Makes the fairies fall down the canvas vertically
+    f.y +=f.velocityY;
+
+    // The fairies will disappear if they are at the bottom of the canvas
+    if (f.y > height + 50) {
+      fairies[i] = createFairy();
+      continue;
+    }
+
+    // tracks if the fairy is caught in the jar with collision
+    if (checkJarCatch(f)) {
+      score++; // increases your score for every fairy caight
+      fairies[i] = createFairy();
+      continue;
+    }
 
     drawFairy(f);
-
-    if (f.y > 750) {
-      Object.assign(f, createFairy());
-    }
   }
 }
 
@@ -510,7 +525,14 @@ function moveJar() {
   jar.y = height - jar.height / 2;
 }
 
-
+function checkJarCatch(fairy) {
+  return (
+    fairy.x + fairy.width / 2 > jar.x - jar.width / 2 &&
+    fairy.x - fairy.width / 2 < jar.x + jar.width / 2 &&
+    fairy.y + fairy.height / 2 > jar.y - jar.height /2 &&
+    fairy.y - fairy.height / 2 < jar.y + jar.height / 2
+  );
+}
 
 /****************************************
  *                INPUTS
@@ -532,9 +554,14 @@ function mousePressed() {
   }
   
   // Checks if a user is hovering over either of the game buttons and if they click it.
-  if (state === "gameMenu") {
+  if (state === "gameMenu" && isHovering(gameOne)) {
     if (isHovering(gameOne)) {
       state = "firstGame";
+      fairies = [];
+      score = 0;
+      for (let i = 0; i < 3; i++) {
+        fairies.push(createFairy());
+      }
     }
   }
 }
