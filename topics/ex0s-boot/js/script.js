@@ -1,11 +1,13 @@
 "use strict";
 
+let state = "menu"
+
 // Loads the font
 let hackerFont;
 
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::
-// ::                 MENU VARIABLES                  ::
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::
+/****************************************
+ *            MENU VARIABLES
+ ****************************************/
 
 // Default state of the modules (not hovered over)
 let hover1 = false
@@ -39,25 +41,34 @@ let module3 = {
   textSize: 50
 }
 
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::
-// ::                    PRELOADS                     ::
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::
+/****************************************
+ *               PRELOADS
+ ****************************************/
 
 function preload() {
   // Loads the hacker font
   hackerFont = loadFont("assets/fonts/hacker.ttf");
 }
 
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::
-// ::                 SETUP & DRAW                    ::
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::
+/****************************************
+ *            SETUP AND DRAW
+ ****************************************/
 
 function setup() {
   createCanvas(1100, 900);
 }
 
 function draw() {
-  // Makes the background black
+  if (state === "menu") {
+    drawMenuScreen();
+  }
+}
+
+/****************************************
+ *              MENU SCREEN
+ ****************************************/
+
+function drawMenuScreen() {
   background(0);
 
   // Draws the title
@@ -74,6 +85,7 @@ function draw() {
   hover2 = drawModule("MODULE 02 - LAMENT", module2.x, module2.y, module2.textSize);
   hover3 = drawModule("MODULE 03 - SENTIENCE", module3.x, module3.y, module3.textSize);
 }
+
 
 // Detects whether or not the mouse is hovering over each module text
 function drawModule(label, x, y, size) {
@@ -94,19 +106,24 @@ function drawModule(label, x, y, size) {
     return hovering;
 }
 
+/****************************************
+ *                INPUTS
+ ****************************************/
 
 // Checks to see if the modules are clikced on
 function mousePressed() {
   if (hover1) {
     console.log("BEGINNING MODULE 1");
+    // state = "SYNC";
   }
   if (hover2) {
     console.log("BEGINNING MODULE 2");
+    // state = "LAMENT";
   }
   if (hover3) {
     console.log("BEGINNING MODULE 3");
+    // state = "SENTIENCE";
   }
-    // state = "SYNC"
 }
 
 // "Welcome back 'A N O N Y M O U S_'
