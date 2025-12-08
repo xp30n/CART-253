@@ -57,7 +57,7 @@ let typingDoneTime = 0;
 let fullText = "";
 let currentText = "";
 let charIndex = 0;
-let typeSpeed = 3;
+let typeSpeed = 4;
 
 // Loading screen typing sound effects
 let typingSound;
@@ -164,6 +164,7 @@ function startLoading(targetState, message) {
 
   if (!typingSound.isPlaying()) {
     typingSound.loop();
+    typingSound.setVolume(0.3);
   }
 }
 

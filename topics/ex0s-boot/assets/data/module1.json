@@ -1,0 +1,14 @@
+{
+  "intro": [
+    "[S Y N C  M O D U L E : 0 1]",
+    "> calibration subroutine loading . . .",
+    "[S Y N C   M O D U L E : 0 1]",
+    "> calibration subroutine loading . . .",
+    "> c a l i — — b r a t i o n   f a i l — attempt 01",
+    "> restoring parameters . . . f—failed",
+    "> inp*t stream unsteady . . .",
+    "> behavioral signal drifting off-axis . . .",
+    "> signal deviat— detected . . .",
+    "> user response required before system resets _"
+  ]  
+}
