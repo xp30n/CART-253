@@ -66,6 +66,9 @@ let typingSound;
 let typingStartDelay = 200; // 2 seconds
 let typingStartTime = 0;
 
+// Module Data
+let module1Data;
+
 /****************************************
  *               PRELOADS
  ****************************************/
@@ -76,6 +79,9 @@ function preload() {
 
   // Loads the typing sound effects
   typingSound = loadSound("assets/sounds/futuristicTyping.wav");
+
+  // Loads the JSON file
+  module1Data = loadJSON("assets/data/module1.json");
 }
 
 /****************************************
@@ -92,7 +98,7 @@ function draw() {
   } else if (state === "loading"){
     drawLoadingScreen();
 
-    // if the typing is done, wait 0.5 seconds before switching to next state
+    // if the typing is done, wait 0.7 seconds before switching to next state
     if (typingDoneTime > 0 && millis() - typingDoneTime > 700) {
       state = nextState;
       typingDoneTime = 0;
@@ -208,7 +214,7 @@ function drawLoadingScreen() {
  ****************************************/
 
 function drawModuleOne() {
-  background(0);
+  background("#0000FF");
 }
 
 /****************************************
@@ -217,20 +223,21 @@ function drawModuleOne() {
 
 // Checks to see if the modules are clikced on
 function mousePressed() {
+  if (state !== "menu") return; // ignore mouse clicks if we're not on the menu screen
+
   if (hover1) {
     startLoading("sync", "SYNC INITIALIZED");
-    console.log("BEGINNING MODULE 1");
+    console.log("BEGINNING MODULE 1")
   }
   if (hover2) {
-    console.log("BEGINNING MODULE 2");
     startLoading("lament", "LAMENT PROTOCOL ENGAGED");
-    // state = "LAMENT";
+    console.log("BEGINNING MODULE 2")
   }
   if (hover3) {
     startLoading("sentience", "SENTIENCE ONLINE");
-    console.log("BEGINNING MODULE 3");
-    // state = "SENTIENCE";
+    console.log("BEGINNING MODULE 3")
   }
 }
+
 
 // "Welcome back 'A N O N Y M O U S_'
