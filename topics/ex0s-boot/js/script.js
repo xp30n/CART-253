@@ -1,6 +1,12 @@
 "use strict";
 
+
+// Default state of the game is the menu screen
 let state = "menu"
+
+// LOADING SCREEN VARIABLES
+let nextState = "";
+let loadStartTime = 0;
 
 // Loads the font
 let hackerFont;
@@ -42,12 +48,34 @@ let module3 = {
 }
 
 /****************************************
+ *            LOADING VARIABLES
+ ****************************************/
+
+// Variables for the loading screen text to looks like it's being typed
+let loadingText = "";
+let typingDoneTime = 0;
+let fullText = "";
+let currentText = "";
+let charIndex = 0;
+let typeSpeed = 3;
+
+// Loading screen typing sound effects
+let typingSound;
+
+// Typing delay to match with sound delay
+let typingStartDelay = 200; // 2 seconds
+let typingStartTime = 0;
+
+/****************************************
  *               PRELOADS
  ****************************************/
 
 function preload() {
   // Loads the hacker font
   hackerFont = loadFont("assets/fonts/hacker.ttf");
+
+  // Loads the typing sound effects
+  typingSound = loadSound("assets/sounds/futuristicTyping.wav");
 }
 
 /****************************************
@@ -61,6 +89,18 @@ function setup() {
 function draw() {
   if (state === "menu") {
     drawMenuScreen();
+  } else if (state === "loading"){
+    drawLoadingScreen();
+
+    // if the typing is done, wait 0.5 seconds before switching to next state
+    if (typingDoneTime > 0 && millis() - typingDoneTime > 700) {
+      state = nextState;
+      typingDoneTime = 0;
+    }
+    return;
+
+  } else if (state === "sync") {
+    drawModuleOne();
   }
 }
 
@@ -107,20 +147,86 @@ function drawModule(label, x, y, size) {
 }
 
 /****************************************
+ *            LOADING SCREEN
+ ****************************************/
+
+function startLoading(targetState, message) {
+  nextState = targetState;
+  
+  fullText = message;
+  currentText = "";
+  charIndex = 0;
+  typingDoneTime = 0;
+
+  state = "loading";
+
+  typingStartTime = millis();
+
+  if (!typingSound.isPlaying()) {
+    typingSound.loop();
+  }
+}
+
+function drawLoadingScreen() {
+  background(0);
+  fill("#23ce00");
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  textFont(hackerFont);
+
+  // Starts the typing after a 2 second delay to match with browser sound delays
+  if (millis() - typingStartTime < typingStartDelay) {
+    return;
+  }
+
+  // Typing logic
+  if (charIndex < fullText.length) {
+
+    if (frameCount % typeSpeed === 0) {
+      currentText += fullText[charIndex];
+      charIndex++;
+    }
+  } else {
+    // stop th typin sounds when the text is done typing
+    if (typingSound.isPlaying()) typingSound.stop();
+
+    if (typingDoneTime === 0) {
+      typingDoneTime = millis();
+    }
+  }
+
+  text(currentText, width/2, height/2);
+
+  if (frameCount % 40 < 20) {
+    text("_", width/2 + 200, height/2);
+  }
+}
+
+/****************************************
+ *           MODULE 01 - SYNC
+ ****************************************/
+
+function drawModuleOne() {
+  background(0);
+}
+
+/****************************************
  *                INPUTS
  ****************************************/
 
 // Checks to see if the modules are clikced on
 function mousePressed() {
   if (hover1) {
+    startLoading("sync", "SYNC INITIALIZED");
     console.log("BEGINNING MODULE 1");
-    // state = "SYNC";
   }
   if (hover2) {
     console.log("BEGINNING MODULE 2");
+    startLoading("lament", "LAMENT PROTOCOL ENGAGED");
     // state = "LAMENT";
   }
   if (hover3) {
+    startLoading("sentience", "SENTIENCE ONLINE");
     console.log("BEGINNING MODULE 3");
     // state = "SENTIENCE";
   }
