@@ -131,7 +131,7 @@ function preload() {
 
 function setup() {
   createCanvas(1100, 900);
-  setUpSyncRound();
+  setupSyncRound(); 
 }
 
 function draw() {
@@ -160,6 +160,8 @@ function draw() {
     drawModuleOneIntro();
   } else if (state === "syncGame") {
     drawSyncGameplay();
+  } else if (state === "syncEnd") {
+    drawSyncEnd();
   }
 }
 
@@ -312,7 +314,7 @@ function drawModuleOneIntro() {
  *           MODULE 01 - GAME
  ****************************************/
 
-function setUpSyncRound() {
+function setupSyncRound() {
   if (round === 1) {
     zoneWidth = 200;
     sliderSpeed = 6;
@@ -380,6 +382,26 @@ function drawSyncGameplay() {
 }
 
 /****************************************
+ *           MODULE 01 - END
+ ****************************************/
+
+function drawSyncEnd() {
+  background("blue");
+
+  noStroke();
+  fill("#ffffffff");
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("MODULE 01 : SUCCESSFULLY SYNCED", width/2, height/2);
+
+  textSize(35);
+  text("RETURN TO MENU?", width/2, height/2 + 100);
+
+  textSize(30);
+  text("(Y/N)", width/2, height/2 + 200);
+}
+
+/****************************************
  *                INPUTS
  ****************************************/
 
@@ -436,17 +458,23 @@ function keyPressed() {
           if (round > 3) {
             state = "syncEnd";
           } else {
-            setUpSyncRound(); // otherwise, keep the game playing
+            setupSyncRound();
           }
-        }, 600); // Wait 0.6 seconds before resetting to next state
+        }, 1000); // Wait 0.6 seconds before resetting to next state
       } else {
         // If a user fails to hit the spacebar within the green zone
         resultText = "MISALIGNMENT DETECTED";
 
         setTimeout(() => {
-          setUpSyncRound();
+          setupSyncRound();
         }, 600); // wait 0.6 seconds before restarting each round
       }
     }
   }
+
+  if (state === "syncEnd") {
+    if (key === "y" || key === "Y") {
+      state = "menu";
+    }
+  } // DONT FORGET TO ADD THE INPUT FOR IF A USER PRESSES N DUMBASS
 }
