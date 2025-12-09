@@ -14,7 +14,7 @@ The program is structured into three interactive modules, each introduced with a
 
 ## Screenshot(s)
 
-> ![Title](./assets/images/intro.png)
+> ![Title](./assets/images/eidolon-screenshot.png)
 
 ## 🧩 Core Features
 
