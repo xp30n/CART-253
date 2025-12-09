@@ -1,7 +1,7 @@
 "use strict";
 
 // Default state of the game is the menu screen
-let state = "menu"
+let state = "menu";
 
 // LOADING SCREEN VARIABLES
 let nextState = "";
@@ -21,36 +21,36 @@ let introCharIndex = 0;
  ****************************************/
 
 // Default state of the modules (not hovered over)
-let hover1 = false
-let hover2 = false
-let hover3 = false
+let hover1 = false;
+let hover2 = false;
+let hover3 = false;
 
 // Title varibles
 let title = {
   x: 550,
-  y: 350
-}
+  y: 350,
+};
 
 // Module 1 variables
 let module1 = {
   x: 550,
   y: 500,
-  textSize: 50
-}
+  textSize: 50,
+};
 
 // Module 2 variables
 let module2 = {
   x: 550,
   y: 590,
-  textSize: 50
-}
+  textSize: 50,
+};
 
 // Module 3 variables
 let module3 = {
   x: 550,
   y: 680,
-  textSize: 50
-}
+  textSize: 50,
+};
 
 /****************************************
  *            LOADING VARIABLES
@@ -84,6 +84,32 @@ let speechIndex = 0;
 let speechSound;
 
 /****************************************
+ *         MODULE 01 - GAME VARS
+ ****************************************/
+
+// Starts the game on round 1
+let round = 1;
+
+// Variables for the bar
+let barX = 200;
+let barY = 600;
+let barWidth = 700;
+let barHeight = 40;
+
+// Green zone inside the bar
+let zoneX;
+let zoneWidth;
+
+// Skill Check Slider
+let sliderX;
+let sliderSpeed;
+let sliderDirection = 1;
+
+// Shows the result of each skill check
+let resultText = "";
+let allowInput = true;
+
+/****************************************
  *               PRELOADS
  ****************************************/
 
@@ -93,7 +119,7 @@ function preload() {
 
   // Loads the typing sound effects
   typingSound = loadSound("assets/sounds/futuristicTyping.wav");
-  speechSound = loadSound("assets/sounds/speechTyping.wav")
+  speechSound = loadSound("assets/sounds/speechTyping.wav");
 
   // Loads the JSON file
   module1Data = loadJSON("assets/data/module1.json");
@@ -105,6 +131,7 @@ function preload() {
 
 function setup() {
   createCanvas(1100, 900);
+  setUpSyncRound();
 }
 
 function draw() {
@@ -129,11 +156,10 @@ function draw() {
     }
 
     return;
-
   } else if (state === "sync") {
     drawModuleOneIntro();
   } else if (state === "syncGame") {
-    drawSyncGameplay(); 
+    drawSyncGameplay();
   }
 }
 
@@ -153,12 +179,26 @@ function drawMenuScreen() {
   textAlign(CENTER, CENTER);
   text("EIDØL0N.exe", title.x, title.y);
 
-  // Draws each module separately 
-  hover1 = drawModule("MODULE 01 - SYNC", module1.x, module1.y, module1.textSize);
-  hover2 = drawModule("MODULE 02 - LAMENT", module2.x, module2.y, module2.textSize);
-  hover3 = drawModule("MODULE 03 - SENTIENCE", module3.x, module3.y, module3.textSize);
+  // Draws each module separately
+  hover1 = drawModule(
+    "MODULE 01 - SYNC",
+    module1.x,
+    module1.y,
+    module1.textSize
+  );
+  hover2 = drawModule(
+    "MODULE 02 - LAMENT",
+    module2.x,
+    module2.y,
+    module2.textSize
+  );
+  hover3 = drawModule(
+    "MODULE 03 - SENTIENCE",
+    module3.x,
+    module3.y,
+    module3.textSize
+  );
 }
-
 
 // Detects whether or not the mouse is hovering over each module text
 function drawModule(label, x, y, size) {
@@ -173,10 +213,10 @@ function drawModule(label, x, y, size) {
     mouseY > y - h / 2 &&
     mouseY < y + h / 2;
 
-    fill(hovering ? "#4aff4a" : "#23ce00");
-    text(label, x, y);
+  fill(hovering ? "#4aff4a" : "#23ce00");
+  text(label, x, y);
 
-    return hovering;
+  return hovering;
 }
 
 /****************************************
@@ -185,7 +225,7 @@ function drawModule(label, x, y, size) {
 
 function startLoading(targetState, message) {
   nextState = targetState;
-  
+
   fullText = message;
   currentText = "";
   charIndex = 0;
@@ -215,7 +255,6 @@ function drawLoadingScreen() {
 
   // Typing logic
   if (charIndex < fullText.length) {
-
     if (frameCount % typeSpeed === 0) {
       currentText += fullText[charIndex];
       charIndex++;
@@ -229,10 +268,10 @@ function drawLoadingScreen() {
     }
   }
 
-  text(currentText, width/2, height/2);
+  text(currentText, width / 2, height / 2);
 
   if (frameCount % 40 < 20) {
-    text("_", width/2 + 200, height/2);
+    text("_", width / 2 + 200, height / 2);
   }
 }
 
@@ -248,7 +287,7 @@ function drawModuleOneIntro() {
   textFont(hackerFont);
 
   textSize(25);
-  text("Press Spacebar to continue..", 550, 800);
+  text("Press any key to continue..", 550, 800);
 
   // Typing effect for the array
   if (charIndex < fullText.length) {
@@ -261,20 +300,83 @@ function drawModuleOneIntro() {
       currentText += fullText[charIndex];
       charIndex++;
     }
-  }else {
+  } else {
     if (speechSound.isPlaying()) speechSound.stop();
   }
 
   // Draws the current text
-  text(currentText, width/2, height/2);
+  text(currentText, width / 2, height / 2);
 }
 
 /****************************************
  *           MODULE 01 - GAME
  ****************************************/
 
+function setUpSyncRound() {
+  if (round === 1) {
+    zoneWidth = 200;
+    sliderSpeed = 6;
+  } else if (round === 2) {
+    zoneWidth = 130;
+    sliderSpeed = 9;
+  } else if (round === 3) {
+    zoneWidth = 80;
+    sliderSpeed = 12;
+  }
+
+  zoneX = random(barX + 20, barX + barWidth - zoneWidth - 20);
+
+  sliderX = barX;
+  sliderDirection = 1;
+
+  resultText = "";
+  allowInput = true;
+}
+
 function drawSyncGameplay() {
-  background("yellow");
+  background(0);
+
+  // Text displaying each round
+  noStroke();
+  fill("#23ce00");
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("ROUND " + round, width / 2, 200);
+
+  // Game Instructions
+  textSize(45);
+  noStroke();
+  fill("#23ce00");
+  text("PRESS SPACEBAR TO SYNC", width / 2, 800);
+
+  // SYNC ZONE
+  noStroke();
+  fill("#23ce00");
+  rect(zoneX, barY, zoneWidth, barHeight);
+
+  // The bar's outline
+  noFill();
+  stroke(255);
+  strokeWeight(3);
+  rect(barX, barY, barWidth, barHeight);
+
+  // Vertical Slider Line
+  stroke(255);
+  strokeWeight(4);
+  line(sliderX, barY - 10, sliderX, barY + barHeight + 10);
+
+  // The bounce back movement when it reaches the end of the bar
+  sliderX += sliderSpeed * sliderDirection;
+  if (sliderX <= barX || sliderX >= barX + barWidth) {
+    sliderDirection *= -1;
+  }
+
+  // Displays if the skill check was a success or not
+  noStroke();
+  fill("#23ce00");
+  textFont(hackerFont);
+  textSize(32);
+  text(resultText, width / 2, 500);
 }
 
 /****************************************
@@ -287,15 +389,15 @@ function mousePressed() {
 
   if (hover1) {
     startLoading("sync", "SYNC INITIALIZED");
-    console.log("BEGINNING MODULE 1")
+    console.log("BEGINNING MODULE 1");
   }
   if (hover2) {
     startLoading("lament", "LAMENT PROTOCOL ENGAGED");
-    console.log("BEGINNING MODULE 2")
+    console.log("BEGINNING MODULE 2");
   }
   if (hover3) {
     startLoading("sentience", "SENTIENCE ONLINE");
-    console.log("BEGINNING MODULE 3")
+    console.log("BEGINNING MODULE 3");
   }
 }
 
@@ -316,5 +418,35 @@ function keyPressed() {
     }
 
     state = "syncGame";
+  }
+
+  // Spacebar functions on the game screen
+  if (state === "syncGame" && allowInput) {
+    if (key === " ") {
+      allowInput = false;
+
+      // If the user presses the spacebar WITHIN THE GREEN ZONE, then it's a success
+      if (sliderX >= zoneX && sliderX <= zoneX + zoneWidth) {
+        // SUCCESS
+        resultText = "SYNC SUCCESS";
+
+        // Change to next state if round 3 has been passed
+        setTimeout(() => {
+          round++;
+          if (round > 3) {
+            state = "syncEnd";
+          } else {
+            setUpSyncRound(); // otherwise, keep the game playing
+          }
+        }, 600); // Wait 0.6 seconds before resetting to next state
+      } else {
+        // If a user fails to hit the spacebar within the green zone
+        resultText = "MISALIGNMENT DETECTED";
+
+        setTimeout(() => {
+          setUpSyncRound();
+        }, 600); // wait 0.6 seconds before restarting each round
+      }
+    }
   }
 }
