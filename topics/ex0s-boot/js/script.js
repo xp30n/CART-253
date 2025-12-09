@@ -79,7 +79,8 @@ let module1Data;
  *          MODULE 1 INTRO VAR.
  ****************************************/
 
-
+let speech = [];
+let speechIndex = 0;
 
 /****************************************
  *               PRELOADS
@@ -107,25 +108,30 @@ function setup() {
 function draw() {
   if (state === "menu") {
     drawMenuScreen();
-  } else if (state === "loading"){
+  } else if (state === "loading") {
     drawLoadingScreen();
 
-    // if the typing is done, wait 0.7 seconds before switching to next state
     if (typingDoneTime > 0 && millis() - typingDoneTime > 700) {
       state = nextState;
 
       if (state === "sync") {
-        module1IntroActive = true;
-        introFullText = module1.intro;
-        introCurrentText = "";
-        introCharIndex = 0;
+        speech = module1Data.syncIntro;
+        speechIndex = 0;
+
+        fullText = speech[0];
+        currentText = "";
+        charIndex = 0;
       }
+
       typingDoneTime = 0;
     }
+
     return;
 
   } else if (state === "sync") {
     drawModuleOneIntro();
+  } else if (state === "syncGame") {
+    drawSyncGameplay(); 
   }
 }
 
