@@ -109,6 +109,20 @@ let sliderDirection = 1;
 let resultText = "";
 let allowInput = true;
 
+/****************************************
+ *          MODULE 2 INTRO VAR.
+ ****************************************/
+
+let lamentScore = 0;
+
+// Parameters of the squares
+let tileX;
+let tileY;
+let tileSpeed;
+
+// shows the hot bar for the game
+let lamentBarY = 600;
+let tileHitWindow = 30; // Timing needs to be precise to add a layer of difficulty
 
 /****************************************
  *               PRELOADS
@@ -133,6 +147,7 @@ function preload() {
 function setup() {
   createCanvas(1100, 900);
   setupSyncRound(); 
+  setupLamentGame();
 }
 
 function draw() {
@@ -188,7 +203,7 @@ function draw() {
     drawLamentGameplay();
   } else if ( state === "lamentEnd") {
     drawLamentEnd();
-  } else if (state = "sentience") {
+  } else if (state === "sentience") {
     drawModuleThreeIntro();
   } else if (state === "sentienceGame") {
     drawSentienceGameplay();
@@ -470,8 +485,79 @@ function drawModuleTwoIntro() {
  *          MODULE 02 - GAME
  ****************************************/
 
+function setupLamentGame() {
+  lamentScore = 0;
+  resetTile();
+}
+
 function drawLamentGameplay() {
+  background(0);
+
+  // TITLE
+  fill("#23ce00");
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  textFont(hackerFont)
+  text("LAMENT PROTOCOL", width/2, 690);
+
+  // Instructions
+  textSize(28);
+  text("ALIGN THE MEMORY FRAGMENTS", width/2, 740);
+
+  // Hit bar
+  fill("#23ce00");
+  rect(200, lamentBarY, 700, 40);
+
+  // Square Tiles
+  noFill();
+  stroke("#0095ffff");
+  strokeWeight(4);
+  rect(tileX - 20, tileY - 20, 40, 40); 
+
+  // Tile falling movement
+  tileY += tileSpeed;
+  // if it goes off the screen, reset it at the top
+  if (tileY > height + 50) {
+    resetTile();
+  }
+
+  // shows your current score
+  fill("#23ce00");
+  noStroke();
+  textSize(32);
+  text("Fragments Stabilized: " + lamentScore + "/3", width/2, 820);
+
+  // if successfully align the square with the hit bar, change states to the end game
+  if (lamentScore >= 3) {
+    state = "lamentEnd";
+  }
+}
+
+function resetTile() {
+  tileX = random(300, 800);
+  tileY = -50; // starts off the canvas
+  tileSpeed = random(5, 9)
+}
+
+/****************************************
+ *            MODULE 02 - END
+ ****************************************/
+
+function drawLamentEnd() {
   background("blue");
+
+  noStroke();
+  fill("#ffffffff");
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("MODULE 02 : SUCCESSFULLY ALIGNED", width/2, height/2);
+
+  textSize(35);
+  text("RETURN TO MENU?", width/2, height/2 + 100);
+
+  textSize(30);
+  text("(Y/N)", width/2, height/2 + 200);
 }
 
 /****************************************
@@ -505,6 +591,14 @@ function drawModuleThreeIntro() {
 
   // Draws the current text
   text(currentText, width / 2, height / 2);
+}
+
+/****************************************
+ *           MODULE 03 - GAME
+ ****************************************/
+
+function drawSentienceGameplay() {
+  background("blue");
 }
 
 /****************************************
@@ -614,9 +708,29 @@ function keyPressed() {
     }
   }
 
+  // Uses the spacebar to proceed throughout the game
+  if (state === "lamentGame") {
+    if (key === " ") {
+
+      if (abs(tileY - lamentBarY) < tileHitWindow) {
+        lamentScore++; // if successful, add 1 to the score
+        resetTile();
+      } else {
+        resetTile(); // otherwise, just reset the tile
+      }
+    }
+  }
+
+  // Changes back to the menu screen if Y is pressed and it is the end screen
   if (state === "syncEnd") {
     if (key === "y" || key === "Y") {
       state = "menu";
     }
   } // DONT FORGET TO ADD THE INPUT FOR IF A USER PRESSES N DUMBASS
+
+  if (state === "lamentEnd") {
+    if (key === "y" || key === "Y") {
+      state = "menu";
+    }
+  } 
 }
