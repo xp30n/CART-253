@@ -11,6 +11,12 @@ let loadStartTime = 0;
 // Loads the font
 let hackerFont;
 
+// Starts the intro as false
+let module1IntroActive = false;
+let introFullText = "";
+let introCurrentText = "";
+let introCharIndex = 0;
+
 /****************************************
  *            MENU VARIABLES
  ****************************************/
@@ -70,6 +76,12 @@ let typingStartTime = 0;
 let module1Data;
 
 /****************************************
+ *          MODULE 1 INTRO VAR.
+ ****************************************/
+
+
+
+/****************************************
  *               PRELOADS
  ****************************************/
 
@@ -101,12 +113,19 @@ function draw() {
     // if the typing is done, wait 0.7 seconds before switching to next state
     if (typingDoneTime > 0 && millis() - typingDoneTime > 700) {
       state = nextState;
+
+      if (state === "sync") {
+        module1IntroActive = true;
+        introFullText = module1.intro;
+        introCurrentText = "";
+        introCharIndex = 0;
+      }
       typingDoneTime = 0;
     }
     return;
 
   } else if (state === "sync") {
-    drawModuleOne();
+    drawModuleOneIntro();
   }
 }
 
@@ -210,10 +229,10 @@ function drawLoadingScreen() {
 }
 
 /****************************************
- *           MODULE 01 - SYNC
+ *           MODULE 01 - INTRO
  ****************************************/
 
-function drawModuleOne() {
+function drawModuleOneIntro() {
   background("#0000FF");
 }
 
