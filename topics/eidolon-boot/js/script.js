@@ -143,10 +143,28 @@ function draw() {
     if (typingDoneTime > 0 && millis() - typingDoneTime > 2000) {
       state = nextState;
 
+      // Module 01 Intro
       if (state === "sync") {
         speech = module1Data.syncIntro;
         speechIndex = 0;
+        fullText = speech[0];
+        currentText = "";
+        charIndex = 0;
+      }
 
+      // Module 02 Intro
+      if (state === "lament") {
+        speech = module1Data.lamentIntro;
+        speechIndex = 0;
+        fullText = speech[0];
+        currentText = "";
+        charIndex = 0;
+      }
+
+      // Module 03 Intro
+      if (state === "sentience") {
+        speech = module1Data.sentienceIntro;
+        speechIndex = 0;
         fullText = speech[0];
         currentText = "";
         charIndex = 0;
@@ -156,12 +174,15 @@ function draw() {
     }
 
     return;
+
   } else if (state === "sync") {
     drawModuleOneIntro();
   } else if (state === "syncGame") {
     drawSyncGameplay();
   } else if (state === "syncEnd") {
     drawSyncEnd();
+  } else if (state === "lament") {
+    drawModuleTwoIntro();
   }
 }
 
@@ -402,6 +423,39 @@ function drawSyncEnd() {
 }
 
 /****************************************
+ *            MODULE 02 - INTRO
+ ****************************************/
+
+function drawModuleTwoIntro() {
+    background("#000000ff");
+    fill("#23ce00");
+    textAlign(CENTER, CENTER);
+    textSize(34);
+    textFont(hackerFont);
+  
+    textSize(25);
+    text("Press any key to continue..", 550, 800);
+  
+    // Typing effect for the array
+    if (charIndex < fullText.length) {
+      if (!speechSound.isPlaying()) {
+        speechSound.loop();
+        speechSound.setVolume(0.3);
+      }
+  
+      if (frameCount % typeSpeed === 0) {
+        currentText += fullText[charIndex];
+        charIndex++;
+      }
+    } else {
+      if (speechSound.isPlaying()) speechSound.stop();
+    }
+  
+    // Draws the current text
+    text(currentText, width / 2, height / 2);
+}
+
+/****************************************
  *                INPUTS
  ****************************************/
 
@@ -440,6 +494,24 @@ function keyPressed() {
     }
 
     state = "syncGame";
+  }
+
+  if (state === "lament") {
+    if (charIndex < fullText.length) {
+      charIndex = fullText.length;
+      currentText = fullText;
+      return;
+    }
+
+    if (speechIndex < speech.length - 1) {
+      speechIndex++;
+      fullText = speech[speechIndex];
+      currentText = "";
+      charIndex = 0;
+      return;
+    }
+
+    state = "lamentGame";
   }
 
   // Spacebar functions on the game screen
