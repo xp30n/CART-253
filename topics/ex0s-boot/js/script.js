@@ -1,6 +1,5 @@
 "use strict";
 
-
 // Default state of the game is the menu screen
 let state = "menu"
 
@@ -82,6 +81,8 @@ let module1Data;
 let speech = [];
 let speechIndex = 0;
 
+let speechSound;
+
 /****************************************
  *               PRELOADS
  ****************************************/
@@ -92,6 +93,7 @@ function preload() {
 
   // Loads the typing sound effects
   typingSound = loadSound("assets/sounds/futuristicTyping.wav");
+  speechSound = loadSound("assets/sounds/speechTyping.wav")
 
   // Loads the JSON file
   module1Data = loadJSON("assets/data/module1.json");
@@ -111,7 +113,7 @@ function draw() {
   } else if (state === "loading") {
     drawLoadingScreen();
 
-    if (typingDoneTime > 0 && millis() - typingDoneTime > 700) {
+    if (typingDoneTime > 0 && millis() - typingDoneTime > 2000) {
       state = nextState;
 
       if (state === "sync") {
@@ -239,7 +241,40 @@ function drawLoadingScreen() {
  ****************************************/
 
 function drawModuleOneIntro() {
-  background("#0000FF");
+  background("#000000ff");
+  fill("#23ce00");
+  textAlign(CENTER, CENTER);
+  textSize(34);
+  textFont(hackerFont);
+
+  textSize(25);
+  text("Press Spacebar to continue..", 550, 800);
+
+  // Typing effect for the array
+  if (charIndex < fullText.length) {
+    if (!speechSound.isPlaying()) {
+      speechSound.loop();
+      speechSound.setVolume(0.3);
+    }
+
+    if (frameCount % typeSpeed === 0) {
+      currentText += fullText[charIndex];
+      charIndex++;
+    }
+  }else {
+    if (speechSound.isPlaying()) speechSound.stop();
+  }
+
+  // Draws the current text
+  text(currentText, width/2, height/2);
+}
+
+/****************************************
+ *           MODULE 01 - GAME
+ ****************************************/
+
+function drawSyncGameplay() {
+  background("yellow");
 }
 
 /****************************************
@@ -264,5 +299,22 @@ function mousePressed() {
   }
 }
 
+function keyPressed() {
+  if (state === "sync") {
+    if (charIndex < fullText.length) {
+      charIndex = fullText.length;
+      currentText = fullText;
+      return;
+    }
 
-// "Welcome back 'A N O N Y M O U S_'
+    if (speechIndex < speech.length - 1) {
+      speechIndex++;
+      fullText = speech[speechIndex];
+      currentText = "";
+      charIndex = 0;
+      return;
+    }
+
+    state = "syncGame";
+  }
+}
