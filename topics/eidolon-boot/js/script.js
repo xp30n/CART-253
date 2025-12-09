@@ -109,6 +109,7 @@ let sliderDirection = 1;
 let resultText = "";
 let allowInput = true;
 
+
 /****************************************
  *               PRELOADS
  ****************************************/
@@ -183,6 +184,16 @@ function draw() {
     drawSyncEnd();
   } else if (state === "lament") {
     drawModuleTwoIntro();
+  } else if (state === "lamentGame"){
+    drawLamentGameplay();
+  } else if ( state === "lamentEnd") {
+    drawLamentEnd();
+  } else if (state = "sentience") {
+    drawModuleThreeIntro();
+  } else if (state === "sentienceGame") {
+    drawSentienceGameplay();
+  } else if (state === "sentienceEnd") {
+    drawSentienceEnd();
   }
 }
 
@@ -403,7 +414,7 @@ function drawSyncGameplay() {
 }
 
 /****************************************
- *           MODULE 01 - END
+ *            MODULE 01 - END
  ****************************************/
 
 function drawSyncEnd() {
@@ -423,7 +434,7 @@ function drawSyncEnd() {
 }
 
 /****************************************
- *            MODULE 02 - INTRO
+ *           MODULE 02 - INTRO
  ****************************************/
 
 function drawModuleTwoIntro() {
@@ -453,6 +464,47 @@ function drawModuleTwoIntro() {
   
     // Draws the current text
     text(currentText, width / 2, height / 2);
+}
+
+/****************************************
+ *          MODULE 02 - GAME
+ ****************************************/
+
+function drawLamentGameplay() {
+  background("blue");
+}
+
+/****************************************
+ *           MODULE 03 - INTRO
+ ****************************************/
+
+function drawModuleThreeIntro() {
+  background("#000000ff");
+  fill("#23ce00");
+  textAlign(CENTER, CENTER);
+  textSize(34);
+  textFont(hackerFont);
+
+  textSize(25);
+  text("Press any key to continue..", 550, 800);
+
+  // Typing effect for the array
+  if (charIndex < fullText.length) {
+    if (!speechSound.isPlaying()) {
+      speechSound.loop();
+      speechSound.setVolume(0.3);
+    }
+
+    if (frameCount % typeSpeed === 0) {
+      currentText += fullText[charIndex];
+      charIndex++;
+    }
+  } else {
+    if (speechSound.isPlaying()) speechSound.stop();
+  }
+
+  // Draws the current text
+  text(currentText, width / 2, height / 2);
 }
 
 /****************************************
@@ -512,6 +564,24 @@ function keyPressed() {
     }
 
     state = "lamentGame";
+  }
+
+  if (state === "sentience") {
+    if (charIndex < fullText.length) {
+      charIndex = fullText.length;
+      currentText = fullText;
+      return;
+    }
+
+    if (speechIndex < speech.length - 1) {
+      speechIndex++;
+      fullText = speech[speechIndex];
+      currentText = "";
+      charIndex = 0;
+      return;
+    }
+
+    state = "sentienceGame";
   }
 
   // Spacebar functions on the game screen
