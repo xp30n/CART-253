@@ -125,6 +125,16 @@ let lamentBarY = 600;
 let tileHitWindow = 30; // Timing needs to be precise to add a layer of difficulty
 
 /****************************************
+ *          MODULE 3 INTRO VAR.
+ ****************************************/
+
+let sentienceHits = 0;
+let flashTimer = 0;
+let flashInterval = 60;
+let targetNode = 0; 
+let currentFlash = 0;
+
+/****************************************
  *               PRELOADS
  ****************************************/
 
@@ -148,6 +158,7 @@ function setup() {
   createCanvas(1100, 900);
   setupSyncRound(); 
   setupLamentGame();
+  setupSentienceGame();
 }
 
 function draw() {
@@ -597,8 +608,87 @@ function drawModuleThreeIntro() {
  *           MODULE 03 - GAME
  ****************************************/
 
+function setupSentienceGame() {
+  sentienceHits = 0;
+  flashTimer = 0;
+  targetNode = floor(random(0, 3)); // chooses a random node to switch to
+}
+
 function drawSentienceGameplay() {
+  background(0);
+
+  // Game Title 
+  fill("#23ce00");
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  textFont(hackerFont);
+  text("TRACE THE SIGNAL", width/2, 120);
+
+  // Instructions for how to play
+  textSize(24);
+  text("PRESS SPACE WHEN THE GREEN NODE APPEARS", width/2, 170);
+
+  // Position of the nodes
+  let nodes = [
+    { x: 350, y: 400 },
+    { x: 550, y: 400 },
+    { x: 750, y: 400 }
+  ];
+
+  // Node flasshing
+  flashTimer++;
+  if (flashTimer >= flashInterval) {
+    flashTimer = 0;
+    currentFlash = floor(random(0, 3));  // random node flashes
+  }
+
+
+  // Draw nodes
+  for (let i = 0; i < nodes.length; i++) {
+    if (i === currentFlash) {
+      // Active flashing node
+      if (i === targetNode) {
+        fill("#23ce00"); // green target
+      } else {
+        fill("#ff0000"); // red target
+      }
+    } else {
+      noFill(); // the node is empty unless used ^
+    }
+
+    stroke(255);
+    strokeWeight(3);
+    ellipse(nodes[i].x, nodes[i].y, 80, 80);
+  }
+
+  fill("#23ce00");
+  noStroke();
+  textSize(30);
+  text("Correct Signals: " + sentienceHits + "/3", width/2, 700);
+
+  if (sentienceHits >= 3) {
+    state = "sentienceEnd";
+  }
+}
+
+/****************************************
+ *           MODULE 03 - END
+ ****************************************/
+
+function drawSentienceEnd() {
   background("blue");
+
+  noStroke();
+  fill("#ffffffff");
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("MODULE 03 : SENTIENCE\nSUCCESSFULLYCONFIRMED ", width/2, height/2);
+
+  textSize(35);
+  text("RETURN TO MENU?", width/2, height/2 + 100);
+
+  textSize(30);
+  text("(Y/N)", width/2, height/2 + 200);
 }
 
 /****************************************
@@ -675,6 +765,9 @@ function keyPressed() {
       return;
     }
 
+    if (speechSound.isPlaying()) speechSound.stop();
+    setupSentienceGame();
+
     state = "sentienceGame";
   }
 
@@ -721,6 +814,16 @@ function keyPressed() {
     }
   }
 
+  if (state === "sentienceGame") {
+    if (key === " ") {
+      if (currentFlash === targetNode) {
+        sentienceHits++;
+      }
+      // force next flash
+      flashTimer = flashInterval;
+    }
+  }
+
   // Changes back to the menu screen if Y is pressed and it is the end screen
   if (state === "syncEnd") {
     if (key === "y" || key === "Y") {
@@ -733,4 +836,10 @@ function keyPressed() {
       state = "menu";
     }
   } 
+
+  if (state === "sentienceEnd") {
+    if (key === "y" || key === "Y") {
+      state = "menu";
+    }
+  }
 }
