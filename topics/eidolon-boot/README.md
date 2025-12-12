@@ -85,12 +85,12 @@ Finish all three to complete the experience.
 
 ## Attribution
 
-Huge inspiration from cyberpunk UI design, CRT terminals, and Harlan Ellison’s I Have No Mouth, and I Must Scream. 
+Huge inspiration from cyberpunk UI design, CRT terminals, and Harlan Ellison’s "I Have No Mouth, and I Must Scream".
 
 Elements used:
 
 > - This project uses [p5.js](https://p5js.org)
-> - All audio used are royalty free sound effects taken from YouTube [typing sounds](https://www.youtube.com/watch?v=04vhD6tNnj8)
+> - All audio used are royalty free sound effects taken from YouTube: [Sound Effects](https://www.youtube.com/watch?v=04vhD6tNnj8)
 
 
 ## License
