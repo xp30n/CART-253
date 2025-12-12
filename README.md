@@ -11,6 +11,7 @@ Witness greatness below:
 ### Jam Assignments👾
 - <a href="https://xp30n.github.io/CART-253/topics/art-jam" target="_blank">Art Jam</a>
 - <a href="https://xp30n.github.io/CART-253/topics/mod-jam" target="_blank">Mod Jam</a>
+- <a href="https://xp30n.github.io/CART-253/topics/eidolon-boot" target="_blank">Variation Jam</a>
 
 
 ### Challenges💿
