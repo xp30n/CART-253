@@ -68,6 +68,14 @@ Player must press SPACE when the active flashing node is the green one.
 
 After 3 correct signals → the system achieves “sentience.” 
 
+### 🚩 HIDDEN SCREEN
+
+CLASSIFIED SYSTEM OUTPUT
+
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+▓▓ CONTENT REMOVED ▓▓
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
 ## 🧪 How to Play
 
 Click one of the three modules on the main menu.
@@ -85,7 +93,10 @@ Finish all three to complete the experience.
 
 ## Attribution
 
-Huge inspiration from cyberpunk UI design, CRT terminals, and Harlan Ellison’s "I Have No Mouth, and I Must Scream".
+Visual and interface inspiration comes from cyberpunk UI design and CRT terminal aesthetics.
+
+Narrative and thematic inspiration is drawn from Harlan Ellison’s short story *I Have No Mouth, and I Must Scream* (1967).
+
 
 Elements used:
 
