@@ -1,4 +1,4 @@
-# 🟩EIDØL0N.exe — VARIATION JAM
+# ❗️ EIDØL0N.exe — VARIATION JAM
 
 Author: Aliyah R.W. (Lia!)
 FALL 2025
@@ -12,7 +12,7 @@ The project explores themes of identity, machine sentience, and autonomy—drawi
 
 The program is structured into three interactive modules, each introduced with a typing-effect narrative sequence followed by a short minigame. Completing all three modules returns the system to the main terminal.
 
-## Screenshot(s)
+## Screenshot
 
 > ![Title](./assets/images/eidolon-screenshot.png)
 
