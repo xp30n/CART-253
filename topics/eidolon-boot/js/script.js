@@ -220,6 +220,8 @@ function draw() {
     drawSentienceGameplay();
   } else if (state === "sentienceEnd") {
     drawSentienceEnd();
+  } else if (state === "hiddenScreen") {
+    drawHiddenScreen();
   }
 }
 
@@ -692,6 +694,14 @@ function drawSentienceEnd() {
 }
 
 /****************************************
+ *             HIDDEN SCREEN
+ ****************************************/
+
+function drawHiddenScreen() {
+  background(0);
+}
+
+/****************************************
  *                INPUTS
  ****************************************/
 
@@ -828,6 +838,8 @@ function keyPressed() {
   if (state === "syncEnd") {
     if (key === "y" || key === "Y") {
       state = "menu";
+    } else if (key === "n" || key === "N") {
+      state = "hiddenScreen";
     }
   } // DONT FORGET TO ADD THE INPUT FOR IF A USER PRESSES N DUMBASS
 
