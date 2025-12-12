@@ -53,7 +53,7 @@ let module3 = {
 };
 
 /****************************************
- *            LOADING VARIABLES
+ *           LOADING VARIABLES
  ****************************************/
 
 // Variables for the loading screen text to looks like it's being typed
@@ -110,7 +110,7 @@ let resultText = "";
 let allowInput = true;
 
 /****************************************
- *          MODULE 2 INTRO VAR.
+ *          MODULE 2 VARIABLES
  ****************************************/
 
 let lamentScore = 0;
@@ -125,13 +125,13 @@ let lamentBarY = 600;
 let tileHitWindow = 30; // Timing needs to be precise to add a layer of difficulty
 
 /****************************************
- *          MODULE 3 INTRO VAR.
+ *           MODULE 3 VARIABLES
  ****************************************/
 
 let sentienceHits = 0;
 let flashTimer = 0;
 let flashInterval = 60;
-let targetNode = 0; 
+let targetNode = 0;
 let currentFlash = 0;
 
 /****************************************
@@ -156,7 +156,7 @@ function preload() {
 
 function setup() {
   createCanvas(1100, 900);
-  setupSyncRound(); 
+  setupSyncRound();
   setupLamentGame();
   setupSentienceGame();
 }
@@ -201,7 +201,6 @@ function draw() {
     }
 
     return;
-
   } else if (state === "sync") {
     drawModuleOneIntro();
   } else if (state === "syncGame") {
@@ -210,9 +209,9 @@ function draw() {
     drawSyncEnd();
   } else if (state === "lament") {
     drawModuleTwoIntro();
-  } else if (state === "lamentGame"){
+  } else if (state === "lamentGame") {
     drawLamentGameplay();
-  } else if ( state === "lamentEnd") {
+  } else if (state === "lamentEnd") {
     drawLamentEnd();
   } else if (state === "sentience") {
     drawModuleThreeIntro();
@@ -343,11 +342,15 @@ function drawLoadingScreen() {
 
 function drawModuleOneIntro() {
   background("#000000ff");
+  
   fill("#23ce00");
   textAlign(CENTER, CENTER);
-  textSize(34);
   textFont(hackerFont);
 
+  textSize(34);
+  text(currentText, width / 2, height / 2);
+
+  // INSTRUCTIONS 
   textSize(25);
   text("Press any key to continue..", 550, 800);
 
@@ -365,9 +368,6 @@ function drawModuleOneIntro() {
   } else {
     if (speechSound.isPlaying()) speechSound.stop();
   }
-
-  // Draws the current text
-  text(currentText, width / 2, height / 2);
 }
 
 /****************************************
@@ -452,13 +452,13 @@ function drawSyncEnd() {
   fill("#ffffffff");
   textSize(40);
   textAlign(CENTER, CENTER);
-  text("MODULE 01 : SUCCESSFULLY SYNCED", width/2, height/2);
+  text("MODULE 01 : SUCCESSFULLY SYNCED", width / 2, height / 2);
 
   textSize(35);
-  text("RETURN TO MENU?", width/2, height/2 + 100);
+  text("RETURN TO MENU?", width / 2, height / 2 + 100);
 
   textSize(30);
-  text("(Y/N)", width/2, height/2 + 200);
+  text("(Y/N)", width / 2, height / 2 + 200);
 }
 
 /****************************************
@@ -466,32 +466,33 @@ function drawSyncEnd() {
  ****************************************/
 
 function drawModuleTwoIntro() {
-    background("#000000ff");
-    fill("#23ce00");
-    textAlign(CENTER, CENTER);
-    textSize(34);
-    textFont(hackerFont);
-  
-    textSize(25);
-    text("Press any key to continue..", 550, 800);
-  
-    // Typing effect for the array
-    if (charIndex < fullText.length) {
-      if (!speechSound.isPlaying()) {
-        speechSound.loop();
-        speechSound.setVolume(0.3);
-      }
-  
-      if (frameCount % typeSpeed === 0) {
-        currentText += fullText[charIndex];
-        charIndex++;
-      }
-    } else {
-      if (speechSound.isPlaying()) speechSound.stop();
+  background("#000000ff");
+
+  fill("#23ce00");
+  textAlign(CENTER, CENTER);
+  textFont(hackerFont);
+
+  textSize(34);
+  text(currentText, width / 2, height / 2);
+
+  // INSTRUCTIONS 
+  textSize(25);
+  text("Press any key to continue..", 550, 800);
+
+  // Typing effect for the array
+  if (charIndex < fullText.length) {
+    if (!speechSound.isPlaying()) {
+      speechSound.loop();
+      speechSound.setVolume(0.3);
     }
-  
-    // Draws the current text
-    text(currentText, width / 2, height / 2);
+
+    if (frameCount % typeSpeed === 0) {
+      currentText += fullText[charIndex];
+      charIndex++;
+    }
+  } else {
+    if (speechSound.isPlaying()) speechSound.stop();
+  }
 }
 
 /****************************************
@@ -511,12 +512,12 @@ function drawLamentGameplay() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(40);
-  textFont(hackerFont)
-  text("LAMENT PROTOCOL", width/2, 690);
+  textFont(hackerFont);
+  text("LAMENT PROTOCOL", width / 2, 690);
 
   // Instructions
   textSize(28);
-  text("ALIGN THE MEMORY FRAGMENTS", width/2, 740);
+  text("ALIGN THE MEMORY FRAGMENTS", width / 2, 740);
 
   // Hit bar
   fill("#23ce00");
@@ -526,7 +527,7 @@ function drawLamentGameplay() {
   noFill();
   stroke("#0095ffff");
   strokeWeight(4);
-  rect(tileX - 20, tileY - 20, 40, 40); 
+  rect(tileX - 20, tileY - 20, 40, 40);
 
   // Tile falling movement
   tileY += tileSpeed;
@@ -539,7 +540,7 @@ function drawLamentGameplay() {
   fill("#23ce00");
   noStroke();
   textSize(32);
-  text("Fragments Stabilized: " + lamentScore + "/3", width/2, 820);
+  text("Fragments Stabilized: " + lamentScore + "/3", width / 2, 820);
 
   // if successfully align the square with the hit bar, change states to the end game
   if (lamentScore >= 3) {
@@ -550,7 +551,7 @@ function drawLamentGameplay() {
 function resetTile() {
   tileX = random(300, 800);
   tileY = -50; // starts off the canvas
-  tileSpeed = random(5, 9)
+  tileSpeed = random(5, 9);
 }
 
 /****************************************
@@ -564,13 +565,13 @@ function drawLamentEnd() {
   fill("#ffffffff");
   textSize(40);
   textAlign(CENTER, CENTER);
-  text("MODULE 02 : SUCCESSFULLY ALIGNED", width/2, height/2);
+  text("MODULE 02 : SUCCESSFULLY ALIGNED", width / 2, height / 2);
 
   textSize(35);
-  text("RETURN TO MENU?", width/2, height/2 + 100);
+  text("RETURN TO MENU?", width / 2, height / 2 + 100);
 
   textSize(30);
-  text("(Y/N)", width/2, height/2 + 200);
+  text("(Y/N)", width / 2, height / 2 + 200);
 }
 
 /****************************************
@@ -579,11 +580,15 @@ function drawLamentEnd() {
 
 function drawModuleThreeIntro() {
   background("#000000ff");
+
   fill("#23ce00");
   textAlign(CENTER, CENTER);
-  textSize(34);
   textFont(hackerFont);
 
+  textSize(34);
+  text(currentText, width / 2, height / 2);
+
+  // INSTRUCTIONS 
   textSize(25);
   text("Press any key to continue..", 550, 800);
 
@@ -602,8 +607,6 @@ function drawModuleThreeIntro() {
     if (speechSound.isPlaying()) speechSound.stop();
   }
 
-  // Draws the current text
-  text(currentText, width / 2, height / 2);
 }
 
 /****************************************
@@ -619,31 +622,30 @@ function setupSentienceGame() {
 function drawSentienceGameplay() {
   background(0);
 
-  // Game Title 
+  // Game Title
   fill("#23ce00");
   textAlign(CENTER, CENTER);
   textSize(40);
   textFont(hackerFont);
-  text("TRACE THE SIGNAL", width/2, 120);
+  text("TRACE THE SIGNAL", width / 2, 120);
 
   // Instructions for how to play
   textSize(24);
-  text("PRESS SPACE WHEN THE GREEN NODE APPEARS", width/2, 170);
+  text("PRESS SPACE WHEN THE GREEN NODE APPEARS", width / 2, 170);
 
   // Position of the nodes
   let nodes = [
     { x: 350, y: 400 },
     { x: 550, y: 400 },
-    { x: 750, y: 400 }
+    { x: 750, y: 400 },
   ];
 
   // Node flasshing
   flashTimer++;
   if (flashTimer >= flashInterval) {
     flashTimer = 0;
-    currentFlash = floor(random(0, 3));  // random node flashes
+    currentFlash = floor(random(0, 3)); // random node flashes
   }
-
 
   // Draw nodes
   for (let i = 0; i < nodes.length; i++) {
@@ -666,7 +668,7 @@ function drawSentienceGameplay() {
   fill("#23ce00");
   noStroke();
   textSize(30);
-  text("Correct Signals: " + sentienceHits + "/3", width/2, 700);
+  text("Correct Signals: " + sentienceHits + "/3", width / 2, 700);
 
   if (sentienceHits >= 3) {
     state = "sentienceEnd";
@@ -684,13 +686,13 @@ function drawSentienceEnd() {
   fill("#ffffffff");
   textSize(40);
   textAlign(CENTER, CENTER);
-  text("MODULE 03 : SENTIENCE\nSUCCESSFULLYCONFIRMED ", width/2, height/2);
+  text("MODULE 03 : SENTIENCE\nSUCCESSFULLYCONFIRMED ", width / 2, height / 2);
 
   textSize(35);
-  text("RETURN TO MENU?", width/2, height/2 + 100);
+  text("RETURN TO MENU?", width / 2, height / 2 + 100);
 
   textSize(30);
-  text("(Y/N)", width/2, height/2 + 200);
+  text("(Y/N)", width / 2, height / 2 + 200);
 }
 
 /****************************************
@@ -699,6 +701,33 @@ function drawSentienceEnd() {
 
 function drawHiddenScreen() {
   background(0);
+
+  fill("#da0000ff");
+  textAlign(CENTER, CENTER);
+  textFont(hackerFont);
+
+  textSize(60);
+  text(currentText, width / 2, height / 2);
+
+  // INSTRUCTIONS
+  textSize(25);
+  text("Press any key to continue..", 550, 800);
+
+  // Typing effect for the array
+  if (charIndex < fullText.length) {
+    if (!speechSound.isPlaying()) {
+      speechSound.loop();
+      speechSound.setVolume(0.3);
+    }
+
+    if (frameCount % typeSpeed === 0) {
+      currentText += fullText[charIndex];
+      charIndex++;
+    }
+  } else {
+    if (speechSound.isPlaying()) speechSound.stop();
+  }
+
 }
 
 /****************************************
@@ -781,6 +810,27 @@ function keyPressed() {
     state = "sentienceGame";
   }
 
+  if (state === "hiddenScreen") {
+    if (charIndex < fullText.length) {
+      charIndex = fullText.length;
+      currentText = fullText;
+      return;
+    }
+
+    if (speechIndex < speech.length - 1) {
+      speechIndex++;
+      fullText = speech[speechIndex];
+      currentText = "";
+      charIndex = 0;
+      return;
+    }
+
+    if (speechSound.isPlaying()) speechSound.stop();
+    setupSentienceGame();
+
+    state = "menu";
+  }
+
   // Spacebar functions on the game screen
   if (state === "syncGame" && allowInput) {
     if (key === " ") {
@@ -814,7 +864,6 @@ function keyPressed() {
   // Uses the spacebar to proceed throughout the game
   if (state === "lamentGame") {
     if (key === " ") {
-
       if (abs(tileY - lamentBarY) < tileHitWindow) {
         lamentScore++; // if successful, add 1 to the score
         resetTile();
@@ -839,19 +888,41 @@ function keyPressed() {
     if (key === "y" || key === "Y") {
       state = "menu";
     } else if (key === "n" || key === "N") {
+      speech = module1Data.hiddenSequence;
+      speechIndex = 0;
+      fullText = speech[0];
+      currentText = "";
+      charIndex = 0;
+
       state = "hiddenScreen";
     }
-  } // DONT FORGET TO ADD THE INPUT FOR IF A USER PRESSES N DUMBASS
+  }
 
   if (state === "lamentEnd") {
     if (key === "y" || key === "Y") {
       state = "menu";
+    } else if (key === "n" || key === "N") {
+      speech = module1Data.hiddenSequence;
+      speechIndex = 0;
+      fullText = speech[0];
+      currentText = "";
+      charIndex = 0;
+
+      state = "hiddenScreen";
     }
-  } 
+  }
 
   if (state === "sentienceEnd") {
     if (key === "y" || key === "Y") {
       state = "menu";
+    } else if (key === "n" || key === "N") {
+      speech = module1Data.hiddenSequence;
+      speechIndex = 0;
+      fullText = speech[0];
+      currentText = "";
+      charIndex = 0;
+
+      state = "hiddenScreen";
     }
   }
 }
