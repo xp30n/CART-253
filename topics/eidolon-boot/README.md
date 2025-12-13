@@ -73,7 +73,7 @@ After 3 correct signals → the system achieves “sentience.”
 CLASSIFIED SYSTEM OUTPUT
 
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓▓ CONTENT REMOVED ▓▓
+▓▓ [   REDACTED  ] ▓▓
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 ## 🧪 How to Play
